@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @push('content')
+@stack('extension')
 <div class="row">
   <div class="col-xl-12">
     <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
@@ -141,6 +142,8 @@
     </div>
   </div>
 </div>
+
+@include('includes.activities')
 @endpush
 
 @push('js')
