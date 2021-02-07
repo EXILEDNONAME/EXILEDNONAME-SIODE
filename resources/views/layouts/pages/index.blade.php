@@ -15,7 +15,6 @@
           <a id="file-refresh" class="btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip" title="" data-original-title="Refresh"><i class="la la-refresh"></i></a>
           <div class="dropdown dropdown-inline">
             <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
               <i class="fas fa-level-down-alt"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
@@ -67,11 +66,27 @@
         @endif
 
         <div class="table-responsive">
-          <select data-column="-2" class="form-control col-sm-2 mr-3 filter-active">
-            <option value=""> - Select Active - </option>
-            <option value="1"> Yes </option>
-            <option value="2"> No </option>
-          </select>
+          <div class="align-items-center">
+            <div class="col-lg-9 col-xl-8">
+              <div class="row align-items-center">
+
+                <div class="col-md-4 my-2 my-md-0">
+                  <div class="d-flex align-items-center">
+                    <select data-column="-2" class="form-control filter-active">
+                      <option value=""> - Select Active - </option>
+                      <option value="1"> Yes </option>
+                      <option value="2"> No </option>
+                    </select>
+                  </div>
+                </div>
+
+                @stack('filter-header')
+
+              </div>
+            </div>
+          </div>
+
+
           <hr>
           <table width="100%" class="table table-striped-table-bordered table-hover table-checkable" id="exilednoname">
             <thead>
@@ -148,6 +163,7 @@ var KTDatatablesExtensionsKeytable = function() {
         url: "{{ URL::current() }}/datatables",
         "data" : function (d) {
           d.filter_active = $('#filter_active').val();
+          @stack('filter-function')
         }
       },
       headerCallback: function(thead, data, start, end, display) {
@@ -258,7 +274,7 @@ var KTDatatablesExtensionsKeytable = function() {
     });
 
     $('.filter-active').change(function () {
-      table.column( $(this).data('column'))
+      table.column(-2)
       .search( $(this).val() )
       .draw();
     });

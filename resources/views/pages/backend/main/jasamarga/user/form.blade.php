@@ -67,7 +67,7 @@
   <div class="form-group row">
     <label class="col-lg-3 col-form-label"> Printer </label>
     <div class="col-lg-9">
-      {{ Form::select('printer', ['0' => 'No', '1' => 'Yes'], (isset($data->printer) ? $data->printer : ''), ['class' => $errors->has('printer') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) }}
+      {{ Form::select('printer', ['2' => 'No', '1' => 'Yes'], (isset($data->printer) ? $data->printer : ''), ['class' => $errors->has('printer') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) }}
       @error('printer') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
     </div>
   </div>

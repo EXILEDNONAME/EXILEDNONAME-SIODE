@@ -33,7 +33,7 @@ class UserController extends Controller {
   **/
 
   public function data() {
-    $query = $this->model::with(['jasamarga_devices', 'jasamarga_locations'])->select('*');
+    $query = $this->model::with(['jasamarga_devices', 'jasamarga_locations'])->select('jasamarga_users.*');
     return datatables($query)->toJson();
   }
 

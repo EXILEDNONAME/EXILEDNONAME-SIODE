@@ -15,6 +15,7 @@ Route::group([
   'prefix' => 'dashboard/jasamarga/devices',
   'namespace' => 'Backend\Main\JASAMARGA',
 ], function(){
+  Route::get('datatables', 'DeviceController@data')->name('datatables');
   Route::get('enable/{id}', 'DeviceController@enable')->name('enable');
   Route::get('disable/{id}', 'DeviceController@disable')->name('disable');
   Route::get('status/{id}/{slug}', 'DeviceController@status')->name('status');
@@ -29,6 +30,7 @@ Route::group([
   'prefix' => 'dashboard/jasamarga/locations',
   'namespace' => 'Backend\Main\JASAMARGA',
 ], function(){
+  Route::get('datatables', 'LocationController@data')->name('datatables');
   Route::get('enable/{id}', 'LocationController@enable')->name('enable');
   Route::get('disable/{id}', 'LocationController@disable')->name('disable');
   Route::get('status/{id}/{slug}', 'LocationController@status')->name('status');

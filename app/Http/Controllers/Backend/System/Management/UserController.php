@@ -32,18 +32,13 @@ class UserController extends Controller {
   **************************************************
   **/
 
-  public function index() {
-    $data = $this->model::with('accesses')->get();
-    if(request()->ajax()) {
-      return DataTables::of($data)
-      ->editColumn('id_access', function($order) { return $order->accesses; })
-      ->addColumn('checkbox', 'includes.datatable.checkbox')
-      ->addColumn('action', 'includes.datatable.action')
-      ->rawColumns(['action', 'checkbox'])
-      ->addIndexColumn()
-      ->make(true);
-    }
+  public function index(Request $request) {
     return view($this->path . '.index');
+  }
+
+  public function data() {
+    $query = $this->model::with(['accesses'])->select('*');
+    return datatables($query)->toJson();
   }
 
   /**

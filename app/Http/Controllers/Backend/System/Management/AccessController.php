@@ -32,17 +32,13 @@ class AccessController extends Controller {
   **************************************************
   **/
 
-  public function index() {
-    $data = $this->model::get();
-    if(request()->ajax()) {
-      return DataTables::of($data)
-      ->addColumn('checkbox', 'includes.datatable.checkbox')
-      ->addColumn('action', 'includes.datatable.action')
-      ->rawColumns(['action', 'checkbox'])
-      ->addIndexColumn()
-      ->make(true);
-    }
+  public function index(Request $request) {
     return view($this->path . '.index');
+  }
+
+  public function data() {
+    $query = $this->model::select('*');
+    return datatables($query)->toJson();
   }
 
   /**
