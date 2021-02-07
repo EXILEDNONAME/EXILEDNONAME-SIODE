@@ -45,10 +45,26 @@ Route::group([
   'prefix' => 'dashboard/jasamarga/users',
   'namespace' => 'Backend\Main\JASAMARGA',
 ], function(){
+  Route::get('datatables', 'UserController@data')->name('datatables');
   Route::get('enable/{id}', 'UserController@enable')->name('enable');
   Route::get('disable/{id}', 'UserController@disable')->name('disable');
   Route::get('status/{id}/{slug}', 'UserController@status')->name('status');
   Route::get('delete/{id}', 'UserController@delete')->name('delete');
   Route::get('deleteall', 'UserController@deleteall')->name('deleteall');
   Route::resource('/', 'UserController')->parameters(['' => 'id']);
+});
+
+// JASAMARGA - Maintenances
+Route::group([
+  'as' => 'jasamarga.maintenance.',
+  'prefix' => 'dashboard/jasamarga/maintenances',
+  'namespace' => 'Backend\Main\JASAMARGA',
+], function(){
+  Route::get('datatables', 'MaintenanceController@data')->name('datatables');
+  Route::get('enable/{id}', 'MaintenanceController@enable')->name('enable');
+  Route::get('disable/{id}', 'MaintenanceController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'MaintenanceController@status')->name('status');
+  Route::get('delete/{id}', 'MaintenanceController@delete')->name('delete');
+  Route::get('deleteall', 'MaintenanceController@deleteall')->name('deleteall');
+  Route::resource('/', 'MaintenanceController')->parameters(['' => 'id']);
 });

@@ -1,9 +1,6 @@
 <?php
 
-Route::get('dashboard/jasamarga/users/datatables', 'Backend\Main\JASAMARGA\UserController@data');
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 // LANGUAGE
