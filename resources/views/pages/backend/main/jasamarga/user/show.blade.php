@@ -10,7 +10,7 @@
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> Location </td>
-      <td class="align-middle"> {{ $data->jasamarga_locations->name }} </td>
+      <td class="align-middle"> {{ $data->jasamarga_locations->name }} - {{ $data->jasamarga_locations->description }} </td>
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> Name </td>
@@ -35,6 +35,10 @@
     <tr>
       <td class="align-middle font-weight-bold"> PC Password </td>
       <td class="align-middle"> {{ $data->pc_password }} </td>
+    </tr>
+    <tr>
+      <td class="align-middle font-weight-bold"> Description </td>
+      <td class="align-middle"> {{ $data->description }} </td>
     </tr>
     @include('includes.datatable.page-show.main')
   </table>

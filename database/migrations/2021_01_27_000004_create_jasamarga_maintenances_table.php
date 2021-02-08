@@ -27,7 +27,6 @@ class CreateJasamargaMaintenancesTable extends Migration
       $table->integer('created_by')->nullable();
       $table->integer('updated_by')->nullable();
       $table->foreign('id_user')->references('id')->on('jasamarga_users')->onDelete('restrict')->onUpdate('restrict');
-      $table->integer('delete')->default(0);
       $table->timestamps();
     });
   }

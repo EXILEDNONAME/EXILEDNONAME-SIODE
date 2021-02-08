@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJasamargaLocationsTable extends Migration
+class CreateJasamargaOfficialsTable extends Migration
 {
   /**
   * Run the migrations.
@@ -13,9 +13,12 @@ class CreateJasamargaLocationsTable extends Migration
   */
   public function up()
   {
-    Schema::create('jasamarga_locations', function (Blueprint $table) {
+    Schema::create('jasamarga_officials', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
+      $table->string('ip_address');
+      $table->string('mac_address');
+      $table->string('port')->nullable()->default(80);
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('sort')->default(0);
@@ -33,6 +36,6 @@ class CreateJasamargaLocationsTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('jasamarga_locations');
+    Schema::dropIfExists('jasamarga_officials');
   }
 }

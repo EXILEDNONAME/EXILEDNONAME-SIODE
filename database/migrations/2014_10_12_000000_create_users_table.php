@@ -30,7 +30,6 @@ class CreateUsersTable extends Migration
         $table->integer('status')->default(1);
         $table->rememberToken();
         $table->foreign('id_access')->references('id')->on('accesses')->onDelete('restrict')->onUpdate('restrict');
-        $table->integer('delete')->default(0);
         $table->timestamps();
       });
     }

@@ -24,6 +24,7 @@ class CreateJasamargaUsersTable extends Migration
       $table->string('pc_name')->nullable();
       $table->string('pc_password')->nullable();
       $table->integer('printer')->default(0);
+      $table->text('description')->nullable();
       $table->integer('active')->default(0);
       $table->integer('sort')->default(0);
       $table->integer('status')->default(1);
@@ -31,7 +32,6 @@ class CreateJasamargaUsersTable extends Migration
       $table->integer('updated_by')->nullable();
       $table->foreign('id_device')->references('id')->on('jasamarga_devices')->onDelete('restrict')->onUpdate('restrict');
       $table->foreign('id_location')->references('id')->on('jasamarga_locations')->onDelete('restrict')->onUpdate('restrict');
-      $table->integer('delete')->default(0);
       $table->timestamps();
     });
   }

@@ -13,6 +13,12 @@
           <span class="menu-text"> Devices </span>
         </a>
       </li>
+      <li class="menu-item {{ (request()->is('dashboard/jasamarga/intercomes*')) ? 'menu-item-active' : '' }}">
+        <a href="/dashboard/jasamarga/intercomes" class="menu-link">
+          <i class="menu-bullet menu-bullet-dot"><span></span></i>
+          <span class="menu-text"> Intercomes </span>
+        </a>
+      </li>
       <li class="menu-item {{ (request()->is('dashboard/jasamarga/locations*')) ? 'menu-item-active' : '' }}">
         <a href="/dashboard/jasamarga/locations" class="menu-link">
           <i class="menu-bullet menu-bullet-dot"><span></span></i>
@@ -23,6 +29,12 @@
         <a href="/dashboard/jasamarga/maintenances" class="menu-link">
           <i class="menu-bullet menu-bullet-dot"><span></span></i>
           <span class="menu-text"> Maintenances </span>
+        </a>
+      </li>
+      <li class="menu-item {{ (request()->is('dashboard/jasamarga/officials*')) ? 'menu-item-active' : '' }}">
+        <a href="/dashboard/jasamarga/officials" class="menu-link">
+          <i class="menu-bullet menu-bullet-dot"><span></span></i>
+          <span class="menu-text"> Officials </span>
         </a>
       </li>
       <li class="menu-item {{ (request()->is('dashboard/jasamarga/users*')) ? 'menu-item-active' : '' }}">

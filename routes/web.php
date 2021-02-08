@@ -13,10 +13,6 @@ Route::get('dashboard/logout', 'Backend\Main\DashboardController@logout')->name(
 // TEST
 Route::get('/dashboard/demo', 'DemoController@data');
 
-
-
-
-
 // SYSTEM
 require __DIR__.'/backend/system/default.php';
 

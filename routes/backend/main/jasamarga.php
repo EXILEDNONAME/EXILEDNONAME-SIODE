@@ -72,3 +72,35 @@ Route::group([
   Route::get('deleteall', 'MaintenanceController@deleteall')->name('deleteall');
   Route::resource('/', 'MaintenanceController')->parameters(['' => 'id']);
 });
+
+// JASAMARGA - Intercomes
+Route::group([
+  'as' => 'jasamarga.intercome.',
+  'prefix' => 'dashboard/jasamarga/intercomes',
+  'namespace' => 'Backend\Main\JASAMARGA',
+], function(){
+  Route::get('status-done/{id}', 'IntercomeController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'IntercomeController@status_pending')->name('status-pending');
+  Route::get('enable/{id}', 'IntercomeController@enable')->name('enable');
+  Route::get('disable/{id}', 'IntercomeController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'IntercomeController@status')->name('status');
+  Route::get('delete/{id}', 'IntercomeController@delete')->name('delete');
+  Route::get('deleteall', 'IntercomeController@deleteall')->name('deleteall');
+  Route::resource('/', 'IntercomeController')->parameters(['' => 'id']);
+});
+
+// JASAMARGA - Officials
+Route::group([
+  'as' => 'jasamarga.official.',
+  'prefix' => 'dashboard/jasamarga/officials',
+  'namespace' => 'Backend\Main\JASAMARGA',
+], function(){
+  Route::get('status-done/{id}', 'OfficialController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'OfficialController@status_pending')->name('status-pending');
+  Route::get('enable/{id}', 'OfficialController@enable')->name('enable');
+  Route::get('disable/{id}', 'OfficialController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'OfficialController@status')->name('status');
+  Route::get('delete/{id}', 'OfficialController@delete')->name('delete');
+  Route::get('deleteall', 'OfficialController@deleteall')->name('deleteall');
+  Route::resource('/', 'OfficialController')->parameters(['' => 'id']);
+});
