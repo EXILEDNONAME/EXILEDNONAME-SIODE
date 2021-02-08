@@ -83,6 +83,12 @@
 
                 @stack('filter-header')
 
+                <div class="col-md-4 my-2 my-md-0">
+                  <div class="d-flex align-items-center">
+                    <button type="reset" name="reset" id="reset" class="btn btn-sm btn-outline-info mr-2"> Reset </button>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -286,6 +292,13 @@ var KTDatatablesExtensionsKeytable = function() {
     });
 
     @stack('filter-data')
+
+    $('#reset').click(function(){
+      $('.filter-active').val('');
+      $('#date_start').val('');
+      $('#date_end').val('');
+      table.search( '' ).columns().search( '' ).draw();
+    });
 
     $("#file-refresh").on("click", function() { table.ajax.reload(); });
     $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });

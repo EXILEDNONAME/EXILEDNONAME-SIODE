@@ -16,12 +16,6 @@
     </div>
   </div>
 </div>
-
-<div class="col-md-4 my-2 my-md-0">
-  <div class="d-flex align-items-center">
-<button type="reset" name="reset" id="reset" class="btn btn-sm btn-outline-info mr-2"> Reset </button>
-</div>
-</div>
 @endpush
 
 @push('filter-function')
@@ -32,11 +26,6 @@ d.date_end = $('#date_end').val();
 @push('filter-data')
 $('#date_start').change(function () { table.draw(); });
 $('#date_end').change(function () { table.draw(); });
-$('#reset').click(function(){
-  $('#date_start').val('');
-  $('#date_end').val('');
-  table.ajax.reload();
-});
 @endpush
 
 @push('column-defs')
