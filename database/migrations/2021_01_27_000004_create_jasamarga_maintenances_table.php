@@ -23,7 +23,7 @@ class CreateJasamargaMaintenancesTable extends Migration
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('sort')->default(0);
-      $table->integer('status')->default(1);
+      $table->integer('status')->default(2);
       $table->integer('created_by')->nullable();
       $table->integer('updated_by')->nullable();
       $table->foreign('id_user')->references('id')->on('jasamarga_users')->onDelete('restrict')->onUpdate('restrict');
