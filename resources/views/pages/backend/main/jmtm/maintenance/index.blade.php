@@ -57,6 +57,7 @@ $('.filter-status').change(function () {
 { data: 'date_start', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'date_end', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'jmtm_users.name' },
+{ data: 'title' },
 { data: 'troubleshoot' },
 { data: 'description' },
 @endpush
