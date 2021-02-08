@@ -9,6 +9,11 @@ function filter_jasamarga_devices() {
   return $items;
 }
 
+function filter_jasamarga_locations() {
+  $items = Location::orderBy('name','asc')->pluck('name', 'name')->toArray();
+  return $items;
+}
+
 function jasamarga_devices() {
   $items = Device::orderBy('name','asc')->pluck('name', 'id')->toArray();
   return $items;

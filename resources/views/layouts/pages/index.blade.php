@@ -306,6 +306,7 @@ var KTDatatablesExtensionsKeytable = function() {
     $('#reset').click(function(){
       $('.filter-active').val('');
       $('.filter-device').val('');
+      $('.filter-location').val('');
       $('.filter-printer').val('');
       $('.filter-status').val('');
       $('#date_start').val('');
