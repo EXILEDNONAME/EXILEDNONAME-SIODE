@@ -23,7 +23,7 @@ class CreateJasamargaUsersTable extends Migration
       $table->string('mac_address')->nullable();
       $table->string('pc_name')->nullable();
       $table->string('pc_password')->nullable();
-      $table->integer('printer')->default(0);
+      $table->integer('printer')->default(1);
       $table->text('description')->nullable();
       $table->integer('active')->default(0);
       $table->integer('sort')->default(0);

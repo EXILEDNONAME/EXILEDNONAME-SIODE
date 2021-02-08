@@ -1,24 +1,24 @@
 @extends('layouts.pages.show', ['header' => 'true'])
-@push('title', 'JASAMARGA Users')
+@push('title', 'SESKO Users')
 
 @push('content-body')
 <div class="table-responsive">
   <table width="100%" class="table table-stiped table-bordered">
     <tr>
-      <td class="align-middle font-weight-bold"> Device </td>
-      <td class="align-middle"> {{ $data->jasamarga_devices->name }} </td>
+      <td class="align-middle font-weight-bold"> Packet </td>
+      <td class="align-middle"> {{ $data->sesko_packets->name }} </td>
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> Location </td>
-      <td class="align-middle"> {{ $data->jasamarga_locations->name }} - {{ $data->jasamarga_locations->description }} </td>
+      <td class="align-middle"> {{ $data->sesko_locations->name }} - {{ $data->sesko_locations->description }} </td>
+    </tr>
+    <tr>
+      <td class="align-middle font-weight-bold"> ID Customer </td>
+      <td class="align-middle"> {{ $data->npp }} </td>
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> Name </td>
       <td class="align-middle"> {{ $data->name }} </td>
-    </tr>
-    <tr>
-      <td class="align-middle font-weight-bold"> NPP </td>
-      <td class="align-middle"> {{ $data->npp }} </td>
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> IP Address </td>
@@ -29,17 +29,17 @@
       <td class="align-middle"> {{ $data->mac_address }} </td>
     </tr>
     <tr>
-      <td class="align-middle font-weight-bold"> PC Name </td>
-      <td class="align-middle"> {{ $data->pc_name }} </td>
+      <td class="align-middle font-weight-bold"> TV Username </td>
+      <td class="align-middle"> {{ $data->tv_username }} </td>
     </tr>
     <tr>
-      <td class="align-middle font-weight-bold"> PC Password </td>
-      <td class="align-middle"> {{ $data->pc_password }} </td>
+      <td class="align-middle font-weight-bold"> TV Password </td>
+      <td class="align-middle"> {{ $data->tv_password }} </td>
     </tr>
     <tr>
-      <td class="align-middle font-weight-bold"> Printer </td>
+      <td class="align-middle font-weight-bold"> TV Include </td>
       <td class="align-middle">
-        @if ( $data->printer == 1 ) Yes
+        @if ( $data->tv_include == 1 ) Yes
         @else No
         @endif
       </td>
