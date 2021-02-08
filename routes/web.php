@@ -11,7 +11,7 @@ Route::get('dashboard', 'Backend\Main\DashboardController@index')->name('dashboa
 Route::get('dashboard/logout', 'Backend\Main\DashboardController@logout')->name('dashboard.logout');
 
 // TEST
-Route::get('/test', 'Backend\Main\JASAMARGA\UserController@test');
+Route::get('/dashboard/demo', 'DemoController@data');
 
 
 

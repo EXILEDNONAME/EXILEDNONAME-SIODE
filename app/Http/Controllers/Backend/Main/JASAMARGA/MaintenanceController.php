@@ -33,11 +33,22 @@ class MaintenanceController extends Controller {
   **/
 
   public function index(Request $request) {
+    $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*');
+    if(request()->ajax()) {
+      return DataTables::eloquent($data)
+      ->editColumn('name', function($order) { return $order->jasamarga_users; })
+      ->editColumn('location', function($order) { return $order->jasamarga_users->jasamarga_locations->name; })
+      ->addColumn('checkbox', 'includes.datatable.checkbox')
+      ->addColumn('action', 'includes.datatable.action')
+      ->rawColumns(['action', 'checkbox'])
+      ->addIndexColumn()
+      ->make(true);
+    }
     return view($this->path . '.index');
   }
 
   public function data() {
-    $query = $this->model::select('*');
+    $query = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*');
     return datatables($query)->toJson();
   }
 

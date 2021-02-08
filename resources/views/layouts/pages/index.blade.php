@@ -163,7 +163,7 @@ var KTDatatablesExtensionsKeytable = function() {
         selector: 'td:first-child .checkable',
       },
       ajax: {
-        url: "{{ URL::current() }}/datatables",
+        url: "{{ URL::current() }}",
         "data" : function (d) {
           d.filter_active = $('#filter_active').val();
           @stack('filter-function')
@@ -240,6 +240,7 @@ var KTDatatablesExtensionsKeytable = function() {
           },
         },
       ],
+      @stack('column-defs')
       columns: [
         {
           data: 'checkbox', orderable: false, orderable: false, searchable: false, 'width': '1',
@@ -255,7 +256,7 @@ var KTDatatablesExtensionsKeytable = function() {
         {
           data: 'active', orderable: true, 'className': 'align-middle text-center', 'width': '1',
           render: function ( data, type, row ) {
-            if (data == 0) { return ''; }
+            if ( data == 0) { return ''; }
             if ( data == 1 ) { return '<a href="javascript:void(0);" id="disable" data-toggle="tooltip" data-original-title="Disable" data-id="' + row.id + '"><span class="label label-info label-inline"> Yes </span></a>'; }
             if ( data == 2 ) { return '<a href="javascript:void(0);" id="enable" data-toggle="tooltip" data-original-title="Enable" data-id="' + row.id + '"><span class="label label-dark label-inline"> No </span></a>'; }
           }

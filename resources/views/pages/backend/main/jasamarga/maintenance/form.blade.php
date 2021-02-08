@@ -25,6 +25,22 @@
   </div>
 
   <div class="form-group row">
+    <label class="col-lg-3 col-form-label"> Title </label>
+    <div class="col-lg-9">
+      {!! Form::text('title', (isset($data->title) ? $data->title : ''), ['class' => $errors->has('title') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) !!}
+      @error('title') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-lg-3 col-form-label"> Troubleshoot </label>
+    <div class="col-lg-9">
+      {!! Form::textarea('troubleshoot', (isset($data->troubleshoot) ? $data->troubleshoot : ''), ['class' => $errors->has('troubleshoot') ? 'form-control is-invalid' : 'form-control', 'required' => 'required', 'rows'=>'3']) !!}
+      @error('troubleshoot') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
+    </div>
+  </div>
+
+  <div class="form-group row">
     <label class="col-lg-3 col-form-label"> Description </label>
     <div class="col-lg-9">
       {!! Form::textarea('description', (isset($data->description) ? $data->description : ''), ['class' => $errors->has('description') ? 'form-control is-invalid' : 'form-control', 'rows'=>'3']) !!}

@@ -16,7 +16,10 @@ class CreateJasamargaMaintenancesTable extends Migration
     Schema::create('jasamarga_maintenances', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('id_user')->unsigned();
-      $table->string('name');
+      $table->timestamp('date_start');
+      $table->timestamp('date_end');
+      $table->string('title');
+      $table->text('troubleshoot');
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('sort')->default(0);
