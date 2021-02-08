@@ -71,7 +71,7 @@
             <div class="col-lg-9 col-xl-8">
               <div class="row align-items-center">
 
-                <div class="col-md-4 my-2 my-md-0">
+                <div class="col-md-3 my-2 my-md-0">
                   <div class="d-flex align-items-center">
                     <select data-column="-2" class="form-control filter-active">
                       <option value=""> - Select Active - </option>
@@ -83,18 +83,16 @@
 
                 @stack('filter-header')
 
-                <div class="col-md-4 my-2 my-md-0">
+                <div class="col-md-2 my-2 my-md-0">
                   <div class="d-flex align-items-center">
-                    <button type="reset" name="reset" id="reset" class="btn btn-sm btn-outline-info mr-2"> Reset </button>
+                    <button type="reset" name="reset" id="reset" class="form-control btn btn-sm btn-outline-info mr-2"> Reset </button>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
-
-
           <hr>
+
           <table width="100%" class="table table-striped-table-bordered table-hover table-checkable" id="exilednoname">
             <thead>
               <tr>
@@ -105,7 +103,7 @@
                 @endif
                 @stack('content-head')
                 <th class="no-export"> Active </th>
-                <th class="no-export"> Action </th>
+                <th class="no-export"> </th>
               </tr>
             </thead>
           </table>
@@ -260,6 +258,16 @@ var KTDatatablesExtensionsKeytable = function() {
             return meta.row + meta.settings._iDisplayStart + 1;
           }
         },
+        @if ( !empty($content) && $content == 'withStatus')
+        {
+          data: 'status', orderable: true, 'className': 'align-middle text-center', 'width': '1',
+          render: function ( data, type, row ) {
+            if ( data == 0) { return ''; }
+            if ( data == 1 ) { return '<span class="label label-outline-success label-pill label-inline"> Done </span>'; }
+            if ( data == 2 ) { return '<span class="label label-outline-warning label-pill label-inline"> Pending </span></a>'; }
+          }
+        },
+        @endif
         @stack('content-body')
         {
           data: 'active', orderable: true, 'className': 'align-middle text-center', 'width': '1',
@@ -295,6 +303,9 @@ var KTDatatablesExtensionsKeytable = function() {
 
     $('#reset').click(function(){
       $('.filter-active').val('');
+      $('.filter-device').val('');
+      $('.filter-printer').val('');
+      $('.filter-status').val('');
       $('#date_start').val('');
       $('#date_end').val('');
       table.search( '' ).columns().search( '' ).draw();

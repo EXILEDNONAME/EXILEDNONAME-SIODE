@@ -34,35 +34,21 @@ class MaintenanceController extends Controller {
 
   public function index(Request $request) {
 
-    // if (request('filter_periode')) {
-    //   $filter_periode = now()->subDays(request('filter_periode'))->toDateString();
-    //   $query->where('created_at', '>=', $filter_periode);
-    //     }
-
-    if (request('date_start') && request('date_end')) {
-      $data = $this->model::with(['jasamarga_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*');
-    }
-    else {
-      $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*');
-    }
+    if (request('date_start') && request('date_end')) { $data = $this->model::with(['jasamarga_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*'); }
+    else { $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*'); }
 
     if(request()->ajax()) {
       return DataTables::eloquent($data)
+      ->addColumn('action', 'includes.datatable.action')
+      ->addColumn('checkbox', 'includes.datatable.checkbox')
       ->editColumn('name', function($order) { return $order->jasamarga_users; })
       ->editColumn('location', function($order) { return $order->jasamarga_users->jasamarga_locations->name; })
-      ->addColumn('checkbox', 'includes.datatable.checkbox')
-      ->addColumn('action', 'includes.datatable.action')
       ->rawColumns(['action', 'checkbox'])
       ->addIndexColumn()
       ->make(true);
     }
 
     return view($this->path . '.index');
-  }
-
-  public function data() {
-    $query = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*');
-    return datatables($query)->toJson();
   }
 
   /**

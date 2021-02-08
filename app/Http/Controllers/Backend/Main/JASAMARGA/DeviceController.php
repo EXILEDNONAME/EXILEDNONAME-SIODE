@@ -33,12 +33,17 @@ class DeviceController extends Controller {
   **/
 
   public function index(Request $request) {
-    return view($this->path . '.index');
-  }
+    $data = $this->model::select('*');
+    if(request()->ajax()) {
+      return DataTables::eloquent($data)
+      ->addColumn('action', 'includes.datatable.action')
+      ->addColumn('checkbox', 'includes.datatable.checkbox')
+      ->rawColumns(['action', 'checkbox'])
+      ->addIndexColumn()
+      ->make(true);
+    }
 
-  public function data() {
-    $query = $this->model::select('*');
-    return datatables($query)->toJson();
+    return view($this->path . '.index');
   }
 
   /**

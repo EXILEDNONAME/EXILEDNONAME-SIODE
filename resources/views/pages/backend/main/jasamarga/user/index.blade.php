@@ -2,7 +2,7 @@
 @push('title', 'JASAMARGA Users')
 
 @push('filter-header')
-<div class="col-md-4 my-2 my-md-0">
+<div class="col-md-3 my-2 my-md-0">
   <div class="d-flex align-items-center">
     <label class="mr-3 mb-0 d-none d-md-block">Printer:</label>
     <select data-column="-3" class="form-control filter-printer">
@@ -12,7 +12,7 @@
     </select>
   </div>
 </div>
-<div class="col-md-4 my-2 my-md-0">
+<div class="col-md-3 my-2 my-md-0">
   <div class="d-flex align-items-center">
     <label class="mr-3 mb-0 d-none d-md-block">Device:</label>
     {!! Form::select(NULL, filter_jasamarga_devices(), NULL, ['data-column' => 2, 'placeholder' => '- Select Device -', 'class' => 'form-control filter-device']) !!}

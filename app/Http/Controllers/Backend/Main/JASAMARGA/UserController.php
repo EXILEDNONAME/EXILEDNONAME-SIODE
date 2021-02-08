@@ -32,12 +32,17 @@ class UserController extends Controller {
   **************************************************
   **/
 
-  public function data() {
-    $query = $this->model::with(['jasamarga_devices', 'jasamarga_locations'])->select('jasamarga_users.*');
-    return datatables($query)->toJson();
-  }
-
   public function index(Request $request) {
+    $data = $this->model::with(['jasamarga_devices', 'jasamarga_locations'])->select('jasamarga_users.*');
+    if(request()->ajax()) {
+      return DataTables::eloquent($data)
+      ->addColumn('action', 'includes.datatable.action')
+      ->addColumn('checkbox', 'includes.datatable.checkbox')
+      ->rawColumns(['action', 'checkbox'])
+      ->addIndexColumn()
+      ->make(true);
+    }
+
     return view($this->path . '.index');
   }
 

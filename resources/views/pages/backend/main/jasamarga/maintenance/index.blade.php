@@ -1,4 +1,4 @@
-@extends('layouts.pages.index', ['page' => 'index'])
+@extends('layouts.pages.index', ['page' => 'index', 'content' => 'withStatus'])
 @push('title', 'JASAMARGA Maintenances')
 
 @push('filter-header')
@@ -16,25 +16,41 @@
     </div>
   </div>
 </div>
+<div class="col-md-3 my-2 my-md-0">
+  <div class="d-flex align-items-center">
+    <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
+    <select data-column="2" class="form-control filter-status">
+      <option value=""> - Filter Status - </option>
+      <option value="1"> Done </option>
+      <option value="2"> Pending </option>
+    </select>
+  </div>
+</div>
 @endpush
 
 @push('filter-function')
 d.date_start = $('#date_start').val();
 d.date_end = $('#date_end').val();
+d.filter_status = $('.filter-status').val();
 @endpush
 
 @push('filter-data')
 $('#date_start').change(function () { table.draw(); });
 $('#date_end').change(function () { table.draw(); });
+$('.filter-status').change(function () {
+  table.column(2)
+  .search( $(this).val() )
+  .draw();
+});
 @endpush
 
 @push('column-defs')
 columnDefs : [
-{ "visible": false, "targets" : 5 },
+{ "visible": false, "targets" : 6 },
 {
   render : function (data,type,row) {
     return row['location'] + ' - ' +data;
-  }, "targets" : 4
+  }, "targets" : 5
 }],
 @endpush
 
