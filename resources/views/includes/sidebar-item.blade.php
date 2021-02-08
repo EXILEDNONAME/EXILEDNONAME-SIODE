@@ -62,12 +62,6 @@
           <span class="menu-text"> Devices </span>
         </a>
       </li>
-      <li class="menu-item {{ (request()->is('dashboard/jmtm/locations*')) ? 'menu-item-active' : '' }}">
-        <a href="/dashboard/jmtm/locations" class="menu-link">
-          <i class="menu-bullet menu-bullet-dot"><span></span></i>
-          <span class="menu-text"> Locations </span>
-        </a>
-      </li>
       <li class="menu-item {{ (request()->is('dashboard/jmtm/maintenances*')) ? 'menu-item-active' : '' }}">
         <a href="/dashboard/jmtm/maintenances" class="menu-link">
           <i class="menu-bullet menu-bullet-dot"><span></span></i>

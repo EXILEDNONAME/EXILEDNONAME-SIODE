@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="d-flex align-items-center">
-      <a href="#" class="btn btn-light font-weight-bold btn-sm">Actions</a>
+      <a class="btn btn-light font-weight-bold btn-sm">Actions</a>
     </div>
   </div>
 </div>

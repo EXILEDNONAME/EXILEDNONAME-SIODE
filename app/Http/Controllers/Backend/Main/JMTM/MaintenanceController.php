@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Main\JASAMARGA;
+namespace App\Http\Controllers\Backend\Main\JMTM;
 
 use Auth;
 use DB;
@@ -8,9 +8,9 @@ use DataTables;
 use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\Main\JASAMARGA\Maintenance\MaintenanceStoreRequest;
-use App\Http\Requests\Backend\Main\JASAMARGA\Maintenance\MaintenanceUpdateRequest;
-use App\Models\Backend\Main\JASAMARGA\User;
+use App\Http\Requests\Backend\Main\JMTM\Maintenance\MaintenanceStoreRequest;
+use App\Http\Requests\Backend\Main\JMTM\Maintenance\MaintenanceUpdateRequest;
+use App\Models\Backend\Main\JMTM\User;
 
 class MaintenanceController extends Controller {
 
@@ -23,9 +23,9 @@ class MaintenanceController extends Controller {
 
   public function __construct() {
     $this->middleware('auth');
-    $this->url = '/dashboard/jasamarga/maintenances';
-    $this->path = 'pages.backend.main.jasamarga.maintenance';
-    $this->model = 'App\Models\Backend\Main\JASAMARGA\Maintenance';
+    $this->url = '/dashboard/jmtm/maintenances';
+    $this->path = 'pages.backend.main.jmtm.maintenance';
+    $this->model = 'App\Models\Backend\Main\JMTM\Maintenance';
   }
 
   /**
@@ -35,8 +35,8 @@ class MaintenanceController extends Controller {
   **/
 
   public function index(Request $request) {
-    if (request('date_start') && request('date_end')) { $data = $this->model::with(['jasamarga_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*'); }
-    else { $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*'); }
+    if (request('date_start') && request('date_end')) { $data = $this->model::with(['jmtm_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jmtm_maintenances.*'); }
+    else { $data = $this->model::with(['jmtm_users'])->select('jmtm_maintenances.*'); }
 
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -45,7 +45,6 @@ class MaintenanceController extends Controller {
       ->editColumn('date_start', function($order) { return \Carbon\Carbon::parse($order->date_start)->format('d F Y, H:i'); })
       ->editColumn('date_end', function($order) { return \Carbon\Carbon::parse($order->date_end)->format('d F Y, H:i'); })
       ->editColumn('name', function($order) { return $order->jasamarga_users; })
-      ->editColumn('location', function($order) { return $order->jasamarga_users->jasamarga_locations->name; })
       ->rawColumns(['action', 'checkbox'])
       ->addIndexColumn()
       ->make(true);

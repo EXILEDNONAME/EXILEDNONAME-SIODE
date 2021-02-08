@@ -19,7 +19,7 @@
   <div class="form-group row">
     <label class="col-lg-3 col-form-label"> Name </label>
     <div class="col-lg-9">
-      {!! Form::select('id_user', jasamarga_users_active(), (isset($data->id_user) ? $data->id_user : NULL), ['placeholder' => '- Select Name -', 'class' => 'form-control', 'required' => 'required']) !!}
+      {!! Form::select('id_user', jmtm_users_active(), (isset($data->id_user) ? $data->id_user : NULL), ['placeholder' => '- Select Name -', 'class' => 'form-control', 'required' => 'required']) !!}
       @error('id_user') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
     </div>
   </div>

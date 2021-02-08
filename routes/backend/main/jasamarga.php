@@ -25,6 +25,22 @@ Route::group([
   Route::resource('/', 'DeviceController')->parameters(['' => 'id']);
 });
 
+// JASAMARGA - Intercomes
+Route::group([
+  'as' => 'jasamarga.intercome.',
+  'prefix' => 'dashboard/jasamarga/intercomes',
+  'namespace' => 'Backend\Main\JASAMARGA',
+], function(){
+  Route::get('status-done/{id}', 'IntercomeController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'IntercomeController@status_pending')->name('status-pending');
+  Route::get('enable/{id}', 'IntercomeController@enable')->name('enable');
+  Route::get('disable/{id}', 'IntercomeController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'IntercomeController@status')->name('status');
+  Route::get('delete/{id}', 'IntercomeController@delete')->name('delete');
+  Route::get('deleteall', 'IntercomeController@deleteall')->name('deleteall');
+  Route::resource('/', 'IntercomeController')->parameters(['' => 'id']);
+});
+
 // JASAMARGA - Locations
 Route::group([
   'as' => 'jasamarga.location.',
@@ -39,22 +55,6 @@ Route::group([
   Route::get('delete/{id}', 'LocationController@delete')->name('delete');
   Route::get('deleteall', 'LocationController@deleteall')->name('deleteall');
   Route::resource('/', 'LocationController')->parameters(['' => 'id']);
-});
-
-// JASAMARGA - Users
-Route::group([
-  'as' => 'jasamarga.user.',
-  'prefix' => 'dashboard/jasamarga/users',
-  'namespace' => 'Backend\Main\JASAMARGA',
-], function(){
-  Route::get('status-done/{id}', 'UserController@status_done')->name('status-done');
-  Route::get('status-pending/{id}', 'UserController@status_pending')->name('status-pending');
-  Route::get('enable/{id}', 'UserController@enable')->name('enable');
-  Route::get('disable/{id}', 'UserController@disable')->name('disable');
-  Route::get('status/{id}/{slug}', 'UserController@status')->name('status');
-  Route::get('delete/{id}', 'UserController@delete')->name('delete');
-  Route::get('deleteall', 'UserController@deleteall')->name('deleteall');
-  Route::resource('/', 'UserController')->parameters(['' => 'id']);
 });
 
 // JASAMARGA - Maintenances
@@ -73,22 +73,6 @@ Route::group([
   Route::resource('/', 'MaintenanceController')->parameters(['' => 'id']);
 });
 
-// JASAMARGA - Intercomes
-Route::group([
-  'as' => 'jasamarga.intercome.',
-  'prefix' => 'dashboard/jasamarga/intercomes',
-  'namespace' => 'Backend\Main\JASAMARGA',
-], function(){
-  Route::get('status-done/{id}', 'IntercomeController@status_done')->name('status-done');
-  Route::get('status-pending/{id}', 'IntercomeController@status_pending')->name('status-pending');
-  Route::get('enable/{id}', 'IntercomeController@enable')->name('enable');
-  Route::get('disable/{id}', 'IntercomeController@disable')->name('disable');
-  Route::get('status/{id}/{slug}', 'IntercomeController@status')->name('status');
-  Route::get('delete/{id}', 'IntercomeController@delete')->name('delete');
-  Route::get('deleteall', 'IntercomeController@deleteall')->name('deleteall');
-  Route::resource('/', 'IntercomeController')->parameters(['' => 'id']);
-});
-
 // JASAMARGA - Officials
 Route::group([
   'as' => 'jasamarga.official.',
@@ -103,4 +87,20 @@ Route::group([
   Route::get('delete/{id}', 'OfficialController@delete')->name('delete');
   Route::get('deleteall', 'OfficialController@deleteall')->name('deleteall');
   Route::resource('/', 'OfficialController')->parameters(['' => 'id']);
+});
+
+// JASAMARGA - Users
+Route::group([
+  'as' => 'jasamarga.user.',
+  'prefix' => 'dashboard/jasamarga/users',
+  'namespace' => 'Backend\Main\JASAMARGA',
+], function(){
+  Route::get('status-done/{id}', 'UserController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'UserController@status_pending')->name('status-pending');
+  Route::get('enable/{id}', 'UserController@enable')->name('enable');
+  Route::get('disable/{id}', 'UserController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'UserController@status')->name('status');
+  Route::get('delete/{id}', 'UserController@delete')->name('delete');
+  Route::get('deleteall', 'UserController@deleteall')->name('deleteall');
+  Route::resource('/', 'UserController')->parameters(['' => 'id']);
 });

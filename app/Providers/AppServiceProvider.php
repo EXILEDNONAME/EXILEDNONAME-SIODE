@@ -10,6 +10,7 @@ class AppServiceProvider extends ServiceProvider {
 
   public function register() {
     require_once app_path() . '/Helpers/Backend/Main/JASAMARGA.php';
+    require_once app_path() . '/Helpers/Backend/Main/JMTM.php';
   }
 
   public function boot() {
