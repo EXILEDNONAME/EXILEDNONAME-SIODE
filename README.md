@@ -11,3 +11,5 @@ To Do : <br>
 [x] - File Manager <br>
 [x] - Create Chart <br>
 [x] - Create Activity <br>
+[x] - Profile Pages <br>
+[x] - Create Middleware Groups
