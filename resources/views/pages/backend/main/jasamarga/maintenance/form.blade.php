@@ -48,6 +48,14 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-lg-3 col-form-label"> Status </label>
+    <div class="col-lg-9">
+      {{ Form::select('status', ['1' => 'Yes', '2' => 'No'], (isset($data->status) ? $data->status : ''), ['class' => $errors->has('status') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) }}
+      @error('status') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
+    </div>
+  </div>
+
   @include('includes.datatable.page-form.main')
 
   <div class="form-group row">

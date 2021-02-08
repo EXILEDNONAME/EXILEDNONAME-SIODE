@@ -18,12 +18,12 @@
 
 <tr>
   <td class="align-middle font-weight-bold"> Created At </td>
-  <td class="align-middle"> {{ \Carbon\Carbon::parse($data->created_at)->format('d F Y, H:i:s') }} </td>
+  <td class="align-middle"> {{ \Carbon\Carbon::parse($data->created_at)->format('d F Y, H:i') }} </td>
 </tr>
 
 <tr>
   <td class="align-middle font-weight-bold"> Last Updated At </td>
-  <td class="align-middle"> {{ \Carbon\Carbon::parse($data->updated_at)->format('d F Y, H:i:s') }} </td>
+  <td class="align-middle"> {{ \Carbon\Carbon::parse($data->updated_at)->format('d F Y, H:i') }} </td>
 </tr>
 
 <tr>

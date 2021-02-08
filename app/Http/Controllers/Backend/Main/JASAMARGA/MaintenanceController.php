@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Main\JASAMARGA\Device\DeviceStoreRequest;
 use App\Http\Requests\Backend\Main\JASAMARGA\Device\DeviceUpdateRequest;
+use App\Models\Backend\Main\JASAMARGA\User;
 
 class MaintenanceController extends Controller {
 
@@ -41,6 +42,8 @@ class MaintenanceController extends Controller {
       return DataTables::eloquent($data)
       ->addColumn('action', 'includes.datatable.action')
       ->addColumn('checkbox', 'includes.datatable.checkbox')
+      ->editColumn('date_start', function($order) { return \Carbon\Carbon::parse($order->date_start)->format('d F Y, H:i'); })
+      ->editColumn('date_end', function($order) { return \Carbon\Carbon::parse($order->date_end)->format('d F Y, H:i'); })
       ->editColumn('name', function($order) { return $order->jasamarga_users; })
       ->editColumn('location', function($order) { return $order->jasamarga_users->jasamarga_locations->name; })
       ->rawColumns(['action', 'checkbox'])
@@ -58,8 +61,9 @@ class MaintenanceController extends Controller {
   **/
 
   public function show($id) {
-    $data = $this->model::findOrFail($id);
-    return view($this->path . '.show', compact('data'));
+    $data = $this->model::where('id', $id)->first();
+    $user = User::where('id', $data->id_user)->first();
+    return view($this->path . '.show', compact('data', 'user'));
   }
 
   /**
@@ -125,6 +129,8 @@ class MaintenanceController extends Controller {
   **************************************************
   * @return Enable
   * @return Disable
+  * @return Status-Done
+  * @return Status-Pending
   **************************************************
   **/
 
@@ -135,6 +141,16 @@ class MaintenanceController extends Controller {
 
   public function disable($id) {
     $data = $this->model::where('id', $id)->update([ 'active' => 2 ]);
+    return Response::json($data);
+  }
+
+  public function status_done($id) {
+    $data = $this->model::where('id', $id)->update([ 'status' => 1 ]);
+    return Response::json($data);
+  }
+
+  public function status_pending($id) {
+    $data = $this->model::where('id', $id)->update([ 'status' => 2 ]);
     return Response::json($data);
   }
 

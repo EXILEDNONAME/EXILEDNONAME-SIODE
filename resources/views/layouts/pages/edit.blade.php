@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['content' => 'withStatus'])
 
 @push('content')
 <div class="row">

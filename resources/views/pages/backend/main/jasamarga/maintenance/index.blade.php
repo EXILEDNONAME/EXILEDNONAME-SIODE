@@ -64,8 +64,8 @@ columnDefs : [
 @endpush
 
 @push('content-body')
-{ data: 'date_start' },
-{ data: 'date_end' },
+{ data: 'date_start', searchable: false, width: 1, className: 'text-nowrap' },
+{ data: 'date_end', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'jasamarga_users.name' },
 { data: 'location', searchable: false },
 { data: 'troubleshoot' },

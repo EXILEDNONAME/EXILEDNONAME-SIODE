@@ -15,7 +15,8 @@ Route::group([
   'prefix' => 'dashboard/jasamarga/devices',
   'namespace' => 'Backend\Main\JASAMARGA',
 ], function(){
-  Route::get('datatables', 'DeviceController@data')->name('datatables');
+  Route::get('status-done/{id}', 'DeviceController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'DeviceController@status_pending')->name('status-pending');
   Route::get('enable/{id}', 'DeviceController@enable')->name('enable');
   Route::get('disable/{id}', 'DeviceController@disable')->name('disable');
   Route::get('status/{id}/{slug}', 'DeviceController@status')->name('status');
@@ -30,7 +31,8 @@ Route::group([
   'prefix' => 'dashboard/jasamarga/locations',
   'namespace' => 'Backend\Main\JASAMARGA',
 ], function(){
-  Route::get('datatables', 'LocationController@data')->name('datatables');
+  Route::get('status-done/{id}', 'LocationController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'LocationController@status_pending')->name('status-pending');
   Route::get('enable/{id}', 'LocationController@enable')->name('enable');
   Route::get('disable/{id}', 'LocationController@disable')->name('disable');
   Route::get('status/{id}/{slug}', 'LocationController@status')->name('status');
@@ -45,7 +47,8 @@ Route::group([
   'prefix' => 'dashboard/jasamarga/users',
   'namespace' => 'Backend\Main\JASAMARGA',
 ], function(){
-  Route::get('datatables', 'UserController@data')->name('datatables');
+  Route::get('status-done/{id}', 'UserController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'UserController@status_pending')->name('status-pending');
   Route::get('enable/{id}', 'UserController@enable')->name('enable');
   Route::get('disable/{id}', 'UserController@disable')->name('disable');
   Route::get('status/{id}/{slug}', 'UserController@status')->name('status');
@@ -60,7 +63,8 @@ Route::group([
   'prefix' => 'dashboard/jasamarga/maintenances',
   'namespace' => 'Backend\Main\JASAMARGA',
 ], function(){
-  Route::get('datatables', 'MaintenanceController@data')->name('datatables');
+  Route::get('status-done/{id}', 'MaintenanceController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'MaintenanceController@status_pending')->name('status-pending');
   Route::get('enable/{id}', 'MaintenanceController@enable')->name('enable');
   Route::get('disable/{id}', 'MaintenanceController@disable')->name('disable');
   Route::get('status/{id}/{slug}', 'MaintenanceController@status')->name('status');

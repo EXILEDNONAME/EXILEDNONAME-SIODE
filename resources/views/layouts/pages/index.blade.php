@@ -85,7 +85,9 @@
 
                 <div class="col-md-2 my-2 my-md-0">
                   <div class="d-flex align-items-center">
-                    <button type="reset" name="reset" id="reset" class="form-control btn btn-sm btn-outline-info mr-2"> Reset </button>
+                    <button type="reset" name="reset" id="reset" class="form-control btn btn-sm btn-outline-info" data-toggle="tooltip" title="Reset Filter">
+                      <i class="la la-refresh"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -263,8 +265,8 @@ var KTDatatablesExtensionsKeytable = function() {
           data: 'status', orderable: true, 'className': 'align-middle text-center', 'width': '1',
           render: function ( data, type, row ) {
             if ( data == 0) { return ''; }
-            if ( data == 1 ) { return '<span class="label label-outline-success label-pill label-inline"> Done </span>'; }
-            if ( data == 2 ) { return '<span class="label label-outline-warning label-pill label-inline"> Pending </span></a>'; }
+            if ( data == 1 ) { return '<a href="javascript:void(0);" id="status_pending" data-toggle="tooltip" data-original-title="Pending" data-id="' + row.id + '"><span class="label label-outline-success label-pill label-inline"> Done </span></a>'; }
+            if ( data == 2 ) { return '<a href="javascript:void(0);" id="status_done" data-toggle="tooltip" data-original-title="Done" data-id="' + row.id + '"><span class="label label-outline-warning label-pill label-inline"> Pending </span></a>'; }
           }
         },
         @endif
@@ -367,6 +369,48 @@ var KTDatatablesExtensionsKeytable = function() {
       });
       var strEXILEDNONAME = exilednonameArr.join(",");
       console.log(strEXILEDNONAME);
+    });
+
+    $('body').on('click', '#status_done', function () {
+      var id = $(this).data("id");
+      if(confirm("Item will be set to Done")){
+        $.ajax({
+          type: "get",
+          url: "{{ URL::current() }}/status-done/"+id,
+          processing: true,
+          serverSide: true,
+          success: function (data) {
+            var oTable = $('#exilednoname').dataTable();
+            oTable.fnDraw(false);
+            toastr.options = { "positionClass": "toast-bottom-right" };
+            toastr.success("{{ trans('notification.success.active.enable') }}");
+          },
+          error: function (data) {
+            //
+          }
+        });
+      }
+    });
+
+    $('body').on('click', '#status_pending', function () {
+      var id = $(this).data("id");
+      if(confirm("Item will be set to Pending!")){
+        $.ajax({
+          type: "get",
+          url: "{{ URL::current() }}/status-pending/"+id,
+          processing: true,
+          serverSide: true,
+          success: function (data) {
+            var oTable = $('#exilednoname').dataTable();
+            oTable.fnDraw(false);
+            toastr.options = { "positionClass": "toast-bottom-right" };
+            toastr.success("{{ trans('notification.success.active.enable') }}");
+          },
+          error: function (data) {
+            //
+          }
+        });
+      }
     });
 
     $('body').on('click', '#enable', function () {

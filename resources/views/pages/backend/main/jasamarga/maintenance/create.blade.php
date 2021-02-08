@@ -1,4 +1,4 @@
-@extends('layouts.pages.create', ['page' => 'create'])
+@extends('layouts.pages.create', ['page' => 'create', 'content' => 'withStatus'])
 @push('title', 'JASAMARGA Maintenances')
 
 @push('content-body')
