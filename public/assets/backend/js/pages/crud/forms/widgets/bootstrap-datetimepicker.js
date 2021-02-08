@@ -10,7 +10,7 @@ var KTBootstrapDatetimepicker = function () {
       autoclose: true,
       format: 'yyyy-mm-dd hh:ii'
     });
-    
+
     $('#ex_datetimepicker_finish').datetimepicker({
       todayHighlight: true,
       autoclose: true,

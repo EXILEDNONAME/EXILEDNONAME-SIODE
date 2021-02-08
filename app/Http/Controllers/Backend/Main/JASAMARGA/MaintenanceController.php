@@ -33,7 +33,19 @@ class MaintenanceController extends Controller {
   **/
 
   public function index(Request $request) {
-    $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*');
+
+    // if (request('filter_periode')) {
+    //   $filter_periode = now()->subDays(request('filter_periode'))->toDateString();
+    //   $query->where('created_at', '>=', $filter_periode);
+    //     }
+
+    if (request('date_start') && request('date_end')) {
+      $data = $this->model::with(['jasamarga_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*');
+    }
+    else {
+      $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*');
+    }
+
     if(request()->ajax()) {
       return DataTables::eloquent($data)
       ->editColumn('name', function($order) { return $order->jasamarga_users; })
@@ -44,6 +56,7 @@ class MaintenanceController extends Controller {
       ->addIndexColumn()
       ->make(true);
     }
+
     return view($this->path . '.index');
   }
 
