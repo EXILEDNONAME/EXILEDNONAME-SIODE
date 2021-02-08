@@ -19,95 +19,95 @@
                   <span class="font-size-lg">Choose Label:</span>
                   <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click to learn more..."></i>
                 </li>
-                </ul>
-                <!--end::Navigation-->
-              </div>
+              </ul>
+              <!--end::Navigation-->
             </div>
           </div>
         </div>
-        <!--end::Header-->
-        <div class="card-body pt-4">
-          <ul class="navi navi-icon-center">
-
-            @if (isset($activity))
-            @foreach ( $activity as $activity )
-            <li class="navi-item">
-              <span class="navi-link">
-                <span class="navi-bullet">
-                  <i class="fas fa-angle-double-right mr-5"></i>
-                </span>
-                <div class="navi-text">
-                  <span class="d-block font-weight-bold">
-                    Item
-                    <?php $item = \DB::table('dummies')->where('id', $activity->subject_id)->first(); ?>
-                    '{{ $item->name }}' {{ ucfirst($activity->description) }}
-                  </span>
-                  <span class="text-muted">
-                    {{ Auth::User()->name }}
-                  </span>
-                </div>
-                <span>
-                  @php $user = Auth::User()->created_at; @endphp
-                  {{ $user->diffForHumans() }}
-                </span>
-              </span>
-            </li>
-            @endforeach
-            @endif
-
-            <li class="navi-item">
-              <span class="navi-link">
-                <span class="navi-bullet">
-                  <i class="fas fa-angle-double-right mr-5"></i>
-                </span>
-                <div class="navi-text">
-                  <span class="d-block font-weight-bold">New order has been placed</span>
-                  <span class="text-muted">
-                    {{ Auth::User()->name }}
-                  </span>
-                </div>
-                <span>
-                  @php $user = Auth::User()->created_at; @endphp
-                  {{ $user->diffForHumans() }}
-                </span>
-              </span>
-            </li>
-            <li class="navi-item">
-              <span class="navi-link">
-                <span class="navi-bullet">
-                  <i class="fas fa-angle-double-right mr-5"></i>
-                </span>
-                <div class="navi-text">
-                  <span class="d-block font-weight-bold">New order has been placed</span>
-                  <span class="text-muted">
-                    {{ Auth::User()->name }}
-                  </span>
-                </div>
-                <span>
-                  @php $user = Auth::User()->created_at; @endphp
-                  {{ $user->diffForHumans() }}
-                </span>
-              </span>
-            </li>
-          </ul>
-        </div>
       </div>
-    </div>
-    <div class="col-xl-4">
-      <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
-        <div class="card-header" style="">
-          <div class="card-title">
-            <h5 class="text-dark font-weight-bold"> Recent Activities </h5>
-          </div>
-          <div class="card-toolbar">
-            <a href="{{ URL::current() }}/../#" class="btn btn-light-primary font-weight-bolder mr-2">
-              <i class="ki ki-long-arrow-back icon-xs"></i> Back
-            </a>
-          </div>
-        </div>
-        <div class="card-body d-flex">
-          <!--  -->
-        </div>
+      <!--end::Header-->
+      <div class="card-body pt-4">
+        <ul class="navi navi-icon-center">
+
+          @if (isset($activity))
+          @foreach ( $activity as $activity )
+          <li class="navi-item">
+            <span class="navi-link">
+              <span class="navi-bullet">
+                <i class="fas fa-angle-double-right mr-5"></i>
+              </span>
+              <div class="navi-text">
+                <span class="d-block font-weight-bold">
+                  Item
+                  <?php $item = \DB::table('dummies')->where('id', $activity->subject_id)->first(); ?>
+                  '{{ $item->name }}' {{ ucfirst($activity->description) }}
+                </span>
+                <span class="text-muted">
+                  {{ Auth::User()->name }}
+                </span>
+              </div>
+              <span>
+                @php $user = Auth::User()->created_at; @endphp
+                {{ $user->diffForHumans() }}
+              </span>
+            </span>
+          </li>
+          @endforeach
+          @endif
+
+          <li class="navi-item">
+            <span class="navi-link">
+              <span class="navi-bullet">
+                <i class="fas fa-angle-double-right mr-5"></i>
+              </span>
+              <div class="navi-text">
+                <span class="d-block font-weight-bold">New order has been placed</span>
+                <span class="text-muted">
+                  {{ Auth::User()->name }}
+                </span>
+              </div>
+              <span>
+                @php $user = Auth::User()->created_at; @endphp
+                {{ $user->diffForHumans() }}
+              </span>
+            </span>
+          </li>
+          <li class="navi-item">
+            <span class="navi-link">
+              <span class="navi-bullet">
+                <i class="fas fa-angle-double-right mr-5"></i>
+              </span>
+              <div class="navi-text">
+                <span class="d-block font-weight-bold">New order has been placed</span>
+                <span class="text-muted">
+                  {{ Auth::User()->name }}
+                </span>
+              </div>
+              <span>
+                @php $user = Auth::User()->created_at; @endphp
+                {{ $user->diffForHumans() }}
+              </span>
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
+  <div class="col-xl-4">
+    <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
+      <div class="card-header" style="">
+        <div class="card-title">
+          <h5 class="text-dark font-weight-bold"> Graphs </h5>
+        </div>
+        <div class="card-toolbar">
+          <a href="{{ URL::current() }}/../#" class="btn btn-light-primary font-weight-bolder mr-2">
+            <i class="ki ki-long-arrow-back icon-xs"></i> Back
+          </a>
+        </div>
+      </div>
+      <div class="card-body pt-4">
+        <div id="chart_3"></div>
+      </div>
+    </div>
+  </div>
+</div>

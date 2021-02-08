@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Main\JASAMARGA;
 
 use Auth;
+use DB;
 use DataTables;
 use Redirect,Response;
 use Illuminate\Http\Request;
@@ -34,7 +35,6 @@ class MaintenanceController extends Controller {
   **/
 
   public function index(Request $request) {
-
     if (request('date_start') && request('date_end')) { $data = $this->model::with(['jasamarga_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*'); }
     else { $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*'); }
 
@@ -50,8 +50,10 @@ class MaintenanceController extends Controller {
       ->addIndexColumn()
       ->make(true);
     }
+    $graph_func = $this->model::select('id', DB::raw('count(*) as total'))->groupBy('id')->pluck('total', 'id')->all();
+    $graph = array_keys($graph_func);
+    return view($this->path . '.index', compact('graph'));
 
-    return view($this->path . '.index');
   }
 
   /**
