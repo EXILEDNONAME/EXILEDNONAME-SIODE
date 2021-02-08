@@ -1,8 +1,5 @@
 <div class="kt-section__body">
 
-  {{ jasamarga_users_active() }} <br>
-
-
   <div class="form-group row">
     <label class="col-lg-3 col-form-label"> Date Start </label>
     <div class="col-lg-9">

@@ -19,13 +19,11 @@ function jasamarga_locations() {
   return $items;
 }
 
-function test_jasamarga_users_active() {
-  $items = User::orderBy('name','asc')->pluck('name', 'id');
-  return $items;
-}
-
 function jasamarga_users_active() {
-  $items = User::join('jasamarga_locations', 'id_location')->get('jasamarga_users.name', 'jasamarga_locations.description');
-
+  $items = DB::table('jasamarga_users as a')
+    ->join('jasamarga_locations as b', 'b.id', '=', 'a.id_location')
+    ->selectRaw('CONCAT("(", b.name, " - ", b.description, ") - ", a.name) as concatname, a.id')
+    ->where('a.active', 1)
+    ->pluck('concatname', 'a.id');
   return $items;
 }
