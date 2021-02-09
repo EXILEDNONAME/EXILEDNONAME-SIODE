@@ -4,7 +4,7 @@
 @stack('extension')
 <div class="row">
   <div class="col-xl-12">
-    <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
+    <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b card-sticky" id="kt_page_sticky_card">
 
       <div class="card-header" style="">
         <div class="card-title">
@@ -185,7 +185,7 @@ var KTDatatablesExtensionsKeytable = function() {
         </label>`;
       },
 
-      "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
       buttons: [
         {
           extend: 'print',
