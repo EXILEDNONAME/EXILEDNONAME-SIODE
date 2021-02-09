@@ -21,6 +21,7 @@ class CreateSeskoUsersTable extends Migration
       $table->string('name');
       $table->string('ip_address')->nullable();
       $table->string('mac_address')->nullable();
+      $table->integer('port')->nullable();
       $table->string('tv_username')->nullable();
       $table->string('tv_password')->nullable();
       $table->integer('tv_include')->default(1);

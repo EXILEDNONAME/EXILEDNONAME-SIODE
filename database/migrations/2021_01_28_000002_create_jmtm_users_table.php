@@ -20,6 +20,7 @@ class CreateJmtmUsersTable extends Migration
       $table->string('npp')->nullable();
       $table->string('ip_address')->nullable();
       $table->string('mac_address')->nullable();
+      $table->integer('port')->nullable();
       $table->string('pc_name')->nullable();
       $table->string('pc_password')->nullable();
       $table->integer('printer')->default(1);

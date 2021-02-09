@@ -308,8 +308,10 @@ var KTDatatablesExtensionsKeytable = function() {
       $('.filter-device').val('');
       $('.filter-location').val('');
       $('.filter-packet').val('');
+      $('.filter-area').val('');
       $('.filter-printer').val('');
       $('.filter-status').val('');
+      $('.filter-type').val('');
       $('#date_start').val('');
       $('#date_end').val('');
       table.search( '' ).columns().search( '' ).draw();
