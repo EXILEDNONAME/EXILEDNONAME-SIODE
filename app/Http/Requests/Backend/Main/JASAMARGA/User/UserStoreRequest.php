@@ -12,7 +12,7 @@ class UserStoreRequest extends FormRequest {
 
   public function rules() {
     return [
-      'name' => 'unique:jasamarga_users',
+      // 'name' => 'unique:jasamarga_users',
     ];
   }
 }

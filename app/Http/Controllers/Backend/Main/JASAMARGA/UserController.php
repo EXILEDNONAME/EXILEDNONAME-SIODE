@@ -33,7 +33,7 @@ class UserController extends Controller {
   **/
 
   public function index(Request $request) {
-    $data = $this->model::with(['jasamarga_devices', 'jasamarga_locations'])->select('jasamarga_users.*');
+    $data = $this->model::with(['jasamarga_devices', 'jasamarga_locations'])->select('jasamarga_users.*')->orderBy('id_location', 'asc')->orderBy('active', 'asc');
     if(request()->ajax()) {
       return DataTables::eloquent($data)
       ->addColumn('action', 'includes.datatable.action')
