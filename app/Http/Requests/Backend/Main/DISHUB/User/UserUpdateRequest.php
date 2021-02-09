@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Backend\Main\JMTM\User;
+namespace App\Http\Requests\Backend\Main\DISHUB\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UserStoreRequest extends FormRequest {
+class UserUpdateRequest extends FormRequest {
 
   public function authorize() {
     return true;
@@ -12,7 +13,7 @@ class UserStoreRequest extends FormRequest {
 
   public function rules() {
     return [
-      // 
+      //
     ];
   }
 }

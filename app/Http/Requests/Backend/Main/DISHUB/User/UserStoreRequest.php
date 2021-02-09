@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend\Main\JMTM\User;
+namespace App\Http\Requests\Backend\Main\DISHUB\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 

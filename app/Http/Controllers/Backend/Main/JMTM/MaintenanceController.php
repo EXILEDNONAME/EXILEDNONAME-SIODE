@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Main\JMTM\Maintenance\MaintenanceStoreRequest;
 use App\Http\Requests\Backend\Main\JMTM\Maintenance\MaintenanceUpdateRequest;
-use App\Models\Backend\Main\JMTM\User;
 
 class MaintenanceController extends Controller {
 
@@ -62,8 +61,7 @@ class MaintenanceController extends Controller {
 
   public function show($id) {
     $data = $this->model::where('id', $id)->first();
-    $user = User::where('id', $data->id_user)->first();
-    return view($this->path . '.show', compact('data', 'user'));
+    return view($this->path . '.show', compact('data'));
   }
 
   /**

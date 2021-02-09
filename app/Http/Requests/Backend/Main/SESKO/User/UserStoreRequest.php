@@ -12,7 +12,7 @@ class UserStoreRequest extends FormRequest {
 
   public function rules() {
     return [
-      'name' => 'unique:sesko_users',
+      // 
     ];
   }
 }
