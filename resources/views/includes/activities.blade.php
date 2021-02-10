@@ -29,8 +29,16 @@
       <div class="card-body pt-4">
         <ul class="navi navi-icon-center">
 
-          @if (isset($activity))
-          @foreach ( $activity as $activity )
+          @php $test = activity_created(); @endphp
+          @php $data = json_decode(activity_created(), true); @endphp
+          @foreach($test as $data)
+
+          @foreach($data['properties'] as $item)
+          {{ $item['name'] }} <br>
+          @endforeach
+          @endforeach
+
+          @foreach($activity as $item)
           <li class="navi-item">
             <span class="navi-link">
               <span class="navi-bullet">
@@ -38,40 +46,19 @@
               </span>
               <div class="navi-text">
                 <span class="d-block font-weight-bold">
-                  Item
-                  <?php $item = \DB::table('dummies')->where('id', $activity->subject_id)->first(); ?>
-                  '{{ $item->name }}' {{ ucfirst($activity->description) }}
+                  @if ($item->description == 'created') Item {{ $item->name }} created @endif
+                  @if ($item->description == 'updated') Item {{ $item->subject->name }} updated @endif
+                  @if ($item->description == 'deleted' && !empty($item->subject->name)) Item {{ $item->subject->name }} deleted @endif
                 </span>
-                <span class="text-muted">
-                  {{ Auth::User()->name }}
-                </span>
+                <span class="text-muted"> {{ $item->causer->name }} </span>
               </div>
               <span>
-                @php $user = Auth::User()->created_at; @endphp
-                {{ $user->diffForHumans() }}
+                {{ $item->created_at->diffForHumans() }}
               </span>
             </span>
           </li>
           @endforeach
-          @endif
 
-          <li class="navi-item">
-            <span class="navi-link">
-              <span class="navi-bullet">
-                <i class="fas fa-angle-double-right mr-5"></i>
-              </span>
-              <div class="navi-text">
-                <span class="d-block font-weight-bold">New order has been placed</span>
-                <span class="text-muted">
-                  {{ Auth::User()->name }}
-                </span>
-              </div>
-              <span>
-                @php $user = Auth::User()->created_at; @endphp
-                {{ $user->diffForHumans() }}
-              </span>
-            </span>
-          </li>
           <li class="navi-item">
             <span class="navi-link">
               <span class="navi-bullet">
