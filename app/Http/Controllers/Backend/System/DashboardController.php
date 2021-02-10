@@ -8,6 +8,8 @@ use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\User;
+
 class DashboardController extends Controller {
 
   /**
@@ -29,8 +31,16 @@ class DashboardController extends Controller {
   **************************************************
   **/
 
-  public function index() {
-    return view($this->path . '.index');
+  public function index(Request $request) {
+    $data = User::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', '%2021-02%')->count(); $data .= ', ';
+    $data .= User::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', '%2021-02%')->count();
+    // if(request()->ajax()) {
+    //   $data = User::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', '%2021-02%')->count(); $data .= ', ';
+    //   $data .= User::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', '%2021-05%')->count(); $data .= ', ';
+    //   $data .= User::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', '%2021-02%')->count();
+    // }
+    return view($this->path . '.index', compact('data'));
+
   }
 
   /**
