@@ -4,8 +4,7 @@
   @include('includes.head')
 </head>
 
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
-
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed {{ (request()->is('dashboard/file-manager*')) ? 'aside-minimize' : '' }} aside-minimize-hoverable page-loading">
   <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
     @include('includes.logo-mobile')
     @include('includes.toolbar-mobile')
