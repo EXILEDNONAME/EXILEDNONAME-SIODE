@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Main;
+namespace App\Http\Controllers\Backend\System;
 
 use Auth;
 use DataTables;
@@ -20,7 +20,7 @@ class DashboardController extends Controller {
   public function __construct() {
     $this->middleware('auth');
     $this->url = '/dashboard';
-    $this->path = 'pages.backend.main.dashboard';
+    $this->path = 'pages.backend.system.dashboard';
   }
 
   /**
@@ -31,6 +31,16 @@ class DashboardController extends Controller {
 
   public function index() {
     return view($this->path . '.index');
+  }
+
+  /**
+  **************************************************
+  * @return File-Manager
+  **************************************************
+  **/
+
+  public function file_manager() {
+    return view($this->path . '.file');
   }
 
   /**

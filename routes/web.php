@@ -7,8 +7,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('lang/{language}', 'LocalizationController@switch')->name('localization.switch');
 
 // DASHBOARD
-Route::get('dashboard', 'Backend\Main\DashboardController@index')->name('dashboard.index');
-Route::get('dashboard/logout', 'Backend\Main\DashboardController@logout')->name('dashboard.logout');
+Route::get('dashboard', 'Backend\System\DashboardController@index')->name('dashboard.index');
+Route::get('dashboard/file-manager', 'Backend\System\DashboardController@file_manager')->name('dashboard.file-manager');
+Route::get('dashboard/logout', 'Backend\System\DashboardController@logout')->name('dashboard.logout');
 
 // TEST
 Route::get('/dashboard/demo', 'DemoController@data');
