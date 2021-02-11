@@ -7,11 +7,14 @@ To Do : <br>
 [v] - File Manager
 [v] - Create Activity <br>
 [v] - Template Activity <br>
+[v] - Create Chart
 
 <hr>
 
-[x] - Create Chart <br>
+[x] - Content Monitoring <br>
 [x] - Profile Pages <br>
 [x] - Realtime Notification Create/Update
 [x] - Create Middleware Groups <br>
-[x] - Edit Generator <br>
+[x] - Edit Generator
+
+<hr>

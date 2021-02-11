@@ -1,4 +1,4 @@
-@extends('layouts.pages.index', ['header' => 'true', 'filtered' => 'true'])
+@extends('layouts.pages.index', ['header' => 'true', 'filtered' => 'true', 'content' => 'withStatus'])
 @push('title', 'JASAMARGA Users')
 
 @push('filter-header')

@@ -71,14 +71,14 @@
     <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
       <div class="card-header" style="">
         <div class="card-title">
-          <h5 class="text-dark font-weight-bold"> Traffic Monitoring </h5>
+          <h5 class="text-dark font-weight-bold"> Traffic Monitoring <span class="text-muted"> - ({{ \Carbon\Carbon::now()->format('Y') }}) </span></h5> 
         </div>
         <div class="card-toolbar">
         </div>
       </div>
 
       <div class="card-body">
-        <div class="align-items-center">
+        <!-- <div class="align-items-center">
           <div class="col-lg-12">
             <div class="row align-items-center">
 
@@ -126,7 +126,7 @@
             </div>
           </div>
         </div>
-        <hr>
+        <hr> -->
         <div id="chart"></div>
       </div>
 

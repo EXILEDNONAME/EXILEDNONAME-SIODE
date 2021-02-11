@@ -1,4 +1,4 @@
-@extends('layouts.pages.index', ['page' => 'index', 'content' => 'withStatus'])
+@extends('layouts.pages.index', ['page' => 'index', 'content' => 'withStatus', 'chart' => 'true'])
 @push('title', 'JASAMARGA Maintenances')
 
 @push('filter-header')
@@ -58,6 +58,7 @@ columnDefs : [
 <th> Date Start </th>
 <th> Date End </th>
 <th> Name </th>
+<th> Division </th>
 <th> Title </th>
 <th> Troubleshoot </th>
 <th> Description </th>
@@ -68,6 +69,7 @@ columnDefs : [
 { data: 'date_end', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'jasamarga_users.name' },
 { data: 'location', searchable: false },
+{ data: 'title' },
 { data: 'troubleshoot' },
 { data: 'description' },
 @endpush
