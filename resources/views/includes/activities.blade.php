@@ -71,7 +71,7 @@
     <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
       <div class="card-header" style="">
         <div class="card-title">
-          <h5 class="text-dark font-weight-bold"> Traffic Monitoring <span class="text-muted"> - ({{ \Carbon\Carbon::now()->format('Y') }}) </span></h5> 
+          <h5 class="text-dark font-weight-bold"> Traffic Graphs <span class="text-muted"> - ({{ \Carbon\Carbon::now()->format('Y') }}) </span></h5> 
         </div>
         <div class="card-toolbar">
         </div>
