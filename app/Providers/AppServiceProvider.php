@@ -14,7 +14,6 @@ class AppServiceProvider extends ServiceProvider {
     require_once app_path() . '/Helpers/Backend/Main/JMTM.php';
     require_once app_path() . '/Helpers/Backend/Main/SESKO.php';
     require_once app_path() . '/Helpers/Backend/Main/VMS.php';
-    require_once app_path() . '/Helpers/Backend/Activity.php';
   }
 
   public function boot() {

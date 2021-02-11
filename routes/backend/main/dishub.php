@@ -47,6 +47,7 @@ Route::group([
   'prefix' => 'dashboard/dishub/maintenances',
   'namespace' => 'Backend\Main\DISHUB',
 ], function(){
+
   Route::get('status-done/{id}', 'MaintenanceController@status_done')->name('status-done');
   Route::get('status-pending/{id}', 'MaintenanceController@status_pending')->name('status-pending');
   Route::get('enable/{id}', 'MaintenanceController@enable')->name('enable');

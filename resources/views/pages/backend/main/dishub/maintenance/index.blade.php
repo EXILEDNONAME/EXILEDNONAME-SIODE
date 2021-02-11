@@ -1,4 +1,4 @@
-@extends('layouts.pages.index', ['page' => 'index', 'content' => 'withStatus'])
+@extends('layouts.pages.index', ['page' => 'index', 'content' => 'withStatus', 'chart' => 'true'])
 @push('title', 'DISHUB Maintenances')
 
 @push('filter-header')
