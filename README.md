@@ -5,12 +5,13 @@ To Do : <br>
 [v] - Fix Layouts <br>
 [v] - Edit Helper Select Relation <br>
 [v] - File Manager
+[v] - Create Activity <br>
 
 <hr>
 
-[x] - Edit Generator <br>
+[x] - Template Activity <br>
 [x] - Create Chart <br>
-[x] - Create Activity <br>
 [x] - Profile Pages <br>
-[x] - Create Middleware Groups <br>
 [x] - Realtime Notification Create/Update
+[x] - Create Middleware Groups <br>
+[x] - Edit Generator <br>

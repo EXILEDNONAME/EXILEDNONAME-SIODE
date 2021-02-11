@@ -34,7 +34,7 @@ class DeviceController extends Controller {
   **/
 
   public function index(Request $request) {
-    $activity = Activity::where('subject_type', $this->model)->get();
+    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->get();
     $data = $this->model::select('*');
     if(request()->ajax()) {
       return DataTables::eloquent($data)

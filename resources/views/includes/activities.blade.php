@@ -1,83 +1,65 @@
 <div class="row">
   <div class="col-xl-8">
-    <div class="card card-custom card-stretch">
+    <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
       <!--begin::Header-->
       <div class="card-header align-items-center border-0 mt-4">
         <h3 class="card-title align-items-start flex-column">
           <span class="font-weight-bolder text-dark">My Activity</span>
-          <span class="text-muted mt-3 font-weight-bold font-size-sm"> 21 Activities </span>
+          <span class="text-muted mt-3 font-weight-bold font-size-sm">
+            @if (!empty($activity))
+            {{ $activity->count() }} Activities
+            @else
+            0 Activities
+            @endif
+          </span>
         </h3>
-        <div class="card-toolbar">
-          <div class="dropdown dropdown-inline">
-            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="ki ki-bold-more-hor"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-              <!--begin::Navigation-->
-              <ul class="navi navi-hover">
-                <li class="navi-header font-weight-bold py-4">
-                  <span class="font-size-lg">Choose Label:</span>
-                  <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click to learn more..."></i>
-                </li>
-              </ul>
-              <!--end::Navigation-->
-            </div>
-          </div>
-        </div>
+        <div class="card-toolbar"> </div>
       </div>
-      <!--end::Header-->
-      <div class="card-body pt-4">
+
+
+      <div class="card-body">
+        <div class="card-scroll" style="height: 99%;">
         <ul class="navi navi-icon-center">
 
-          @php $test = activity_created(); @endphp
-          @php $data = json_decode(activity_created(), true); @endphp
-          @foreach($test as $data)
-
-          @foreach($data['properties'] as $item)
-          {{ $item['name'] }} <br>
-          @endforeach
-          @endforeach
-
+          @if (!empty($activity) && !empty($activity->count()))
           @foreach($activity as $item)
           <li class="navi-item">
-            <span class="navi-link">
-              <span class="navi-bullet">
-                <i class="fas fa-angle-double-right mr-5"></i>
-              </span>
-              <div class="navi-text">
-                <span class="d-block font-weight-bold">
-                  @if ($item->description == 'created') Item {{ $item->name }} created @endif
-                  @if ($item->description == 'updated') Item {{ $item->subject->name }} updated @endif
-                  @if ($item->description == 'deleted' && !empty($item->subject->name)) Item {{ $item->subject->name }} deleted @endif
-                </span>
-                <span class="text-muted"> {{ $item->causer->name }} </span>
-              </div>
-              <span>
-                {{ $item->created_at->diffForHumans() }}
-              </span>
+            @foreach($item['properties'] as $data_object)
+            @if ($item->description == 'created')
+            <span class="d-block font-weight-bold" data-toggle="popover" title="Info Details" data-placement="top" data-html="true" data-content="Date : <span class='text-muted'> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y - H:i') }}</span> <br> By : <span class='text-muted'>{{ $item->causer->name }}</span>">
+            <span class="navi-bullet">
+              <i class="fas fa-angle-right mr-3 mb-2"> </i>
             </span>
+            Created Item {{ $data_object['name'] }},
+            <span class="text-muted"> {{ $item->created_at->diffForHumans() }} </span>
+            @endif
+            @if ($item->description == 'deleted')
+            <span class="d-block font-weight-bold" data-toggle="popover" title="Info Details" data-placement="top" data-html="true" data-content="Date : <span class='text-muted'> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y - H:i') }}</span> <br> By : <span class='text-muted'>{{ $item->causer->name }}</span>">
+            <span class="navi-bullet">
+              <i class="fas fa-angle-right mr-3 mb-2"> </i>
+            </span>
+            Deleted Item {{ $data_object['name'] }},
+            <span class="text-muted"> {{ $item->created_at->diffForHumans() }} </span>
+            @endif
+            @endforeach
+            @if ($item->description == 'updated')
+            <span class="d-block font-weight-bold" data-toggle="popover" title="Info Details" data-placement="top" data-html="true" data-content="Date : <span class='text-muted'> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y - H:i') }}</span> <br> By : <span class='text-muted'>{{ $item->causer->name }}</span>">
+            <span class="navi-bullet">
+              <i class="fas fa-angle-right mr-3 mb-2"> </i>
+            </span>
+            Updated Item {{ $item['properties']['old']['name'] }} to {{ $data_object['name'] }},
+            <span class="text-muted"> {{ $item->created_at->diffForHumans() }} </span>
+            @endif
           </li>
           @endforeach
+          @else
+          <span class="text-muted"> No Recent Activities ... </span>
+          @endif
 
-          <li class="navi-item">
-            <span class="navi-link">
-              <span class="navi-bullet">
-                <i class="fas fa-angle-double-right mr-5"></i>
-              </span>
-              <div class="navi-text">
-                <span class="d-block font-weight-bold">New order has been placed</span>
-                <span class="text-muted">
-                  {{ Auth::User()->name }}
-                </span>
-              </div>
-              <span>
-                @php $user = Auth::User()->created_at; @endphp
-                {{ $user->diffForHumans() }}
-              </span>
-            </span>
-          </li>
         </ul>
       </div>
+
+    </div>
     </div>
   </div>
   <div class="col-xl-4">
