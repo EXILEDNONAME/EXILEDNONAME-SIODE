@@ -18,48 +18,62 @@
 
 
       <div class="card-body">
-        <div class="card-scroll" style="height: 99%;">
-        <ul class="navi navi-icon-center">
+        <div class="example-preview">
+          <div class="timeline timeline-2">
+            <div class="timeline-bar"></div>
 
-          @if (!empty($activity) && !empty($activity->count()))
-          @foreach($activity as $item)
-          <li class="navi-item">
-            @foreach($item['properties'] as $data_object)
-            @if ($item->description == 'created')
-            <span class="d-block font-weight-bold" data-toggle="popover" title="Info Details" data-placement="top" data-html="true" data-content="Date : <span class='text-muted'> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y - H:i') }}</span> <br> By : <span class='text-muted'>{{ $item->causer->name }}</span>">
-            <span class="navi-bullet">
-              <i class="fas fa-angle-right mr-3 mb-2"> </i>
-            </span>
-            Created Item {{ $data_object['name'] }},
-            <span class="text-muted"> {{ $item->created_at->diffForHumans() }} </span>
-            @endif
-            @if ($item->description == 'deleted')
-            <span class="d-block font-weight-bold" data-toggle="popover" title="Info Details" data-placement="top" data-html="true" data-content="Date : <span class='text-muted'> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y - H:i') }}</span> <br> By : <span class='text-muted'>{{ $item->causer->name }}</span>">
-            <span class="navi-bullet">
-              <i class="fas fa-angle-right mr-3 mb-2"> </i>
-            </span>
-            Deleted Item {{ $data_object['name'] }},
-            <span class="text-muted"> {{ $item->created_at->diffForHumans() }} </span>
-            @endif
+            @if (!empty($activity) && !empty($activity->count()))
+            @foreach($activity as $item)
+            <div class="timeline-item">
+              @if ($item->description == 'created')
+              <span class="timeline-badge bg-success"></span>
+              <div class="timeline-content justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, </span><br>
+                  ({{ $item->causer->name }}) - Created Item
+                </span>
+              </div>
+              @endif
+              @if ($item->description == 'updated')
+              <span class="timeline-badge bg-warning"></span>
+              <div class="timeline-content justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, </span><br>
+                  ({{ $item->causer->name }}) - Updated Item
+                </span>
+              </div>
+              @endif
+              @foreach($item['properties'] as $data_object)
+              @if ($item->description == 'deleted')
+              <span class="timeline-badge bg-danger"></span>
+              <div class="timeline-content justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, </span><br>
+                  ({{ $item->causer->name }}) - Deleted Item {{ $data_object['name'] }}
+                </span>
+              </div>
+              @endif
+              @endforeach
+            </div>
             @endforeach
-            @if ($item->description == 'updated')
-            <span class="d-block font-weight-bold" data-toggle="popover" title="Info Details" data-placement="top" data-html="true" data-content="Date : <span class='text-muted'> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y - H:i') }}</span> <br> By : <span class='text-muted'>{{ $item->causer->name }}</span>">
-            <span class="navi-bullet">
-              <i class="fas fa-angle-right mr-3 mb-2"> </i>
-            </span>
-            Updated Item {{ $item['properties']['old']['name'] }} to {{ $data_object['name'] }},
-            <span class="text-muted"> {{ $item->created_at->diffForHumans() }} </span>
+            @else
+            <span class="text-muted"> No Recent Activities ... </span>
             @endif
-          </li>
-          @endforeach
-          @else
-          <span class="text-muted"> No Recent Activities ... </span>
-          @endif
 
-        </ul>
+            <!-- <div class="timeline-item">
+              <span class="timeline-badge bg-danger"></span>
+              <div class="timeline-content justify-content-between">
+                <span class="mr-3">
+                  Database server overloaded 80% and requires quick reboot
+                  New order has been placed and pending for processing.
+                </span>
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+
       </div>
-
-    </div>
     </div>
   </div>
   <div class="col-xl-4">
