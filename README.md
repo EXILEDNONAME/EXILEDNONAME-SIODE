@@ -12,6 +12,7 @@ To Do : <br>
 <hr>
 
 [x] - Page JM Notes <br>
+[x] - Page VMS Maintenances <br>
 [x] - Content Monitoring <br>
 [x] - Profile Pages <br>
 [x] - Realtime Notification Create/Update
