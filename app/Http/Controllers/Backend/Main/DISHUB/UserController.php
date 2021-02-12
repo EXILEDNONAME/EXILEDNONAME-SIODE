@@ -7,6 +7,7 @@ use DataTables;
 use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\Backend\Main\DISHUB\User\UserStoreRequest;
 use App\Http\Requests\Backend\Main\DISHUB\User\UserUpdateRequest;
 
@@ -33,6 +34,7 @@ class UserController extends Controller {
   **/
 
   public function index(Request $request) {
+    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
     $data = $this->model::with(['dishub_devices', 'dishub_locations'])->select('dishub_users.*')->orderBy('id_location', 'asc')->orderBy('active', 'asc');
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -43,7 +45,7 @@ class UserController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index');
+    return view($this->path . '.index', compact('activity'));
   }
 
   /**

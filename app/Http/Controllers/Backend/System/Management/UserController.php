@@ -7,6 +7,7 @@ use DataTables;
 use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Activitylog\Models\Activity;
 
 Use App\User;
 
@@ -33,6 +34,7 @@ class UserController extends Controller {
   **/
 
   public function index() {
+    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
     $data = $this->model::with(['accesses'])->select('users.*');
     if(request()->ajax()) {
       return DataTables::of($data)
@@ -42,7 +44,7 @@ class UserController extends Controller {
       ->addIndexColumn()
       ->make(true);
     }
-    return view($this->path . '.index');
+    return view($this->path . '.index', compact('activity'));
   }
 
   /**

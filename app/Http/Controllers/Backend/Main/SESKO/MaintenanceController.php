@@ -7,6 +7,7 @@ use DataTables;
 use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\Backend\Main\SESKO\Maintenance\MaintenanceStoreRequest;
 use App\Http\Requests\Backend\Main\SESKO\Maintenance\MaintenanceUpdateRequest;
 
@@ -33,6 +34,7 @@ class MaintenanceController extends Controller {
   **/
 
   public function index(Request $request) {
+    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
     if (request('date_start') && request('date_end')) { $data = $this->model::with(['sesko_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('sesko_maintenances.*'); }
     else { $data = $this->model::with(['sesko_users'])->select('sesko_maintenances.*'); }
     if(request()->ajax()) {
@@ -48,7 +50,7 @@ class MaintenanceController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index');
+    return view($this->path . '.index', compact('activity'));
   }
 
   /**

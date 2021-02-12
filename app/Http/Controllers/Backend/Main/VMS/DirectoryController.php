@@ -7,6 +7,7 @@ use DataTables;
 use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\Backend\Main\VMS\Directory\DirectoryStoreRequest;
 use App\Http\Requests\Backend\Main\VMS\Directory\DirectoryUpdateRequest;
 
@@ -33,6 +34,7 @@ class DirectoryController extends Controller {
   **/
 
   public function index(Request $request) {
+    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
     $data = $this->model::with(['vms_areas', 'vms_types'])->select('vms_directories.*');
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -43,7 +45,7 @@ class DirectoryController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index');
+    return view($this->path . '.index', compact('activity'));
   }
 
   /**

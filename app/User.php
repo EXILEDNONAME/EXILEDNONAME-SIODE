@@ -5,11 +5,14 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
+use Spatie\Activitylog\Traits\LogsActivity;
+
 use App\Access;
 
 class User extends Authenticatable {
 
-  use Notifiable;
+  use Notifiable, LogsActivity;
 
   protected $fillable = [
     'name',
@@ -27,13 +30,11 @@ class User extends Authenticatable {
     'photo_profile'
   ];
 
-  protected $hidden = [
-    'password', 'remember_token',
-  ];
 
-  protected $casts = [
-    'email_verified_at' => 'datetime',
-  ];
+  protected $hidden = [ 'password', 'remember_token', ];
+  protected $casts = [ 'email_verified_at' => 'datetime', ];
+
+  protected static $logAttributes = ['*'];
 
   public function accesses(){
     return $this->belongsTo(Access::class, 'id_access');
