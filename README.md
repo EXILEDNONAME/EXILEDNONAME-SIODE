@@ -7,11 +7,11 @@ To Do : <br>
 [v] - File Manager
 [v] - Create Activity <br>
 [v] - Template Activity <br>
-[v] - Create Chart
+[v] - Create Chart <br>
+[v] - Add Activity All Models
 
 <hr>
 
-[x] - Add Activity All Models <br>
 [x] - Page JM Notes <br>
 [x] - Page VMS Maintenances <br>
 [x] - Content Monitoring <br>
