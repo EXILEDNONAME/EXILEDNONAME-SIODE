@@ -8,7 +8,7 @@ Route::get('lang/{language}', 'LocalizationController@switch')->name('localizati
 
 // DASHBOARD
 Route::get('dashboard', 'Backend\System\DashboardController@index')->name('dashboard.index');
-Route::get('dashboard/file-manager', 'Backend\System\DashboardController@file_manager')->name('dashboard.file-manager');
+Route::get('dashboard/file-manager', 'Backend\System\FileManagerController@index')->name('dashboard.file-manager');
 Route::get('dashboard/logout', 'Backend\System\DashboardController@logout')->name('dashboard.logout');
 
 // TEST

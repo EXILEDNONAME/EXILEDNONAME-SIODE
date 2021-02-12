@@ -24,19 +24,13 @@
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
       </li>
 
-      <!-- <li class="menu-item {{ (request()->is('dashboard/dummies*')) ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-        <a href="/dashboard/dummies" class="menu-link">
-          <span class="menu-icon"><i class="menu-icon fa fa-bookmark"></i></span>
-          <span class="menu-text"> Dummies </span>
-        </a>
-      </li> -->
-
       <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
         <a href="/dashboard/file-manager" class="menu-link">
           <span class="menu-icon"><i class="menu-icon fa fa-file"></i></span>
           <span class="menu-text"> File Manager </span>
         </a>
       </li>
+
 
       <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/management*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
         <a href="javascript:;" class="menu-link menu-toggle">
@@ -68,45 +62,7 @@
           </ul>
         </div>
       </li>
-
-      <!-- <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/mikrotik*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-        <a href="javascript:;" class="menu-link menu-toggle">
-          <span class="menu-icon">
-            <i class="menu-icon fa fa-user"></i>
-          </span>
-          <span class="menu-text"> Mikrotik </span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="menu-submenu">
-          <i class="menu-arrow"></i>
-          <ul class="menu-subnav">
-            <li class="menu-item">
-              <a href="javascript:void(0);" onclick="return alert('Maintenance!')" class="menu-link">
-                <i class="menu-bullet menu-bullet-dot">
-                  <span></span>
-                </i>
-                <span class="menu-text"> Interfaces </span>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:void(0);" onclick="return alert('Maintenance!')" class="menu-link">
-                <i class="menu-bullet menu-bullet-dot">
-                  <span></span>
-                </i>
-                <span class="menu-text"> IP Address </span>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:void(0);" onclick="return alert('Maintenance!')" class="menu-link">
-                <i class="menu-bullet menu-bullet-dot">
-                  <span></span>
-                </i>
-                <span class="menu-text"> Hotspot </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li> -->
+      
 
       <li class="menu-section">
         <h4 class="menu-text"> Settings </h4>
@@ -119,14 +75,6 @@
           <span class="menu-text"> Profile </span>
         </a>
       </li>
-      <!-- <li class="menu-item" aria-haspopup="true">
-        <a href="javascript:void(0);" onclick="return alert('Maintenance!')" class="menu-link">
-          <span class="menu-icon">
-            <i class="menu-icon fas fa-question"></i>
-          </span>
-          <span class="menu-text"> Supports </span>
-        </a>
-      </li> -->
       <li class="menu-item" aria-haspopup="true">
         <a href="/dashboard/logout" class="menu-link" onclick="return confirm('Are you sure?')">
           <span class="menu-icon">

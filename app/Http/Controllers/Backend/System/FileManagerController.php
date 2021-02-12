@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 
-class DashboardController extends Controller {
+class FileManagerController extends Controller {
 
   /**
   **************************************************
@@ -22,7 +22,7 @@ class DashboardController extends Controller {
   public function __construct() {
     $this->middleware('auth');
     $this->url = '/dashboard';
-    $this->path = 'pages.backend.system.dashboard';
+    $this->path = 'pages.backend.system.file-manager';
   }
 
   /**
@@ -32,21 +32,7 @@ class DashboardController extends Controller {
   **/
 
   public function index(Request $request) {
-    $data = User::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', '%2021-02%')->count(); $data .= ', ';
-    $data .= User::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', '%2021-02%')->count();
-    return view($this->path . '.index', compact('data'));
-
-  }
-
-  /**
-  **************************************************
-  * @return Logout
-  **************************************************
-  **/
-
-  public function logout() {
-    Auth::logout();
-    return redirect('login');
+    return view($this->path . '.index');
   }
 
 }

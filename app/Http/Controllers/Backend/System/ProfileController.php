@@ -40,17 +40,20 @@ class ProfileController extends Controller {
       $photo = time().'_'. $request->file('photo_profile')->getClientOriginalName();
       $destination = base_path() . '/public/cache/photo_profile';
       $request->file('photo_profile')->move($destination, $photo);
+      User::where('id', $user)->update([
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        'phone' => $request->get('phone'),
+        'photo_profile' => $photo,
+      ]);
     }
     else {
-      $photo = NULL;
+      User::where('id', $user)->update([
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        'phone' => $request->get('phone'),
+      ]);
     }
-
-    User::where('id', $user)->update([
-      'name' => $request->get('name'),
-      'email' => $request->get('email'),
-      'phone' => $request->get('phone'),
-      'photo_profile' => $photo,
-    ]);
 
     return back()->with('success', trans('notification.success.change-photo.edit'));
 
