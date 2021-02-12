@@ -48,7 +48,8 @@ class MaintenanceController extends Controller {
     $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-11%')->count(); $data_chart .= ', ';
     $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-12%')->count();
 
-    $data = $this->model::with(['vms_directories'])->select('vms_maintenances.*');
+    if (request('date_start') && request('date_end')) { $data = $this->model::with(['vms_directories'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('vms_maintenances.*'); }
+    else { $data = $this->model::with(['vms_directories'])->select('vms_maintenances.*'); }
     if(request()->ajax()) {
       return DataTables::eloquent($data)
       ->addColumn('action', 'includes.datatable.action')

@@ -5,12 +5,16 @@
 <div class="table-responsive">
   <table width="100%" class="table table-stiped table-bordered">
     <tr>
-      <td class="align-middle font-weight-bold"> Location </td>
-      <td class="align-middle"> ({{ $data->sesko_users->sesko_locations->name }}) - {{ $data->sesko_users->sesko_locations->description }} </td>
+      <td class="align-middle font-weight-bold"> Area </td>
+      <td class="align-middle"> {{ $data->vms_directories->vms_areas->name }} </td>
+    </tr>
+    <tr>
+      <td class="align-middle font-weight-bold"> Type </td>
+      <td class="align-middle"> {{ $data->vms_directories->vms_types->name }} </td>
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> Name </td>
-      <td class="align-middle"> {{ $data->name }} </td>
+      <td class="align-middle"> {{ $data->vms_directories->name }} </td>
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> Date Start </td>

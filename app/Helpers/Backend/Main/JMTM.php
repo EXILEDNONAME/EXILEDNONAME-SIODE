@@ -15,7 +15,7 @@ function jmtm_devices() {
 
 function jmtm_users_active() {
   $items = DB::table('jmtm_users as a')
-    ->join('jasamarga_devices as b', 'b.id', '=', 'a.id_device')
+    ->join('jmtm_devices as b', 'b.id', '=', 'a.id_device')
     ->selectRaw('CONCAT(a.name) as concatname, a.id')
     ->where('a.active', 1)
     ->pluck('concatname', 'a.id');
