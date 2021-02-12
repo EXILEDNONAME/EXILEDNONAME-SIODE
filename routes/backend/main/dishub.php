@@ -1,14 +1,5 @@
 <?php
 
-// DISHUB - Dashboard
-Route::group([
-  'as' => 'dishub.dashboard.',
-  'prefix' => 'dashboard/dishub',
-  'namespace' => 'Backend\Main\DISHUB',
-], function(){
-  Route::get('/', 'DashboardController@index')->name('index');
-});
-
 // DISHUB - Devices
 Route::group([
   'as' => 'dishub.device.',

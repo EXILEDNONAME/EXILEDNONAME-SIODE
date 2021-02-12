@@ -1,14 +1,5 @@
 <?php
 
-// SESKO - Dashboard
-Route::group([
-  'as' => 'sesko.dashboard.',
-  'prefix' => 'dashboard/sesko',
-  'namespace' => 'Backend\Main\SESKO',
-], function(){
-  Route::get('/', 'DashboardController@index')->name('index');
-});
-
 // SESKO - Locations
 Route::group([
   'as' => 'sesko.location.',

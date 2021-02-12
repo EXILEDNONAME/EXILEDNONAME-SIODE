@@ -8,13 +8,14 @@ To Do : <br>
 [v] - Create Activity <br>
 [v] - Template Activity <br>
 [v] - Create Chart <br>
-[v] - Add Activity All Models
+[v] - Add Activity All Models <br>
+[v] - Page VMS Maintenances
+[v] - Content Monitoring <br>
 
 <hr>
 
+[x] - Widget Dashboard <br>
 [x] - Page JM Notes <br>
-[x] - Page VMS Maintenances <br>
-[x] - Content Monitoring <br>
 [x] - Profile Pages <br>
 [x] - Realtime Notification Create/Update
 [x] - Create Middleware Groups <br>

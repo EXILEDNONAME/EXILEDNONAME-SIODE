@@ -40,7 +40,8 @@ class DirectoryController extends Controller {
       return DataTables::eloquent($data)
       ->addColumn('action', 'includes.datatable.action')
       ->addColumn('checkbox', 'includes.datatable.checkbox')
-      ->rawColumns(['action', 'checkbox'])
+      ->addColumn('status_device', 'includes.datatable.status-device')
+      ->rawColumns(['action', 'checkbox', 'status_device'])
       ->addIndexColumn()
       ->make(true);
     }

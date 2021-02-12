@@ -21,9 +21,62 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-xl-8">
+    <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
+      <div class="card-header" style="">
+        <div class="card-title">
+          <h5 class="text-dark font-weight-bold"> Monitoring Rumah Dinas </h5>
+        </div>
+        <div class="card-toolbar"></div>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+        <table width="100%" class="table table-striped-table-bordered table-hover table-checkable" id="monitoring_officials">
+          <thead>
+            <tr>
+              <th> No. </th>
+              <th> Name </th>
+              <th width="1"> Status </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-4">
+    <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
+      <div class="card-header" style="">
+        <div class="card-title">
+          <h5 class="text-dark font-weight-bold"> Monitoring VMS </h5>
+        </div>
+        <div class="card-toolbar"></div>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+        <table width="100%" class="table table-striped-table-bordered table-hover table-checkable" id="monitoring_vms">
+          <thead>
+            <tr>
+              <th> No. </th>
+              <th width="1"> Status </th>
+              <th> Name </th>
+              <th width="1"> Type </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <div class="row">
-  <div class="col-xl-12">
+  <div class="col-xl-4">
     <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
       <div class="card-header" style="">
         <div class="card-title">
@@ -46,7 +99,93 @@
 @endpush
 
 @push('js')
+<script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.5"></script>
 <script src="/assets/backend/js/pages/widgets.js?v=7.0.5"></script>
+<script>
+"use strict";
+var KTDatatablesExtensionsKeytable = function() {
+
+  var MonitoringOfficial = function() {
+    var table = $('#monitoring_officials').DataTable({
+      processing: true,
+      serverSide: true,
+      searching: false,
+      "lengthChange": false,
+      "paging": false,
+      "info": false,
+      ajax: { url: "{{ URL::current() }}/jasamarga/officials", },
+      columns: [
+        {
+          data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
+          render: function (data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
+        },
+        { data: 'name' },
+        { data: 'status_device' },
+      ],
+      order: [[1, 'asc']]
+    });
+
+    $("#file-refresh").on("click", function() { table.ajax.reload(); });
+    $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
+    $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
+    $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
+    $('#export_csv').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
+    $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(4).trigger(); });
+
+  };
+
+  var MonitoringVMS = function() {
+    var table = $('#monitoring_vms').DataTable({
+      processing: true,
+      serverSide: true,
+      searching: false,
+      "lengthChange": false,
+      "paging": false,
+      "info": false,
+      ajax: { url: "{{ URL::current() }}/vms/directories", },
+      columns: [
+        {
+          data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
+          render: function (data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
+        },
+        { data: 'status_device' },
+        { data: 'name' },
+        {
+          data: 'vms_types.name', 'className' : 'text-nowrap',
+          render: function (data, type, row, meta) {
+            return '<span class="label label-success label-inline">' + data +  '</span>';
+          }
+        },
+      ],
+      order: [[1, 'asc']]
+    });
+
+    $("#file-refresh").on("click", function() { table.ajax.reload(); });
+    $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
+    $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
+    $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
+    $('#export_csv').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
+    $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(4).trigger(); });
+
+  };
+
+  return {
+    init: function() {
+      MonitoringOfficial();
+      MonitoringVMS();
+    },
+  };
+
+}();
+
+jQuery(document).ready(function() {
+  KTDatatablesExtensionsKeytable.init();
+});
+</script>
 <script>
 "use strict";
 
@@ -95,9 +234,9 @@ var KTApexChartsDemo = function () {
       series: [
         { name: 'Maintenances', data: [31, 11, 24] },
         { name: 'Users', data: data },
-        { name: 'Report', data: [21, 81, 53] }
+        { name: 'Report', data: [21, 81, 53, 21, 81, 53, 21, 81, 53, 21, 81, 53] }
       ],
-      chart: { height: 350, type: 'area' },
+      chart: { height: 350, type: 'line' },
       dataLabels: { enabled: false },
       stroke: { curve: 'smooth' },
       xaxis: { categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], },

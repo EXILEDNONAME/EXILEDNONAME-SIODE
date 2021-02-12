@@ -1,14 +1,5 @@
 <?php
 
-// VMS - Dashboard
-Route::group([
-  'as' => 'vms.dashboard.',
-  'prefix' => 'dashboard/vms',
-  'namespace' => 'Backend\Main\VMS',
-], function(){
-  Route::get('/', 'DashboardController@index')->name('index');
-});
-
 // VMS - Areas
 Route::group([
   'as' => 'vms.area.',

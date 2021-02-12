@@ -24,10 +24,7 @@
               <h3 class="card-label font-weight-bolder text-dark"> Change Password </h3>
               <span class="text-muted font-weight-bold font-size-sm mt-1">Update your personal password</span>
             </div>
-            <div class="card-toolbar">
-              <button type="reset" class="btn btn-success mr-2">Save Changes</button>
-              <button type="reset" class="btn btn-secondary">Cancel</button>
-            </div>
+            <div class="card-toolbar"></div>
           </div>
 
           <form method="POST" action="{{ URL::current() }}/../change-password" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">

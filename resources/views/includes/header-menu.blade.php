@@ -35,10 +35,6 @@
 
     <!-- HEADER MENU RIGHT -->
     <div class="topbar">
-      @include('includes.components.header-menu-right.quick-action')
-      @include('includes.components.header-menu-right.cart')
-      @include('includes.components.header-menu-right.quick-panel')
-      @include('includes.components.header-menu-right.chat')
       @include('includes.components.header-menu-right.notifications')
       @include('includes.components.header-menu-right.languages')
       @include('includes.components.header-menu-right.user')
