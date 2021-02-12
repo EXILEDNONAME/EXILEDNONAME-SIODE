@@ -33,12 +33,27 @@ class ProfileController extends Controller {
     return redirect('/dashboard/profile/timeline');
   }
 
-  public function update(Request $request, $id) {
-    $user = User::findOrFail($id);
-    $user->name = $request->get('name');
-    $user->email = $request->get('email');
-    $user->save();
-    return redirect('/dashboard/profile/personal-information');
+  public function update(Request $request) {
+    $user = Auth::User()->id;
+
+    if ($request->file('photo_profile')) {
+      $photo = time().'_'. $request->file('photo_profile')->getClientOriginalName();
+      $destination = base_path() . '/public/cache/photo_profile';
+      $request->file('photo_profile')->move($destination, $photo);
+    }
+    else {
+      $photo = NULL;
+    }
+
+    User::where('id', $user)->update([
+      'name' => $request->get('name'),
+      'email' => $request->get('email'),
+      'phone' => $request->get('phone'),
+      'photo_profile' => $photo,
+    ]);
+
+    return back()->with('success', trans('notification.success.change-photo.edit'));
+
 }
 
   /**

@@ -58,10 +58,15 @@
                   <label class="col-lg-3 col-form-label"> Photo </label>
                   <div class="col-lg-9">
                     <div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(/assets/backend/media/users/blank.png)">
-                      <div class="image-input-wrapper" style="background-image: url(/assets/backend/media/users/blank.png)"></div>
+
+                      @if (!empty(Auth::User()->photo_profile)) <div class="image-input-wrapper" style="background-image: url(/cache/photo_profile/{{ Auth::User()->photo_profile }})"></div>
+                      @else <div class="image-input-wrapper" style="background-image: url(/assets/backend/media/users/blank.png)"></div>
+                      @endif
+
+
                       <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                         <i class="fa fa-pen icon-sm text-muted"></i>
-                        <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
+                        <input type="file" name="photo_profile" accept=".png, .jpg, .jpeg">
                         <input type="hidden" name="profile_avatar_remove">
                       </label>
                       <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel avatar">

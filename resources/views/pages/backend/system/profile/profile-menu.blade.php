@@ -4,7 +4,9 @@
 
       <div class="text-center">
         <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-          <div class="symbol-label" style="background-image:url('/assets/backend/media/users/blank.png')"></div>
+          @if (!empty(Auth::User()->photo_profile)) <div class="symbol-label" style="background-image: url(/cache/photo_profile/{{ Auth::User()->photo_profile }})"></div>
+          @else <div class="symbol-label" style="background-image:url('/assets/backend/media/users/blank.png')"></div>
+          @endif
           <i class="symbol-badge symbol-badge-bottom bg-success"></i>
         </div>
         <h3 class="font-weight-bold"> {{ Auth::User()->name }} </h3>

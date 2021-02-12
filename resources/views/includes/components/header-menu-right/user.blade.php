@@ -4,7 +4,9 @@
       <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
       <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ Auth::User()->name }}</span>
       <span class="symbol symbol-35 symbol-light-success">
-        <span class="symbol-label font-size-h5 font-weight-bold">S</span>
+        @if (!empty(Auth::User()->photo_profile)) <div class="symbol-label" style="background-image: url(/cache/photo_profile/{{ Auth::User()->photo_profile }})"></div>
+        @else <div class="symbol-label" style="background-image:url('/assets/backend/media/users/blank.png')"></div>
+        @endif
       </span>
     </div>
   </div>
@@ -14,7 +16,9 @@
       <div class="d-flex flex-column pt-6 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(/assets/backend/media/misc/bg-1.jpg)">
         <div class="text-center">
         <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-          <div class="symbol-label" style="background-image:url('/assets/backend/media/users/blank.png')"></div>
+          @if (!empty(Auth::User()->photo_profile)) <div class="symbol-label" style="background-image: url(/cache/photo_profile/{{ Auth::User()->photo_profile }})"></div>
+          @else <div class="symbol-label" style="background-image:url('/assets/backend/media/users/blank.png')"></div>
+          @endif
           <i class="symbol-badge symbol-badge-bottom bg-success"></i>
         </div>
       </div>

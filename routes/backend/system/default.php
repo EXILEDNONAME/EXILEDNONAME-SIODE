@@ -2,7 +2,7 @@
 
 // MANAGEMENT ACCESSES
 Route::group([
-  'as' => 'system.management.access',
+  'as' => 'system.management.access.',
   'prefix' => 'dashboard/management/accesses',
   'namespace' => 'Backend\System\Management',
 ], function(){
@@ -17,7 +17,7 @@ Route::group([
 
 // MANAGEMENT USERS
 Route::group([
-  'as' => 'system.management.user',
+  'as' => 'system.management.user.',
   'prefix' => 'dashboard/management/users',
   'namespace' => 'Backend\System\Management',
 ], function(){
@@ -41,5 +41,5 @@ Route::group([
   Route::post('change-password', 'ProfileController@change_password')->name('change-password');
   Route::get('personal-information', 'ProfileController@personal_information')->name('personal-information');
   Route::get('timeline', 'ProfileController@timeline')->name('timeline');
-  Route::resource('/', 'ProfileController')->only('index');
+  Route::resource('/', 'ProfileController')->parameters(['' => 'id']);
 });
