@@ -11,3 +11,8 @@
   @include($path . '.form', ['formMode' => 'edit'])
 </form>
 @endpush
+
+@push('js')
+<script src="/assets/backend/js/pages/custom/profile/profile.js?v=7.0.5"></script>
+<script src="/assets/backend/js/pages/widgets.js?v=7.0.5"></script>
+@endpush

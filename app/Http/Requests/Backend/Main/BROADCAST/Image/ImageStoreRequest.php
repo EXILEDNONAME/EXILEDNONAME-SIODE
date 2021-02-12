@@ -13,6 +13,7 @@ class ImageStoreRequest extends FormRequest {
   public function rules() {
     return [
       'name' => 'unique:broadcast_images',
+      'image' => 'required',
     ];
   }
 }

@@ -77,14 +77,13 @@ class ImageController extends Controller {
   **/
 
   public function store(ImageStoreRequest $request) {
-    $file = time() . "_" . $request->file('file')->getClientOriginalName();
+    $image = time() . "_" . $request->file('image')->getClientOriginalName();
     $destination = base_path() . '/public/files/broadcast/images';
-    $request->file('file')->move($destination, $file);
+    $request->file('image')->move($destination, $image);
 
     $this->model::create([
-      'type' => $request->type,
       'name' => $request->name,
-      'file' => $file,
+      'path' => $image,
       'description' => $request->description,
       'created_by' => $request->created_by,
     ]);
@@ -113,18 +112,26 @@ class ImageController extends Controller {
   public function update(ImageUpdateRequest $request, $id) {
     $data = $this->model::findOrFail($id);
 
-    $file = time() . "_" . $request->file('file')->getClientOriginalName();
-    $destination = base_path() . '/public/broadcast/images';
-    $request->file('file')->move($destination, $file);
+    if ( $request->file('image')) {
+      $image = time() . "_" . $request->file('image')->getClientOriginalName();
+      $destination = base_path() . '/public/files/broadcast/images';
+      $request->file('image')->move($destination, $image);
 
-    $this->model::where('id', $id)->update([
-      'type' => $request->type,
-      'name' => $request->name,
-      'file' => $file,
-      'description' => $request->description,
-      'created_by' => $request->created_by,
-    ]);
-    
+      $this->model::where('id', $id)->update([
+        'name' => $request->name,
+        'path' => $image,
+        'description' => $request->description,
+        'updated_by' => $request->updated_by,
+      ]);
+    }
+    else {
+      $this->model::where('id', $id)->update([
+        'name' => $request->name,
+        'description' => $request->description,
+        'updated_by' => $request->updated_by,
+      ]);
+    }
+
     return redirect($this->url)->with('success', trans('notification.success.edit'));
   }
 
