@@ -34,7 +34,7 @@
     </div>
 
     <!-- HEADER MENU RIGHT -->
-    <div class="topbar">
+    <div class="topbar">      
       @include('includes.components.header-menu-right.notifications')
       @include('includes.components.header-menu-right.languages')
       @include('includes.components.header-menu-right.user')
