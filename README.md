@@ -18,7 +18,7 @@ To Do : <br>
 [x] - Widget Dashboard <br>
 [x] - Create Notes <br>
 [x] - Profile Pages <br>
-[x] - Realtime Notification Create/Update
+[x] - Realtime Notification Create/Update <br>
 [x] - Create Middleware Groups <br>
 [x] - Edit Generator
 
