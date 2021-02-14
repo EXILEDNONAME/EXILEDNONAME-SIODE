@@ -25,6 +25,7 @@ class DeviceController extends Controller {
     $this->url = '/dashboard/dishub/devices';
     $this->path = 'pages.backend.main.dishub.device';
     $this->model = 'App\Models\Backend\Main\DISHUB\Device';
+    // event(new \App\Events\MyEvent('Asd'));
   }
 
   /**

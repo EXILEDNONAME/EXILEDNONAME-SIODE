@@ -2,6 +2,9 @@
 @push('title', 'Dashboard')
 
 @push('content-body')
+<div id="output"></div>
+<br>
+
 <div class="row">
   <div class="col-lg-6 col-xxl-4">
     <!--begin::Mixed Widget 1-->
