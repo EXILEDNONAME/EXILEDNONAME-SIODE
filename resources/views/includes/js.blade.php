@@ -69,7 +69,7 @@ var KTAppSettings = { "breakpoints":
     var channel = pusher.subscribe('status-liked');
     channel.bind('App\\Events\\MyEvent', function(data) {
       document.getElementById('output').innerHTML = data.item.name
-      toastr.options = { "positionClass": "toast-bottom-right" };
-      toastr.success(data.message); ;
+      toastr.options = { "closeButton": true, "positionClass": "toast-bottom-right" };
+      toastr.info(data.item.name);
     });
   </script>

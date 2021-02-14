@@ -29,6 +29,24 @@
       <div class="tab-content">
         <div class="tab-pane active show p-8" id="topbar_notifications_notifications" role="tabpanel">
           <div class="scroll pr-7 mr-n7" data-scroll="true" data-height="300" data-mobile-height="200">
+
+            @php $notifications = \DB::table('notifications')->get(); @endphp
+            @foreach($notifications as $item)
+            <div class="d-flex align-items-center mb-6">
+              <div class="symbol symbol-40 symbol-light-primary mr-5">
+                <span class="symbol-label">
+                  <i class="fas fa-envelope-open-text"></i>
+                </span>
+              </div>
+              <div class="d-flex flex-column font-weight-bold">
+                <span class="text-dark mb-1 font-size-sm">
+                  {{ $item->name }}
+                </span>
+                <span class="text-muted"> {{ $item->method }} Item {{ $item->description }} </span>
+              </div>
+            </div>
+            @endforeach
+
             <div class="d-flex align-items-center mb-6">
               <div class="symbol symbol-40 symbol-light-primary mr-5">
                 <span class="symbol-label">
@@ -42,6 +60,7 @@
                 <span class="text-muted"> Notification Message </span>
               </div>
             </div>
+
           </div>
           <div class="d-flex flex-center pt-7">
             <a href="#" class="btn btn-light-primary font-weight-bold text-center">See All</a>

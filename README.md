@@ -15,11 +15,11 @@ To Do : <br>
 <hr>
 
 [x] - Page Broadcast <br>
+[x] - Create Middleware Groups <br>
 [x] - Widget Dashboard <br>
 [x] - Create Notes <br>
 [x] - Profile Pages <br>
 [x] - Realtime Notification Create/Update <br>
-[x] - Create Middleware Groups <br>
 [x] - Edit Generator
 
 <hr>
