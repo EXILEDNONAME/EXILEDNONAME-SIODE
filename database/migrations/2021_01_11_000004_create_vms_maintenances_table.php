@@ -20,6 +20,9 @@ class CreateVmsMaintenancesTable extends Migration
       $table->timestamp('date_end')->nullable();
       $table->string('title');
       $table->text('troubleshoot');
+      $table->string('photo_1');
+      $table->string('photo_2');
+      $table->string('photo_3');
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('sort')->default(0);

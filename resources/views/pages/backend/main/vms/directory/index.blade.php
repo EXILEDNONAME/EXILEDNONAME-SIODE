@@ -5,13 +5,13 @@
 <div class="col-md-2 my-2 my-md-0">
   <div class="d-flex align-items-center">
     <label class="mr-3 mb-0 d-none d-md-block">Area:</label>
-    {!! Form::select(NULL, filter_vms_areas(), NULL, ['data-column' => 2, 'placeholder' => '- Select Area -', 'class' => 'form-control filter-area']) !!}
+    {!! Form::select(NULL, filter_vms_areas(), NULL, ['data-column' => 3, 'placeholder' => '- Select Area -', 'class' => 'form-control filter-area']) !!}
   </div>
 </div>
 <div class="col-md-2 my-2 my-md-0">
   <div class="d-flex align-items-center">
     <label class="mr-3 mb-0 d-none d-md-block">Type:</label>
-    {!! Form::select(NULL, filter_vms_types(), NULL, ['data-column' => 3, 'placeholder' => '- Select Type -', 'class' => 'form-control filter-type']) !!}
+    {!! Form::select(NULL, filter_vms_types(), NULL, ['data-column' => 4, 'placeholder' => '- Select Type -', 'class' => 'form-control filter-type']) !!}
   </div>
 </div>
 @endpush
@@ -23,18 +23,19 @@ d.filter_type = $('.filter_type').val();
 
 @push('filter-data')
 $('.filter-area').change(function () {
-  table.column(2)
+  table.column(3)
   .search( $(this).val() )
   .draw();
 });
 $('.filter-type').change(function () {
-  table.column(3)
+  table.column(4)
   .search( $(this).val() )
   .draw();
 });
 @endpush
 
 @push('content-head')
+<th> Status </th>
 <th width="1"> Area </th>
 <th width="1"> Type </th>
 <th> Name </th>
@@ -44,6 +45,7 @@ $('.filter-type').change(function () {
 @endpush
 
 @push('content-body')
+{ data: 'status_device', 'width' : '1' },
 { data: 'vms_areas.name' },
 { data: 'vms_types.name' },
 { data: 'name' },
