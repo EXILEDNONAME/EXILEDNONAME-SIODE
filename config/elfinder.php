@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'dir' => ['files'],
+    'dir' => ['Files'],
     'disks' => ['Files'],
 
     /*

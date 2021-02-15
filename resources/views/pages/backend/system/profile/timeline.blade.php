@@ -46,7 +46,9 @@
                 </div>
                 <div class="">
                   <span class="btn btn-icon btn-sm btn-hover-icon-primary">
+                    <a href="javascript:;" onclick="return alert('Maintenance!')">
                     <i class="fab fa-telegram-plane"></i>
+                  </a>
                   </span>
                 </div>
               </div>
