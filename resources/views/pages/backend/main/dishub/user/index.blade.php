@@ -53,8 +53,8 @@ $('.filter-location').change(function () {
 @push('content-head')
 <th> Location </th>
 <th> Device </th>
+<th> ID Employee </th>
 <th> Name </th>
-<th> NPP </th>
 <th> MAC </th>
 <th> Printer </th>
 @endpush
@@ -62,8 +62,8 @@ $('.filter-location').change(function () {
 @push('content-body')
 { data: 'dishub_locations.name', 'className': 'text-nowrap', 'width': '1' },
 { data: 'dishub_devices.name', 'className': 'text-nowrap', 'width': '1' },
+{ data: 'id_employee', 'className': 'text-nowrap', 'width': '1' },
 { data: 'name' },
-{ data: 'npp', 'className': 'text-nowrap', 'width': '1' },
 { data: 'mac_address' },
 {
   data: 'printer', orderable: true, 'className': 'align-middle text-center', 'width': '1',

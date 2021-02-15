@@ -17,8 +17,8 @@ class CreateDishubUsersTable extends Migration
       $table->increments('id');
       $table->integer('id_device')->unsigned();
       $table->integer('id_location')->unsigned();
+      $table->string('id_employee')->nullable();
       $table->string('name');
-      $table->string('npp')->nullable();
       $table->string('ip_address')->nullable();
       $table->string('mac_address')->nullable();
       $table->integer('port')->nullable();

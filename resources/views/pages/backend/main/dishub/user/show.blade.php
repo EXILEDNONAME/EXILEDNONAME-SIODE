@@ -13,12 +13,12 @@
       <td class="align-middle"> {{ $data->dishub_locations->name }} - {{ $data->dishub_locations->description }} </td>
     </tr>
     <tr>
-      <td class="align-middle font-weight-bold"> Name </td>
-      <td class="align-middle"> {{ $data->name }} </td>
+      <td class="align-middle font-weight-bold"> ID Employee </td>
+      <td class="align-middle"> {{ $data->id_employee }} </td>
     </tr>
     <tr>
-      <td class="align-middle font-weight-bold"> NPP </td>
-      <td class="align-middle"> {{ $data->npp }} </td>
+      <td class="align-middle font-weight-bold"> Name </td>
+      <td class="align-middle"> {{ $data->name }} </td>
     </tr>
     <tr>
       <td class="align-middle font-weight-bold"> IP Address </td>
