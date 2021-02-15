@@ -11,9 +11,6 @@ Route::get('dashboard', 'Backend\System\DashboardController@index')->name('dashb
 Route::get('dashboard/file-manager', 'Backend\System\FileManagerController@index')->name('dashboard.file-manager');
 Route::get('dashboard/logout', 'Backend\System\DashboardController@logout')->name('dashboard.logout');
 
-// TEST
-Route::get('/dashboard/demo', 'DemoController@data');
-
 // SYSTEM
 require __DIR__.'/backend/system/default.php';
 

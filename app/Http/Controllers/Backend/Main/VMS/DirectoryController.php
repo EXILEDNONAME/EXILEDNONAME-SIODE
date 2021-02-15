@@ -33,6 +33,21 @@ class DirectoryController extends Controller {
   **************************************************
   **/
 
+  public function monitoring(Request $request) {
+    $data = $this->model::with(['vms_areas', 'vms_types'])->where('active', '1')->select('vms_directories.*');
+    if(request()->ajax()) {
+      return DataTables::eloquent($data)
+      ->addColumn('action', 'includes.datatable.action')
+      ->addColumn('checkbox', 'includes.datatable.checkbox')
+      ->addColumn('status_device', 'includes.datatable.status-device')
+      ->rawColumns(['action', 'checkbox', 'status_device'])
+      ->addIndexColumn()
+      ->make(true);
+    }
+
+    return view($this->path . '.index', compact('activity'));
+  }
+
   public function index(Request $request) {
     $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
     $data = $this->model::with(['vms_areas', 'vms_types'])->select('vms_directories.*');

@@ -1,5 +1,7 @@
 <?php
 
+
+
 // VMS - Areas
 Route::group([
   'as' => 'vms.area.',
@@ -22,6 +24,7 @@ Route::group([
   'prefix' => 'dashboard/vms/directories',
   'namespace' => 'Backend\Main\VMS',
 ], function(){
+  Route::get('monitorings', 'DirectoryController@monitoring')->name('monitoring');
   Route::get('status-done/{id}', 'DirectoryController@status_done')->name('status-done');
   Route::get('status-pending/{id}', 'DirectoryController@status_pending')->name('status-pending');
   Route::get('enable/{id}', 'DirectoryController@enable')->name('enable');
