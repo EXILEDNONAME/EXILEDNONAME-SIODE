@@ -49,8 +49,8 @@ class MaintenanceController extends Controller {
     $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-11%')->count(); $data_chart .= ', ';
     $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-12%')->count();
 
-    if (request('date_start') && request('date_end')) { $data = $this->model::with(['jasamarga_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*'); }
-    else { $data = $this->model::with(['jasamarga_users'])->select('jasamarga_maintenances.*'); }
+    if (request('date_start') && request('date_end')) { $data = $this->model::with(['jasamarga_users'])->orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*'); }
+    else { $data = $this->model::with(['jasamarga_users'])->orderby('date_start', 'desc')->select('jasamarga_maintenances.*'); }
 
     if(request()->ajax()) {
       return DataTables::eloquent($data)

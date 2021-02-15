@@ -262,7 +262,7 @@ var KTDatatablesExtensionsKeytable = function() {
         },
         @if ( !empty($content) && $content == 'withStatus')
         {
-          data: 'status', orderable: true, 'className': 'align-middle text-center', 'width': '1',
+          data: 'status', orderable: true, 'className': 'align-middle', 'width': '1',
           render: function ( data, type, row ) {
             if ( data == 0) { return ''; }
             if ( data == 1 ) { return '<a href="javascript:void(0);" id="status_pending" data-toggle="tooltip" data-original-title="Pending" data-id="' + row.id + '"><span class="label label-outline-success label-pill label-inline"> Done </span></a>'; }
@@ -387,7 +387,7 @@ var KTDatatablesExtensionsKeytable = function() {
             var oTable = $('#exilednoname').dataTable();
             oTable.fnDraw(false);
             toastr.options = { "positionClass": "toast-bottom-right" };
-            toastr.success("{{ trans('notification.success.active.enable') }}");
+            toastr.success("{{ trans('notification.success.status.done') }}");
           },
           error: function (data) {
             //
@@ -408,7 +408,7 @@ var KTDatatablesExtensionsKeytable = function() {
             var oTable = $('#exilednoname').dataTable();
             oTable.fnDraw(false);
             toastr.options = { "positionClass": "toast-bottom-right" };
-            toastr.success("{{ trans('notification.success.active.enable') }}");
+            toastr.success("{{ trans('notification.success.status.pending') }}");
           },
           error: function (data) {
             //
