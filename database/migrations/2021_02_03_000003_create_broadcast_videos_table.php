@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBroadcastImagesTable extends Migration
+class CreateBroadcastVideosTable extends Migration
 {
   /**
   * Run the migrations.
@@ -13,8 +13,9 @@ class CreateBroadcastImagesTable extends Migration
   */
   public function up()
   {
-    Schema::create('broadcast_images', function (Blueprint $table) {
+    Schema::create('broadcast_videos', function (Blueprint $table) {
       $table->increments('id');
+      $table->integer('type');
       $table->string('path');
       $table->string('name');
       $table->text('description')->nullable();
@@ -34,6 +35,6 @@ class CreateBroadcastImagesTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('broadcast_images');
+    Schema::dropIfExists('broadcast_videos');
   }
 }

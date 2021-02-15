@@ -78,7 +78,7 @@ class ImageController extends Controller {
 
   public function store(ImageStoreRequest $request) {
     $image = time() . "_" . $request->file('image')->getClientOriginalName();
-    $destination = storage_path() . '/public/files/broadcast/images';
+    $destination = base_path() . '/public/files/broadcast/images';
     $request->file('image')->move($destination, $image);
 
     $this->model::create([
@@ -114,7 +114,7 @@ class ImageController extends Controller {
 
     if ( $request->file('image')) {
       $image = time() . "_" . $request->file('image')->getClientOriginalName();
-      $destination = storage_path() . '/public/files/broadcast/images';
+      $destination = base_path() . '/public/files/broadcast/images';
       $request->file('image')->move($destination, $image);
 
       $this->model::where('id', $id)->update([

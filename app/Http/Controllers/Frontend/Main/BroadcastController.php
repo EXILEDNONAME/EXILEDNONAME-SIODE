@@ -29,7 +29,9 @@ class BroadcastController extends Controller {
 
   public function __construct() {
     $this->path = 'pages.frontend.broadcast';
+    $this->model_content = 'App\Models\Backend\Main\BROADCAST\Content';
     $this->model_image = 'App\Models\Backend\Main\BROADCAST\Image';
+    $this->model_general = 'App\Models\Backend\Main\BROADCAST\General';
   }
 
   /**
@@ -39,8 +41,11 @@ class BroadcastController extends Controller {
   **/
 
   public function image_1() {
-    $data = $this->model_image::all();
-    return view($this->path . '.image-1');
+    $content = $this->model_content::get();
+    $image = $this->model_image::all();
+    $general = $this->model_general::latest()->first();
+    $slide1 = $this->model_image::where('active', 1)->where('type', 1)->orderBy('sort', 'ASC')->get();
+    return view($this->path . '.image-1', compact('content', 'image', 'general', 'slide1'));
   }
 
   /**

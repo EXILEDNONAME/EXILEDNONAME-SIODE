@@ -16,6 +16,22 @@ Route::group([
   Route::resource('/', 'ContentController')->parameters(['' => 'id']);
 });
 
+// BROADCAST - Generals
+Route::group([
+  'as' => 'broadcast.generals.',
+  'prefix' => 'dashboard/broadcast/generals',
+  'namespace' => 'Backend\Main\BROADCAST',
+], function(){
+  Route::get('status-done/{id}', 'GeneralController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'GeneralController@status_pending')->name('status-pending');
+  Route::get('enable/{id}', 'GeneralController@enable')->name('enable');
+  Route::get('disable/{id}', 'GeneralController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'GeneralController@status')->name('status');
+  Route::get('delete/{id}', 'GeneralController@delete')->name('delete');
+  Route::get('deleteall', 'GeneralController@deleteall')->name('deleteall');
+  Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
+});
+
 // BROADCAST - Images
 Route::group([
   'as' => 'broadcast.image.',
