@@ -1,0 +1,88 @@
+ul.mtree {
+  margin-left: 0;
+  padding: 25px 35px;
+}
+ul.mtree ul {
+  margin-left: 1em;
+}
+ul.mtree li {
+  list-style: none;
+}
+ul.mtree a {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+ul.mtree ul li a {
+	display: block;
+	font-size: 12px;
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+ul.mtree li.mtree-node > a {
+  font-weight: 400;
+}
+
+ul.mtree a {
+  -webkit-transition: color 300ms ease-out;
+  -moz-transition: color 300ms ease-out;
+  -ms-transition: color 300ms ease-out;
+  -o-transition: color 300ms ease-out;
+  transition: color 300ms ease-out;
+}
+
+ul.mtree {
+}
+ul.mtree ul {
+  margin-left: 0;
+}
+ul.mtree ul > li {
+}
+ul.mtree li.mtree-node {
+  position: relative;
+}
+ul.mtree li.mtree-node > a:before {
+	color: #fff;
+	font-size: 16px;
+	font-weight: 100;
+	position: absolute;
+	right: 0;
+	top: 3px;
+}
+ul.mtree li.mtree-open > a:before {
+  content: '-';
+  top: 3px;
+}
+ul.mtree li.mtree-closed > a:before {
+  content: '+';
+}
+ul.mtree ul > li:first-child {
+  margin-top: 1px;
+}
+ul.mtree li > a:hover {
+  color:#fff;
+}
+ul.mtree li.mtree-node > ul > li:last-child {
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+ul.mtree li.mtree-node > ul > li:last-child a {
+	border-bottom: 0;
+}
+ul.mtree li.mtree-node:last-child > ul > li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+ul.mtree a {
+  padding: 5px 0px 5px 0;
+  color: #eee;
+  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+ul.mtree a:hover {
+  color:#fff;
+}
+

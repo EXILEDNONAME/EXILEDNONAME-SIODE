@@ -14,10 +14,13 @@ Route::get('dashboard/logout', 'Backend\System\DashboardController@logout')->nam
 // SYSTEM
 require __DIR__.'/backend/system/default.php';
 
-// Main
+// Backend - Main
 require __DIR__.'/backend/main/broadcast.php';
 require __DIR__.'/backend/main/dishub.php';
 require __DIR__.'/backend/main/jasamarga.php';
 require __DIR__.'/backend/main/jmtm.php';
 require __DIR__.'/backend/main/sesko.php';
 require __DIR__.'/backend/main/vms.php';
+
+// Frontend - Main
+require __DIR__.'/frontend/main/broadcast.php';
