@@ -43,3 +43,19 @@ Route::group([
   Route::get('timeline', 'ProfileController@timeline')->name('timeline');
   Route::resource('/', 'ProfileController')->parameters(['' => 'id']);
 });
+
+// TABLE - Dummies
+Route::group([
+  'as' => 'dummy.',
+  'prefix' => 'dashboard/dummies',
+  'namespace' => 'Backend\System',
+], function(){
+  Route::get('status-done/{id}', 'DummyController@status_done')->name('status-done');
+  Route::get('status-pending/{id}', 'DummyController@status_pending')->name('status-pending');
+  Route::get('enable/{id}', 'DummyController@enable')->name('enable');
+  Route::get('disable/{id}', 'DummyController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'DummyController@status')->name('status');
+  Route::get('delete/{id}', 'DummyController@delete')->name('delete');
+  Route::get('deleteall', 'DummyController@deleteall')->name('deleteall');
+  Route::resource('/', 'DummyController')->parameters(['' => 'id']);
+});

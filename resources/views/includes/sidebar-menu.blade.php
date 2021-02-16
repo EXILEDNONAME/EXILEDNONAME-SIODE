@@ -24,13 +24,19 @@
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
       </li>
 
+      <li class="menu-item {{ (request()->is('dashboard/dummies*')) ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+        <a href="/dashboard/dummies" class="menu-link">
+          <span class="menu-icon"><i class="menu-icon fa fa-file"></i></span>
+          <span class="menu-text"> Dummies </span>
+        </a>
+      </li>
+
       <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
         <a href="/dashboard/file-manager" class="menu-link">
           <span class="menu-icon"><i class="menu-icon fa fa-file"></i></span>
           <span class="menu-text"> File Manager </span>
         </a>
       </li>
-
 
       <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/management*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
         <a href="javascript:;" class="menu-link menu-toggle">
@@ -62,7 +68,7 @@
           </ul>
         </div>
       </li>
-      
+
 
       <li class="menu-section">
         <h4 class="menu-text"> Settings </h4>

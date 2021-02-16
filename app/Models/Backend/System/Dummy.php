@@ -1,32 +1,18 @@
 <?php
 
-namespace App\Models\Backend\Main\DISHUB;
+namespace App\Models\Backend\System;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Log;
 
-class Device extends Model {
+class Dummy extends Model {
 
   use LogsActivity;
 
-  protected $table = 'dishub_devices';
+  protected $table = 'dummies';
   protected $primaryKey = 'id';
   protected $guarded = ['id'];
 
   protected static $logAttributes = ['*'];
-
-  public static function boot() {
-
-	    parent::boot();
-
-      static::created(function($item) {
-          event(new \App\Events\MyEvent($item));
-
-	    });
-
-	}
-
 
 }
