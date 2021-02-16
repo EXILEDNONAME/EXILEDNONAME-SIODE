@@ -83,6 +83,19 @@
 
                 @stack('filter-header')
 
+                @if ( !empty($content) && $content == 'withStatus')
+                <div class="col-md-3 my-2 my-md-0">
+                  <div class="d-flex align-items-center">
+                    <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
+                    <select data-column="2" class="form-control filter-status">
+                      <option value=""> - Filter Status - </option>
+                      <option value="1"> Done </option>
+                      <option value="2"> Pending </option>
+                    </select>
+                  </div>
+                </div>
+                @endif
+
                 <div class="col-md-2 my-2 my-md-0">
                   <div class="d-flex align-items-center">
                     <button type="reset" name="reset" id="reset" class="form-control btn btn-sm btn-outline-info" data-toggle="tooltip" title="{{ trans('default.button.reset-filter') }}">
@@ -175,6 +188,9 @@ var KTDatatablesExtensionsKeytable = function() {
         "data" : function (d) {
           d.filter_active = $('#filter_active').val();
           @stack('filter-function')
+          @if ( !empty($content) && $content == 'withStatus')
+          d.filter_status = $('.filter-status').val();
+          @endif
         }
       },
       headerCallback: function(thead, data, start, end, display) {
@@ -296,12 +312,18 @@ var KTDatatablesExtensionsKeytable = function() {
     });
 
     $('.filter-active').change(function () {
-      table.column(-2)
-      .search( $(this).val() )
-      .draw();
+      table.column(-2).search( $(this).val() ).draw();
     });
 
     @stack('filter-data')
+
+    @if ( !empty($content) && $content == 'withStatus')
+    $('.filter-status').change(function () {
+      table.column(2)
+      .search( $(this).val() )
+      .draw();
+    });
+    @endif
 
     $('#reset').click(function(){
       $('.filter-active').val('');
