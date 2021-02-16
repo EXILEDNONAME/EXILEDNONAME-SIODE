@@ -36,18 +36,7 @@ class MaintenanceController extends Controller {
 
   public function index(Request $request) {
     $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
-    $data_chart = $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-01%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-02%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-03%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-04%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-05%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-06%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-07%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-08%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-09%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-10%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-11%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('date_start', 'like', \Carbon\Carbon::now()->format('Y') . '-12%')->count();
+    $model = $this->model;
 
     if (request('date_start') && request('date_end')) { $data = $this->model::with(['jasamarga_users'])->orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->select('jasamarga_maintenances.*'); }
     else { $data = $this->model::with(['jasamarga_users'])->orderby('date_start', 'desc')->select('jasamarga_maintenances.*'); }
@@ -65,7 +54,7 @@ class MaintenanceController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('activity', 'data_chart'));
+    return view($this->path . '.index', compact('activity', 'model'));
 
   }
 

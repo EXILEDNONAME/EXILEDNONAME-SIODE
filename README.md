@@ -13,8 +13,10 @@ To Do : <br>
 [v] - Page JMTM <br>
 
 <hr>
-[x] - Migration Page VMS Maintenances
-[x] - Dashboard Table Sort Type VMS
+
+[x] - Fix Datatable Checkbox With Enable/Disable <br>
+[x] - Migration Page VMS Maintenances <br>
+[x] - Dashboard Table Sort Type VMS <br>
 [x] - Page Broadcast <br>
 [x] - Create Middleware Groups <br>
 [x] - Widget Dashboard <br>

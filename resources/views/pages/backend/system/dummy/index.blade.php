@@ -1,4 +1,4 @@
-@extends('layouts.pages.index', ['page' => 'index'])
+@extends('layouts.pages.index', ['page' => 'index', 'content' => 'withStatus', 'chart' => 'true'])
 @push('title', 'Dummies')
 
 @push('content-head')

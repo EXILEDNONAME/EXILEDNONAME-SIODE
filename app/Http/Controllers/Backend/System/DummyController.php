@@ -27,6 +27,19 @@ class DummyController extends Controller {
     $this->model = 'App\Models\Backend\System\Dummy';
   }
 
+  public function store(DummyStoreRequest $request) {
+    $store = $request->all();
+    $this->model::create($store);
+    return redirect($this->url)->with('success', trans('notification.success.create'));
+  }
+
+  public function update(DummyUpdateRequest $request, $id) {
+    $data = $this->model::findOrFail($id);
+    $update = $request->all();
+    $data->update($update);
+    return redirect($this->url)->with('success', trans('notification.success.edit'));
+  }
+
   /**
   **************************************************
   * @return Index
@@ -34,26 +47,12 @@ class DummyController extends Controller {
   **/
 
   public function index(Request $request) {
-
-    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
-
-    $data_chart = $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-01%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-02%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-03%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-04%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-05%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-06%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-07%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-08%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-09%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-10%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-11%')->count(); $data_chart .= ', ';
-    $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-12%')->count();
-
-    if (request('date_start') && request('date_end')) { $data = $this->model::orderby('created_at', 'desc')->whereBetween('created_at', [request('created_at'), request('date_end')])->select('*'); }
+    if (request('date_start') && request('date_end')) { $data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->select('*'); }
     else { $data = $this->model::orderby('date_start', 'desc')->select('*'); }
 
+    $model = $this->model;
     $data = $this->model::select('*');
+
     if(request()->ajax()) {
       return DataTables::eloquent($data)
       ->addColumn('action', 'includes.datatable.action')
@@ -65,48 +64,18 @@ class DummyController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
-
-  /**
-  **************************************************
-  * @return Show
-  **************************************************
-  **/
 
   public function show($id) {
     $data = $this->model::findOrFail($id);
     return view($this->path . '.show', compact('data'));
   }
 
-  /**
-  **************************************************
-  * @return Create
-  **************************************************
-  **/
-
   public function create() {
     $path = $this->path;
     return view($this->path . '.create', compact('path'));
   }
-
-  /**
-  **************************************************
-  * @return Store
-  **************************************************
-  **/
-
-  public function store(DeviceStoreRequest $request) {
-    $store = $request->all();
-    $this->model::create($store);
-    return redirect($this->url)->with('success', trans('notification.success.create'));
-  }
-
-  /**
-  **************************************************
-  * @return Edit
-  **************************************************
-  **/
 
   public function edit($id) {
     $path = $this->path;
@@ -114,36 +83,10 @@ class DummyController extends Controller {
     return view($this->path . '.edit', compact('path', 'data'));
   }
 
-  /**
-  **************************************************
-  * @return Update
-  **************************************************
-  **/
-
-  public function update(DeviceUpdateRequest $request, $id) {
-    $data = $this->model::findOrFail($id);
-    $update = $request->all();
-    $data->update($update);
-    return redirect($this->url)->with('success', trans('notification.success.edit'));
-  }
-
-  /**
-  **************************************************
-  * @return Destroy
-  **************************************************
-  **/
-
   public function destroy($id) {
     $this->model::destroy($id);
     return redirect($this->url)->with('success', trans('notification.success.delete'));
   }
-
-  /**
-  **************************************************
-  * @return Enable
-  * @return Disable
-  **************************************************
-  **/
 
   public function enable($id) {
     $data = $this->model::where('id', $id)->update([ 'active' => 1 ]);
@@ -155,26 +98,13 @@ class DummyController extends Controller {
     return Response::json($data);
   }
 
-  /**
-  **************************************************
-  * @return Delete
-  **************************************************
-  **/
-
   public function delete($id) {
     $this->model::destroy($id);
     $data = $this->model::where('id',$id)->delete();
     return Response::json($data);
   }
 
-  /**
-  **************************************************
-  * @return Delete-All
-  **************************************************
-  **/
-
-  public function deleteall(Request $request)
-  {
+  public function deleteall(Request $request) {
     $exilednoname = $request->EXILEDNONAME;
     $this->model::whereIn('id',explode(",",$exilednoname))->delete();
     return Response::json($exilednoname);
