@@ -138,12 +138,9 @@ var KTApexChartsDemo = function () {
     const apexChart = "#chart";
     // var data = <?php echo '[' . $chart .']'; ?>;
     var created = [{{ chart_created($model) }}];
-    var updated = [{{ chart_updated($model) }}];
-    var model = '{{ $model }}';
     var options = {
       series: [
         { name: 'Created', data: created },
-        { name: 'Updated', data: updated },
       ],
       chart: { height: 350, type: 'area' },
       dataLabels: { enabled: true },
@@ -158,16 +155,13 @@ var KTApexChartsDemo = function () {
   }
 
   return {
-    // public functions
     init: function () {
       _demo1();
     }
   };
 }();
 
-jQuery(document).ready(function () {
-  KTApexChartsDemo.init();
-});
+jQuery(document).ready(function () { KTApexChartsDemo.init(); });
 </script>
 @endif
 @endpush

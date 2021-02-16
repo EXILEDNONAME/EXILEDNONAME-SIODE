@@ -47,11 +47,12 @@ class DummyController extends Controller {
   **/
 
   public function index(Request $request) {
-    if (request('date_start') && request('date_end')) { $data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->select('*'); }
-    else { $data = $this->model::orderby('date_start', 'desc')->select('*'); }
 
     $model = $this->model;
     $data = $this->model::select('*');
+
+    if (request('date_start') && request('date_end')) { $data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->select('*'); }
+    else { $data = $this->model::orderby('date_start', 'desc')->select('*'); }
 
     if(request()->ajax()) {
       return DataTables::eloquent($data)
