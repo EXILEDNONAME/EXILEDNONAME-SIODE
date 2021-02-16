@@ -22,6 +22,7 @@ To Do : <br>
 [x] - Widget Dashboard <br>
 [x] - Create Notes All Pages <br>
 [x] - Profile Pages <br>
+[x] - Profile Timeline with loader more post <br>
 [x] - Realtime Notification Create/Update <br>
 [x] - Edit Generator
 
