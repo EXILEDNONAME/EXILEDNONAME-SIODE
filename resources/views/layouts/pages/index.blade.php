@@ -8,7 +8,7 @@
 
       <div class="card-header" style="">
         <div class="card-title">
-          <h5 class="text-dark font-weight-bold"> Main </h5>
+          <h5 class="text-dark font-weight-bold"> {{ trans('default.title.page-index') }} </h5>
         </div>
 
         <div class="card-toolbar">
@@ -23,31 +23,31 @@
                 <li class="navi-item">
                   <a href="javascript:void(0);" id="export_copy" class="navi-link">
                     <i class="navi-icon fa fa-copy"></i>
-                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Copy As Text"> {{ trans('button.index.export-copy') }} </span>
+                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Copy As Text"> {{ trans('default.button.index-export-copy') }} </span>
                   </a>
                 </li>
                 <li class="navi-item">
                   <a href="javascript:void(0);" id="export_excel" class="navi-link">
                     <i class="navi-icon fa fa-file-excel"></i>
-                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Export To Excel"> {{ trans('button.index.export-excel') }} </span>
+                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Export To Excel"> {{ trans('default.button.index-export-excel') }} </span>
                   </a>
                 </li>
                 <li class="navi-item">
                   <a href="javascript:void(0);" id="export_pdf" class="navi-link">
                     <i class="navi-icon fa fa-file-pdf"></i>
-                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Export To PDF"> {{ trans('button.index.export-pdf') }} </span>
+                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Export To PDF"> {{ trans('default.button.index-export-pdf') }} </span>
                   </a>
                 </li>
                 <li class="navi-item">
                   <a href="javascript:void(0);" id="export_csv" class="navi-link">
                     <i class="navi-icon fa fa-file"></i>
-                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="CSV"> {{ trans('button.index.export-csv') }} </span>
+                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="CSV"> {{ trans('default.button.index-export-csv') }} </span>
                   </a>
                 </li>
                 <li class="navi-item">
                   <a href="javascript:void(0);" id="export_print" class="navi-link">
                     <i class="navi-icon fa fa-print"></i>
-                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Print"> {{ trans('button.index.export-print') }} </span>
+                    <span class="kt-nav__link-text" data-toggle="kt-tooltip" title="" data-original-title="Print"> {{ trans('default.button.index-export-print') }} </span>
                   </a>
                 </li>
               </ul>
@@ -85,7 +85,7 @@
 
                 <div class="col-md-2 my-2 my-md-0">
                   <div class="d-flex align-items-center">
-                    <button type="reset" name="reset" id="reset" class="form-control btn btn-sm btn-outline-info" data-toggle="tooltip" title="Reset Filter">
+                    <button type="reset" name="reset" id="reset" class="form-control btn btn-sm btn-outline-info" data-toggle="tooltip" title="{{ trans('default.button.reset-filter') }}">
                       <i class="la la-refresh"></i>
                     </button>
                   </div>
@@ -386,8 +386,8 @@ var KTDatatablesExtensionsKeytable = function() {
           success: function (data) {
             var oTable = $('#exilednoname').dataTable();
             oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right" };
-            toastr.success("{{ trans('notification.success.status.done') }}");
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.success("{{ trans('default.notification.success.status-done') }}");
           },
           error: function (data) {
             //
@@ -407,8 +407,8 @@ var KTDatatablesExtensionsKeytable = function() {
           success: function (data) {
             var oTable = $('#exilednoname').dataTable();
             oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right" };
-            toastr.success("{{ trans('notification.success.status.pending') }}");
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.success("{{ trans('default.notification.success.status-pending') }}");
           },
           error: function (data) {
             //
@@ -427,8 +427,8 @@ var KTDatatablesExtensionsKeytable = function() {
         success: function (data) {
           var oTable = $('#exilednoname').dataTable();
           oTable.fnDraw(false);
-          toastr.options = { "positionClass": "toast-bottom-right" };
-          toastr.success("{{ trans('notification.success.active.enable') }}");
+          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+          toastr.success("{{ trans('default.notification.success.active-enable') }}");
         },
         error: function (data) {
           //
@@ -446,8 +446,8 @@ var KTDatatablesExtensionsKeytable = function() {
         success: function (data) {
           var oTable = $('#exilednoname').dataTable();
           oTable.fnDraw(false);
-          toastr.options = { "positionClass": "toast-bottom-right" };
-          toastr.success("{{ trans('notification.success.active.disable') }}");
+          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+          toastr.success("{{ trans('default.notification.success.active-disable') }}");
         },
         error: function (data) {
           //
@@ -471,8 +471,8 @@ var KTDatatablesExtensionsKeytable = function() {
           success: function (data) {
             var oTable = $('#exilednoname').dataTable();
             oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right" };
-            toastr.success("{{ trans('notification.success.status') }}");
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.success("{{ trans('default.notification.success.delete-all') }}");
           },
           error: function (data) {
             //
@@ -490,8 +490,8 @@ var KTDatatablesExtensionsKeytable = function() {
           success: function (data) {
             var oTable = $('#exilednoname').dataTable();
             oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right" };
-            toastr.success("{{ trans('notification.success.delete') }}");
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.success("{{ trans('default.notification.success.delete') }}");
           },
           error: function (data) {
             //

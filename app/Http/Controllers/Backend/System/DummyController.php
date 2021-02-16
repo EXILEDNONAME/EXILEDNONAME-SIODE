@@ -30,14 +30,14 @@ class DummyController extends Controller {
   public function store(DummyStoreRequest $request) {
     $store = $request->all();
     $this->model::create($store);
-    return redirect($this->url)->with('success', trans('notification.success.create'));
+    return redirect($this->url)->with('success', trans('default.notification.success.item-created'));
   }
 
   public function update(DummyUpdateRequest $request, $id) {
     $data = $this->model::findOrFail($id);
     $update = $request->all();
     $data->update($update);
-    return redirect($this->url)->with('success', trans('notification.success.edit'));
+    return redirect($this->url)->with('success', trans('default.notification.success.item-updated'));
   }
 
   /**
@@ -52,7 +52,7 @@ class DummyController extends Controller {
     $data = $this->model::select('*');
 
     if (request('date_start') && request('date_end')) { $data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->select('*'); }
-    else { $data = $this->model::orderby('date_start', 'desc')->select('*'); }
+    else { $data = $this->model::select('*'); }
 
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -86,7 +86,7 @@ class DummyController extends Controller {
 
   public function destroy($id) {
     $this->model::destroy($id);
-    return redirect($this->url)->with('success', trans('notification.success.delete'));
+    return redirect($this->url)->with('success', trans('default.notification.success.item-deleted'));
   }
 
   public function enable($id) {
@@ -96,6 +96,16 @@ class DummyController extends Controller {
 
   public function disable($id) {
     $data = $this->model::where('id', $id)->update([ 'active' => 2 ]);
+    return Response::json($data);
+  }
+
+  public function status_done($id) {
+    $data = $this->model::where('id', $id)->update([ 'status' => 1 ]);
+    return Response::json($data);
+  }
+
+  public function status_pending($id) {
+    $data = $this->model::where('id', $id)->update([ 'status' => 2 ]);
     return Response::json($data);
   }
 

@@ -6,12 +6,12 @@
     <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b card-sticky" id="kt_page_sticky_card">
       <div class="card-header" style="">
         <div class="card-title">
-          <h5 class="text-dark font-weight-bold"> Details </h5>
+          <h5 class="text-dark font-weight-bold"> {{ trans('default.title.page-show') }} </h5>
         </div>
 
         <div class="card-toolbar">
           <a href="{{ URL::current() }}/../#" class="btn btn-light-primary font-weight-bolder mr-2">
-            <i class="ki ki-long-arrow-back icon-xs"></i> Back
+            <i class="ki ki-long-arrow-back icon-xs"></i> {{ trans('default.button.back') }}
           </a>
           <div class="btn-group">
             <button type="button" class="btn btn-light-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
@@ -20,7 +20,7 @@
                 <li class="nav-item">
                   <a href="{{ URL::current() }}/edit" class="nav-link">
                     <i class="nav-icon flaticon2-contract"></i>
-                    <span class="nav-text"> Edit </span>
+                    <span class="nav-text"> {{ trans('default.button.edit') }} </span>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -28,7 +28,7 @@
                     @method('DELETE')
                     @csrf
                     <i class="nav-icon flaticon2-trash"></i>
-                    <a href="" class="nav-text delete"> Remove </a>
+                    <a href="" class="nav-text delete"> {{ trans('default.button.delete') }} </a>
                   </form>
                 </li>
               </ul>

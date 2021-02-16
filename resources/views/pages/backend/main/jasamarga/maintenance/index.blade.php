@@ -4,7 +4,7 @@
 @push('filter-header')
 <div class="col-md-4 my-2 my-md-0">
   <div class="d-flex align-items-center">
-    <label class="mr-3 mb-0 d-none d-md-block">Filter </label>
+    <label class="mr-3 mb-0 d-none d-md-block">Filter Date Maintenance </label>
     <div class="input-daterange input-group" id="ex_datepicker_start">
       <input type="text" id="date_start" class="form-control" name="date_start">
       <div class="input-group-append">
