@@ -62,12 +62,12 @@
   </script>
 
   <div id="backgroundvideo">
-    @if ( count($video_1) != false )
-    @foreach ( $video_1 as $item )
+    @if ( count($video) != false )
+    @foreach ( $video as $item )
     <video id="video" class="video-js vjs-default-skin" preload="auto" width="100%" src="/files/broadcast/video/{{ $item->file }}" autoplay></video>
     @endforeach
     @else
-    <video id="video" class="video-js vjs-default-skin" preload="auto" width="100%" src="/files/404.mp4" autoplay muted></video>
+    <video id="video" class="video-js vjs-default-skin" preload="auto" width="100%" src="/404.mp4" autoplay muted></video>
     @endif
   </div>
 </div>

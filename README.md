@@ -11,6 +11,7 @@ To Do : <br>
 [v] - Add Activity All Models <br>
 [v] - Content Monitoring <br>
 [v] - Page JMTM <br>
+[V] - Page Broadcast <br>
 
 <hr>
 
@@ -18,7 +19,6 @@ To Do : <br>
 [x] - Fix Datatable Checkbox With Enable/Disable <br>
 [x] - Migration Page VMS Maintenances <br>
 [x] - Dashboard Table Sort Type VMS <br>
-[x] - Page Broadcast <br>
 [x] - Create Middleware Groups <br>
 [x] - Widget Dashboard <br>
 [x] - Create Notes All Pages <br>
