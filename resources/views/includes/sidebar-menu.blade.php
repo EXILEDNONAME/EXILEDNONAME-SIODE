@@ -12,6 +12,16 @@
         </a>
       </li>
 
+      <!-- NOTIFICATIONS -->
+      <li class="menu-item {{ (request()->is('Notifications')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+        <a href="/dashboard" class="menu-link">
+          <span class="menu-icon">
+            <i class="menu-icon fa fa-bell"></i>
+          </span>
+          <span class="menu-text"> Notifications </span>
+        </a>
+      </li>
+
       <li class="menu-section">
         <h4 class="menu-text"> Main </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
