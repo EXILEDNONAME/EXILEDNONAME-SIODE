@@ -34,7 +34,6 @@ class ImageController extends Controller {
   **/
 
   public function index(Request $request) {
-    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
     $data = $this->model::select('*');
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -45,7 +44,7 @@ class ImageController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
 
   /**

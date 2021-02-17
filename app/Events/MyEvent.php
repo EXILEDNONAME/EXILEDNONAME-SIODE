@@ -10,30 +10,26 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MyEvent implements ShouldBroadcast
-{
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+class MyEvent implements ShouldBroadcast {
 
-    public $item;
+  use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct($item)
-    {
-        $this->item = $item;
-    }
+  public $item;
+  public function __construct($item) {
+    $this->item = $item;
+  }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return ['status-liked'];
-    }
+  public function broadcastOn() {
+    return ['status-liked'];
+  }
+
+  public function toDatabase($notifiable)
+  {
+    return [
+      'following_id' => $this->following->id,
+      'following_name' => $this->following->name,
+      'post_id' => $this->post->id,
+    ];
+  }
 
 }

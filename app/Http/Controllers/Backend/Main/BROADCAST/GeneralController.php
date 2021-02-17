@@ -35,8 +35,8 @@ class GeneralController extends Controller {
 
   public function index(Request $request) {
     $data = $this->model::latest()->first();
-    return view($this->path . '.index', compact('data'));
-    return view($this->path . '.index', compact('data'));
+    $model = $this->model;
+    return view($this->path . '.index', compact('data', 'model'));
   }
 
   public function update(Request $request, $id) {
