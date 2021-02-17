@@ -17,38 +17,40 @@
     <form>
       <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(/assets/backend/media/misc/bg-1.jpg)">
         <h4 class="d-flex flex-center rounded-top">
-          <span class="text-white">User Notifications</span>
-          <span class="btn btn-text btn-success btn-sm font-weight-bold btn-font-md ml-2">23 new</span>
+          <span class="text-white"> Notifications </span>
         </h4>
         <ul class="nav nav-bold nav-tabs nav-tabs-line nav-tabs-line-3x nav-tabs-line-transparent-white nav-tabs-line-active-border-success mt-3 px-8" role="tablist">
-          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#topbar_notifications_notifications">Alerts</a></li>
+          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#topbar_notifications_notifications">Alerts ({{ \DB::table('notifications')->get()->count() }})</a></li>
           <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#topbar_notifications_events">Events</a></li>
         </ul>
       </div>
 
       <div class="tab-content">
+
         <div class="tab-pane active show p-8" id="topbar_notifications_notifications" role="tabpanel">
           <div class="scroll pr-7 mr-n7" data-scroll="true" data-height="300" data-mobile-height="200">
 
+            @php $notification = \DB::table('notifications')->get(); @endphp
+            @foreach($notification as $notification)
             <div class="d-flex align-items-center mb-6">
-              <div class="symbol symbol-40 symbol-light-primary mr-5">
-                <span class="symbol-label">
-                  <i class="fas fa-envelope-open-text"></i>
-                </span>
+              <div class="symbol symbol-light-primary mr-5">
+                <i class="flaticon2-psd text-success"></i>
               </div>
               <div class="d-flex flex-column font-weight-bold">
-                <span class="text-dark mb-1 font-size-lg">
-                  Notification Test
+                <span class="text-dark mb-1 font-size-sm">
+                  {{ $notification->message }}
                 </span>
-                <span class="text-muted"> Notification Message </span>
+                <span class="text-muted"> 23 hours ago </span>
               </div>
             </div>
+            @endforeach
 
           </div>
           <div class="d-flex flex-center pt-7">
             <a href="#" class="btn btn-light-primary font-weight-bold text-center">See All</a>
           </div>
         </div>
+
         <div class="tab-pane p-8" id="topbar_notifications_events" role="tabpanel">
           <div class="scroll pr-7 mr-n7" data-scroll="true" data-height="300" data-mobile-height="200">
             <div class="d-flex align-items-center mb-6">
