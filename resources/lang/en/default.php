@@ -2,6 +2,16 @@
 
 return [
 
+  'label' => [
+    'delete'  => 'Delete',
+    'done'    => 'Done',
+    'edit'    => 'Edit',
+    'no'      => 'No',
+    'pending' => 'Pending',
+    'view'    => 'View',
+    'yes'     => 'Yes',
+  ],
+
   'title' => [
     'page-index'               => 'Main',
     'page-create'              => 'Create',
@@ -24,6 +34,11 @@ return [
   ],
 
   'button' => [
+    'sticky-copy-selected'   => 'Copy Selected',
+    'sticky-print-selected'   => 'Print Selected',
+    'sticky-pdf-selected'   => 'PDF Selected',
+    'sticky-excel-selected'   => 'Excel Selected',
+    'sticky-delete-selected'   => 'Delete Selected',
     'index-export-copy'   => 'Copy',
     'index-export-excel'  => 'Excel',
     'index-export-pdf'    => 'PDF',

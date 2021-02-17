@@ -127,22 +127,22 @@
 
       <div class="collapse" id="kt_datatable_group_action_form">
         <ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
-          <li class="nav-item" data-toggle="tooltip" title="{{ trans('button.index.export-copy-selected') }}" data-placement="left">
+          <li class="nav-item" data-toggle="tooltip" title="{{ trans('default.button.sticky-copy-selected') }}" data-placement="left">
             <a data-url="" id="export_selected_copy" class="btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip">
               <i class="text-dark fa fa-copy"></i>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" title="{{ trans('button.index.export-print-selected') }}" data-placement="left">
+          <li class="nav-item" data-toggle="tooltip" title="{{ trans('default.button.sticky-print-selected') }}" data-placement="left">
             <a data-url="" id="export_selected_print" class="btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip">
               <i class="text-info fas fa-print"></i>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" title="{{ trans('button.index.export-pdf-selected') }}" data-placement="left">
+          <li class="nav-item" data-toggle="tooltip" title="{{ trans('default.button.sticky-pdf-selected') }}" data-placement="left">
             <a data-url="" id="export_selected_pdf" class="btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip">
               <i class="text-danger fas fa-file-pdf"></i>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" title="{{ trans('button.index.export-excel-selected') }}" data-placement="left">
+          <li class="nav-item" data-toggle="tooltip" title="{{ trans('default.button.sticky-excel-selected') }}" data-placement="left">
             <a data-url="" id="export_selected_excel" class="btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip">
               <i class="text-success fas fa-file-excel"></i>
             </a>
@@ -150,7 +150,7 @@
           <li class="nav-item">
             <div class="dropdown-divider"></div>
           </li>
-          <li class="nav-item" data-toggle="tooltip" title="{{ trans('button.index.delete-selected') }}" data-placement="left">
+          <li class="nav-item" data-toggle="tooltip" title="{{ trans('default.button.sticky-delete-selected') }}" data-placement="left">
             <a data-url="" class="delete-all btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip">
               <i class="text-danger flaticon2-trash"></i>
             </a>
@@ -268,7 +268,7 @@ var KTDatatablesExtensionsKeytable = function() {
       columns: [
         {
           data: 'checkbox', orderable: false, orderable: false, searchable: false, 'width': '1',
-          render : function ( data, type, row) { return '<label class="checkbox checkbox-single checkbox-primary mb-0"><input type="checkbox" data-id="' + row.id + '" class="checkable"><span></span></label>'; },
+          render : function ( data, type, row, meta) { return '<label class="checkbox checkbox-single checkbox-primary mb-0"><input type="checkbox" data-id="' + row.id + '" class="checkable"><span></span></label>'; },
         },
         {
           data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
@@ -281,8 +281,8 @@ var KTDatatablesExtensionsKeytable = function() {
           data: 'status', orderable: true, 'className': 'align-middle', 'width': '1',
           render: function ( data, type, row ) {
             if ( data == 0) { return ''; }
-            if ( data == 1 ) { return '<a href="javascript:void(0);" id="status_pending" data-toggle="tooltip" data-original-title="Pending" data-id="' + row.id + '"><span class="label label-outline-success label-pill label-inline"> Done </span></a>'; }
-            if ( data == 2 ) { return '<a href="javascript:void(0);" id="status_done" data-toggle="tooltip" data-original-title="Done" data-id="' + row.id + '"><span class="label label-outline-warning label-pill label-inline"> Pending </span></a>'; }
+            if ( data == 2 ) { return '<a href="javascript:void(0);" id="status_done" data-toggle="tooltip" data-original-title="Done" data-id="' + row.id + '"><span class="label label-outline-warning label-pill label-inline"> {{ trans("default.label.pending") }} </span></a>'; }
+            if ( data == 1 ) { return '<a href="javascript:void(0);" id="status_pending" data-toggle="tooltip" data-original-title="Pending" data-id="' + row.id + '"><span class="label label-outline-success label-pill label-inline"> {{ trans("default.label.done") }} </span></a>'; }
           }
         },
         @endif
@@ -291,8 +291,8 @@ var KTDatatablesExtensionsKeytable = function() {
           data: 'active', orderable: true, 'className': 'align-middle text-center', 'width': '1',
           render: function ( data, type, row ) {
             if ( data == 0) { return ''; }
-            if ( data == 1 ) { return '<a href="javascript:void(0);" id="disable" data-toggle="tooltip" data-original-title="Disable" data-id="' + row.id + '"><span class="label label-info label-inline"> Yes </span></a>'; }
-            if ( data == 2 ) { return '<a href="javascript:void(0);" id="enable" data-toggle="tooltip" data-original-title="Enable" data-id="' + row.id + '"><span class="label label-dark label-inline"> No </span></a>'; }
+            if ( data == 1 ) { return '<a href="javascript:void(0);" id="disable" data-toggle="tooltip" data-original-title="Disable" data-id="' + row.id + '"><span class="label label-info label-inline"> {{ trans("default.label.yes") }} </span></a>'; }
+            if ( data == 2 ) { return '<a href="javascript:void(0);" id="enable" data-toggle="tooltip" data-original-title="Enable" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ trans("default.label.no") }} </span></a>'; }
           }
         },
         {
@@ -302,9 +302,9 @@ var KTDatatablesExtensionsKeytable = function() {
             '<div class="dropdown dropdown-inline">'+
             '<button type="button" class="btn btn-hover-light-info btn-icon btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-ver"></i></button>'+
             '<div class="dropdown-menu dropdown-menu-xs" style=""><ul class="navi navi-hover py-5">'+
-            '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '" class="navi-link"><span class="navi-icon"><i class="flaticon2-expand"></i></span><span class="navi-text">View</span></a></li>'+
-            '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '/edit" class="navi-link"><span class="navi-icon"><i class="flaticon2-contract"></i></span><span class="navi-text">Edit</span></a></li>'+
-            '<li class="navi-item"><a href="javascript:void(0);" class="navi-link" id="delete" data-id="' + row.id + '"><span class="navi-icon"><i class="flaticon2-trash"></i></span><span class="navi-text delete"> Delete</span></a></li>';
+            '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '" class="navi-link"><span class="navi-icon"><i class="flaticon2-expand"></i></span><span class="navi-text">{{ trans("default.label.view") }}</span></a></li>'+
+            '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '/edit" class="navi-link"><span class="navi-icon"><i class="flaticon2-contract"></i></span><span class="navi-text">{{ trans("default.label.edit") }}</span></a></li>'+
+            '<li class="navi-item"><a href="javascript:void(0);" class="navi-link" id="delete" data-id="' + row.id + '"><span class="navi-icon"><i class="flaticon2-trash"></i></span><span class="navi-text delete"> {{ trans("default.label.delete") }} </span></a></li>';
           },
         },
       ],

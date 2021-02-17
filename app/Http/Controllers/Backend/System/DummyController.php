@@ -27,19 +27,6 @@ class DummyController extends Controller {
     $this->model = 'App\Models\Backend\System\Dummy';
   }
 
-  public function store(DummyStoreRequest $request) {
-    $store = $request->all();
-    $this->model::create($store);
-    return redirect($this->url)->with('success', trans('default.notification.success.item-created'));
-  }
-
-  public function update(DummyUpdateRequest $request, $id) {
-    $data = $this->model::findOrFail($id);
-    $update = $request->all();
-    $data->update($update);
-    return redirect($this->url)->with('success', trans('default.notification.success.item-updated'));
-  }
-
   /**
   **************************************************
   * @return Index
@@ -82,6 +69,19 @@ class DummyController extends Controller {
     $path = $this->path;
     $data = $this->model::findOrFail($id);
     return view($this->path . '.edit', compact('path', 'data'));
+  }
+
+  public function store(DummyStoreRequest $request) {
+    $store = $request->all();
+    $this->model::create($store);
+    return redirect($this->url)->with('success', trans('default.notification.success.item-created'));
+  }
+
+  public function update(DummyUpdateRequest $request, $id) {
+    $data = $this->model::findOrFail($id);
+    $update = $request->all();
+    $data->update($update);
+    return redirect($this->url)->with('success', trans('default.notification.success.item-updated'));
   }
 
   public function destroy($id) {
