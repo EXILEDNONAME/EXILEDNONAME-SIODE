@@ -14,6 +14,7 @@ To Do : <br>
 
 <hr>
 
+[x] - Realtime Notification Create/Update To Middleware Group <br>
 [x] - Fix Datatable Checkbox With Enable/Disable <br>
 [x] - Migration Page VMS Maintenances <br>
 [x] - Dashboard Table Sort Type VMS <br>
@@ -23,7 +24,6 @@ To Do : <br>
 [x] - Create Notes All Pages <br>
 [x] - Profile Pages <br>
 [x] - Profile Timeline with loader more post <br>
-[x] - Realtime Notification Create/Update <br>
 [x] - Edit Generator
 
 <hr>

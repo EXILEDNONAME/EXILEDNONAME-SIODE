@@ -55,21 +55,3 @@ var KTAppSettings = { "breakpoints":
 <script src="/assets/backend/plugins/global/plugins.bundle.js?v=7.0.5"></script>
 <script src="/assets/backend/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5"></script>
 <script src="/assets/backend/js/scripts.bundle.js?v=7.0.5"></script>
-
-<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-<script>
-
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('748fa3ef274df9e61cd4', {
-      cluster: 'ap1'
-    });
-
-    var channel = pusher.subscribe('status-liked');
-    channel.bind('App\\Events\\MyEvent', function(data) {
-      document.getElementById('output').innerHTML = data.item.name
-      toastr.options = { "closeButton": true, "positionClass": "toast-bottom-right" };
-      toastr.info(data.item.name);
-    });
-  </script>
