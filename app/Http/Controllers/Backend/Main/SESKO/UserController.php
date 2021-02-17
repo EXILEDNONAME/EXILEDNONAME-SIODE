@@ -34,7 +34,7 @@ class UserController extends Controller {
   **/
 
   public function index(Request $request) {
-    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
+    $model = $this->model;
     $data = $this->model::with(['sesko_locations', 'sesko_packets'])->select('sesko_users.*');
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -45,7 +45,7 @@ class UserController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
 
   /**

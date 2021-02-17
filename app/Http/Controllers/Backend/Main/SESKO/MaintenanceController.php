@@ -34,7 +34,7 @@ class MaintenanceController extends Controller {
   **/
 
   public function index(Request $request) {
-    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
+    $model = $this->model;
     if (request('date_start') && request('date_end')) { $data = $this->model::with(['sesko_users'])->whereBetween('date_start', [request('date_start'), request('date_end')])->select('sesko_maintenances.*'); }
     else { $data = $this->model::with(['sesko_users'])->select('sesko_maintenances.*'); }
     if(request()->ajax()) {
@@ -50,7 +50,7 @@ class MaintenanceController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
 
   /**

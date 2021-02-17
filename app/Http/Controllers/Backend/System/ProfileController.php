@@ -8,7 +8,9 @@ use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+
 use App\User;
+use App\Models\Backend\System\Timeline;
 
 class ProfileController extends Controller {
 
@@ -71,8 +73,9 @@ class ProfileController extends Controller {
   }
 
   public function timeline() {
+    $timeline = Timeline::where('id_user', Auth::User()->id)->get();
     $data = User::where('username', Auth::User()->username)->first();
-    return view('pages.backend.system.profile.timeline', compact('data'));
+    return view('pages.backend.system.profile.timeline', compact('data', 'timeline'));
   }
 
   public function personal_information() {

@@ -34,6 +34,7 @@ class DirectoryController extends Controller {
   **/
 
   public function monitoring(Request $request) {
+    $model = $this->model;
     $data = $this->model::with(['vms_areas', 'vms_types'])->where('active', '1')->select('vms_directories.*');
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -45,11 +46,11 @@ class DirectoryController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
 
   public function index(Request $request) {
-    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
+    $model = $this->model;
     $data = $this->model::with(['vms_areas', 'vms_types'])->select('vms_directories.*');
     if(request()->ajax()) {
       return DataTables::eloquent($data)
@@ -61,7 +62,7 @@ class DirectoryController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
 
   /**
