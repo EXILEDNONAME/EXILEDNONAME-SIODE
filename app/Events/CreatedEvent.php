@@ -9,27 +9,31 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Backend\System\Notification;
 
-class MyEvent implements ShouldBroadcast {
+class CreatedEvent {
 
   use Dispatchable, InteractsWithSockets, SerializesModels;
 
-  public $item;
-  public function __construct($item) {
-    $this->item = $item;
+  public $user;
+
+  public function __construct($user) {
+    $this->user = $user;
   }
 
-  public function broadcastOn() {
-    return ['status-liked'];
-  }
-
-  public function toDatabase($notifiable)
-  {
-    return [
-      'following_id' => $this->following->id,
-      'following_name' => $this->following->name,
-      'post_id' => $this->post->id,
+  public function created() {
+    $data = [
+      'id_user' => '1',
+      'name'    => 'created',
+      'message' => $user,
     ];
+
+    Notification::insert($data);
+  }
+
+  public function broadcastOn()
+  {
+    return [];
   }
 
 }

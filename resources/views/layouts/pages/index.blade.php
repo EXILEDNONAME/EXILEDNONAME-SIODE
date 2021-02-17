@@ -61,6 +61,7 @@
         @if ($message = Session::get('success'))
         <div id="toast-container" class="toast-bottom-right">
           <div class="toast toast-success" aria-live="polite" style="">
+            <button type="button" class="toast-close-button" role="button">×</button>
             <div class="toast-message">{{ $message }}</div>
           </div>
         </div>

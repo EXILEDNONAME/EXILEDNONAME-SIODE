@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+// use App\Observers\DummyObserver;
+// use App\Models\Backend\System\Dummy;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
@@ -19,6 +21,11 @@ class AppServiceProvider extends ServiceProvider {
   }
 
   public function boot() {
+
+    // Dummy::observe(DummyObserver::class);
+
+
+
     Schema::defaultStringLength(191);
     config(['app.locale' => 'en']);
     Carbon::setLocale('en');

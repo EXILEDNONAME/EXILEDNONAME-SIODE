@@ -7,6 +7,7 @@ use DataTables;
 use Redirect,Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Events\TestEvent;
 
 use App\User;
 
@@ -33,6 +34,7 @@ class DashboardController extends Controller {
   **/
 
   public function index(Request $request) {
+    event( new TestEvent(Auth::User()->name));
     $data_chart = $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-01%')->count(); $data_chart .= ', ';
     $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-02%')->count(); $data_chart .= ', ';
     $data_chart .= $this->model::select(\DB::raw("COUNT(*) as count"))->where('created_at', 'like', \Carbon\Carbon::now()->format('Y') . '-03%')->count(); $data_chart .= ', ';
