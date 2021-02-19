@@ -44,7 +44,7 @@ class MaintenanceController extends Controller {
       ->editColumn('date_start', function($order) { return \Carbon\Carbon::parse($order->date_start)->format('d F Y, H:i'); })
       ->editColumn('date_end', function($order) { return \Carbon\Carbon::parse($order->date_end)->format('d F Y, H:i'); })
       ->editColumn('name', function($order) { return $order->vms_directories; })
-      ->editColumn('location', function($order) { return $order->vms_directories->vms_types->name; })
+      ->editColumn('vms_type', function($order) { return $order->vms_directories->vms_types->name; })
       ->rawColumns(['action', 'checkbox'])
       ->addIndexColumn()
       ->make(true);

@@ -16,59 +16,40 @@
     </div>
   </div>
 </div>
-<div class="col-md-3 my-2 my-md-0">
-  <div class="d-flex align-items-center">
-    <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
-    <select data-column="2" class="form-control filter-status">
-      <option value=""> - Filter Status - </option>
-      <option value="1"> Done </option>
-      <option value="2"> Pending </option>
-    </select>
-  </div>
-</div>
 @endpush
 
 @push('filter-function')
 d.date_start = $('#date_start').val();
 d.date_end = $('#date_end').val();
-d.filter_status = $('.filter-status').val();
 @endpush
 
 @push('filter-data')
 $('#date_start').change(function () { table.draw(); });
 $('#date_end').change(function () { table.draw(); });
-$('.filter-status').change(function () {
-  table.column(2)
-  .search( $(this).val() )
-  .draw();
-});
-@endpush
-
-@push('column-defs')
-columnDefs : [
-{ "visible": false, "targets" : 6 },
-{
-  render : function (data,type,row) {
-    return row['location'] + ' - ' +data;
-  }, "targets" : 5
-}],
 @endpush
 
 @push('content-head')
+<th> Type </th>
 <th> Date Start </th>
 <th> Date End </th>
 <th> Name </th>
-<th> Type </th>
 <th> Title </th>
 <th> Troubleshoot </th>
 <th> Description </th>
 @endpush
 
 @push('content-body')
+{
+  data: 'vms_type', orderable: true, 'className': 'align-middle', 'width': '1',
+  render: function ( data, type, row ) {
+    if ( data == 'Akses') { return '<span class="label label-info label-pill label-inline"> Akses </span>'; }
+    if ( data == 'Gardu' ) { return '<span class="label label-info label-pill label-inline"> Gardu </span>'; }
+    if ( data == 'Jalur' ) { return '<span class="label label-info label-pill label-inline"> Jalur </span>'; }
+  }
+},
 { data: 'date_start', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'date_end', searchable: false, width: 1, className: 'text-nowrap' },
-{ data: 'vms_directories.name' },
-{ data: 'location', searchable: false },
+{ data: 'vms_directories.name', width: 1, className: 'text-nowrap'  },
 { data: 'title' },
 { data: 'troubleshoot' },
 { data: 'description' },

@@ -27,7 +27,6 @@ function vms_directories_active() {
   $items = DB::table('vms_directories as a')
     ->join('vms_types as b', 'b.id', '=', 'a.id_type')
     ->selectRaw('CONCAT(b.name, " - ", a.name) as concatname, a.id')
-    ->where('a.active', 1)
     ->pluck('concatname', 'a.id');
   return $items;
 }

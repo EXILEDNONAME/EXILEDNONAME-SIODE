@@ -13,14 +13,14 @@ To Do : <br>
 [v] - Page JMTM <br>
 [V] - Page Broadcast <br>
 [v] - Create Middleware Groups
+[v] - Migration Page VMS Maintenances <br>
+[v] - Widget Dashboard <br>
 
 <hr>
 
 [x] - Realtime Notification Create/Update To Middleware Group <br>
 [x] - Fix Datatable Checkbox With Enable/Disable <br>
-[x] - Migration Page VMS Maintenances <br>
 [x] - Dashboard Table Sort Type VMS <br>
-[x] - Widget Dashboard <br>
 [x] - Create Notes All Pages <br>
 [x] - Profile Pages <br>
 [x] - Profile Timeline with loader more post <br>
