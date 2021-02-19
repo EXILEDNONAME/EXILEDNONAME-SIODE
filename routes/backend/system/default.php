@@ -30,6 +30,20 @@ Route::group([
   Route::resource('/', 'UserController')->parameters(['' => 'id']);
 });
 
+// MIKROTIK
+Route::group([
+  'as' => 'system.mikrotik.device.',
+  'prefix' => 'dashboard/mikrotik/devices',
+  'namespace' => 'Backend\System\Mikrotik',
+], function(){
+  Route::get('enable/{id}', 'DeviceController@enable')->name('enable');
+  Route::get('disable/{id}', 'DeviceController@disable')->name('disable');
+  Route::get('status/{id}/{slug}', 'DeviceController@status')->name('status');
+  Route::get('delete/{id}', 'DeviceController@delete')->name('delete');
+  Route::get('deleteall', 'DeviceController@deleteall')->name('deleteall');
+  Route::resource('/', 'DeviceController')->parameters(['' => 'id']);
+});
+
 // PROFILE
 Route::group([
   'as' => 'dashboard.profile.',

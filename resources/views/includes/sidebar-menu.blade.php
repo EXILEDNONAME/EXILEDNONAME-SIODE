@@ -12,8 +12,18 @@
         </a>
       </li>
 
+      <!-- MESSAGES -->
+      <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+        <a href="/dashboard/messages" class="menu-link">
+          <span class="menu-icon">
+            <i class="menu-icon fa fa-inbox"></i>
+          </span>
+          <span class="menu-text"> Messages </span>
+        </a>
+      </li>
+
       <!-- NOTIFICATIONS -->
-      <li class="menu-item {{ (request()->is('Notifications')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+      <li class="menu-item {{ (request()->is('dashboard/notifications')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="/dashboard" class="menu-link">
           <span class="menu-icon">
             <i class="menu-icon fa fa-bell"></i>
@@ -74,6 +84,25 @@
                   <span></span>
                 </i>
                 <span class="menu-text"> Users</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/mikrotik*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+        <a href="javascript:;" class="menu-link menu-toggle">
+          <span class="menu-icon"><i class="menu-icon far fa-hdd"></i></span>
+          <span class="menu-text"> Mikrotik </span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="menu-submenu">
+          <i class="menu-arrow"></i>
+          <ul class="menu-subnav">
+            <li class="menu-item {{ (request()->is('dashboard/mikrotik/devices*')) ? 'menu-item-active' : '' }}">
+              <a href="/dashboard/mikrotik/devices" class="menu-link">
+                <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                <span class="menu-text"> Devices </span>
               </a>
             </li>
           </ul>
