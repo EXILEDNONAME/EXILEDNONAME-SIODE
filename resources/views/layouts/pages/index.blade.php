@@ -72,7 +72,7 @@
             <div class="col-lg-9 col-xl-8">
               <div class="row align-items-center">
 
-                <div class="col-md-3 my-2 my-md-0">
+                <div class="col-md-2 my-2 my-md-0">
                   <div class="d-flex align-items-center">
                     <select data-column="-2" class="form-control filter-active">
                       <option value=""> - Select Active - </option>
@@ -85,7 +85,7 @@
                 @stack('filter-header')
 
                 @if ( !empty($content) && $content == 'withStatus')
-                <div class="col-md-3 my-2 my-md-0">
+                <div class="col-md-2 my-2 my-md-0">
                   <div class="d-flex align-items-center">
                     <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
                     <select data-column="2" class="form-control filter-status">

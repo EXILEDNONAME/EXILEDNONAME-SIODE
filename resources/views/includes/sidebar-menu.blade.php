@@ -14,7 +14,7 @@
 
       <!-- MESSAGES -->
       <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
-        <a href="/dashboard/messages" class="menu-link">
+        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
           <span class="menu-icon">
             <i class="menu-icon fa fa-inbox"></i>
           </span>
@@ -24,7 +24,7 @@
 
       <!-- NOTIFICATIONS -->
       <li class="menu-item {{ (request()->is('dashboard/notifications')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
-        <a href="/dashboard" class="menu-link">
+        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
           <span class="menu-icon">
             <i class="menu-icon fa fa-bell"></i>
           </span>
@@ -91,7 +91,7 @@
       </li>
 
       <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/mikrotik*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-        <a href="javascript:;" class="menu-link menu-toggle">
+        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link menu-toggle">
           <span class="menu-icon"><i class="menu-icon far fa-hdd"></i></span>
           <span class="menu-text"> Mikrotik </span>
           <i class="menu-arrow"></i>

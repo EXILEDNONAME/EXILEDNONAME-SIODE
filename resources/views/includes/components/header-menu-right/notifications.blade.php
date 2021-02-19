@@ -20,7 +20,7 @@
           <span class="text-white"> Notifications </span>
         </h4>
         <ul class="nav nav-bold nav-tabs nav-tabs-line nav-tabs-line-3x nav-tabs-line-transparent-white nav-tabs-line-active-border-success mt-3 px-8" role="tablist">
-          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#topbar_notifications_notifications">Alerts ({{ \DB::table('notifications')->get()->count() }})</a></li>
+          <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#topbar_notifications_notifications">Alerts (0)</a></li>
           <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#topbar_notifications_events">Events</a></li>
         </ul>
       </div>
@@ -30,20 +30,17 @@
         <div class="tab-pane active show p-8" id="topbar_notifications_notifications" role="tabpanel">
           <div class="scroll pr-7 mr-n7" data-scroll="true" data-height="300" data-mobile-height="200">
 
-            @php $notification = \DB::table('notifications')->get(); @endphp
-            @foreach($notification as $notification)
             <div class="d-flex align-items-center mb-6">
               <div class="symbol symbol-light-primary mr-5">
                 <i class="flaticon2-psd text-success"></i>
               </div>
               <div class="d-flex flex-column font-weight-bold">
                 <span class="text-dark mb-1 font-size-sm">
-                  {{ $notification->message }}
+                  Title
                 </span>
                 <span class="text-muted"> 23 hours ago </span>
               </div>
             </div>
-            @endforeach
 
           </div>
           <div class="d-flex flex-center pt-7">
