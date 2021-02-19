@@ -29,6 +29,7 @@
 
       @include('includes.sidebar-item')
 
+      @if (access('Administrator'))
       <li class="menu-section">
         <h4 class="menu-text"> Extensions </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -78,7 +79,7 @@
           </ul>
         </div>
       </li>
-
+      @endif
 
       <li class="menu-section">
         <h4 class="menu-text"> Settings </h4>

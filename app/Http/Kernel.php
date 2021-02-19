@@ -44,7 +44,14 @@ class Kernel extends HttpKernel {
     'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-    'Access' => \App\Http\Middleware\Access::class
+    // System Access
+    'Administrator'           => \App\Http\Middleware\Access\Administrator::class,
+    'AdministratorBroadcast'  => \App\Http\Middleware\Access\AdministratorBroadcast::class,
+    'AdministratorDishub'     => \App\Http\Middleware\Access\AdministratorDishub::class,
+    'AdministratorJasamarga'  => \App\Http\Middleware\Access\AdministratorJasamarga::class,
+    'AdministratorJmtm'       => \App\Http\Middleware\Access\AdministratorJmtm::class,
+    'AdministratorSesko'      => \App\Http\Middleware\Access\AdministratorSesko::class,
+    'AdministratorVms'        => \App\Http\Middleware\Access\AdministratorVms::class,
   ];
 
   protected $middlewarePriority = [

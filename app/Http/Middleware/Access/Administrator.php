@@ -5,12 +5,10 @@ use Illuminate\Http\Request;
 use Auth;
 use Closure;
 
-class Access {
+class Administrator {
   public function handle(Request $request, Closure $next) {
-    if ( $request->get('Administrator')) {
-      if( Auth::user()->accesses->name  == 'Administrator') {
-        return $next($request);
-      }
+    if( Auth::user()->accesses->description  == 'Administrator-Full') {
+      return $next($request);
     }
     else {
       return redirect('/dashboard');

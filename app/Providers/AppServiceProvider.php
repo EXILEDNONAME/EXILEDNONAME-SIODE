@@ -11,6 +11,8 @@ use Carbon\Carbon;
 class AppServiceProvider extends ServiceProvider {
 
   public function register() {
+    require_once app_path() . '/Helpers/System/Access.php';
+
     require_once app_path() . '/Helpers/System/Activity.php';
     require_once app_path() . '/Helpers/System/Chart.php';
     require_once app_path() . '/Helpers/Backend/Main/DISHUB.php';

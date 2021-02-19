@@ -24,7 +24,7 @@
       </div>
         <span class="text-center rounded-top mb-5 mt-5">
           <span class="text-white font-weight-bold">{{ Auth::User()->name }}</span><br>
-          <span class="text-muted text-center">{{ Auth::User()->accesses->name }}</span><br>
+          <span class="text-muted text-center">{{ Auth::User()->accesses->description }}</span><br>
         </span>
       </div>
 
