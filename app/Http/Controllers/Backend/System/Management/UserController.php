@@ -34,7 +34,7 @@ class UserController extends Controller {
   **/
 
   public function index() {
-    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
+    $model = $this->model;
     $data = $this->model::with(['accesses'])->select('users.*');
     if(request()->ajax()) {
       return DataTables::of($data)
@@ -44,7 +44,7 @@ class UserController extends Controller {
       ->addIndexColumn()
       ->make(true);
     }
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
 
   /**

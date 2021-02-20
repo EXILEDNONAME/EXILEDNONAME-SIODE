@@ -34,7 +34,7 @@ class AccessController extends Controller {
   **/
 
   public function index() {
-    $activity = Activity::where('subject_type', $this->model)->orderBy('created_at', 'desc')->take(5)->get();
+    $model = $this->model;
     $data = $this->model::select('*');
     if(request()->ajax()) {
       return DataTables::of($data)
@@ -44,7 +44,7 @@ class AccessController extends Controller {
       ->addIndexColumn()
       ->make(true);
     }
-    return view($this->path . '.index', compact('activity'));
+    return view($this->path . '.index', compact('model'));
   }
 
   /**
