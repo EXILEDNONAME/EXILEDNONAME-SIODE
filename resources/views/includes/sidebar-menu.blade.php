@@ -91,7 +91,7 @@
       </li>
 
       <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/mikrotik*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link menu-toggle">
+        <a href="javascript:;" class="menu-link menu-toggle">
           <span class="menu-icon"><i class="menu-icon far fa-hdd"></i></span>
           <span class="menu-text"> Mikrotik </span>
           <i class="menu-arrow"></i>
@@ -100,7 +100,7 @@
           <i class="menu-arrow"></i>
           <ul class="menu-subnav">
             <li class="menu-item {{ (request()->is('dashboard/mikrotik/devices*')) ? 'menu-item-active' : '' }}">
-              <a href="/dashboard/mikrotik/devices" class="menu-link">
+              <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
                 <i class="menu-bullet menu-bullet-dot"><span></span></i>
                 <span class="menu-text"> Devices </span>
               </a>
