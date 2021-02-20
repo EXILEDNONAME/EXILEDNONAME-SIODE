@@ -81,9 +81,7 @@
         </div>
       </div>
       <div class="card-body py-0">
-        @foreach($timeline as $timeline)
-        {{ $timeline->timeline }} <hr>
-        @endforeach
+        <!--  -->
       </div>
     </div>
   </div>
