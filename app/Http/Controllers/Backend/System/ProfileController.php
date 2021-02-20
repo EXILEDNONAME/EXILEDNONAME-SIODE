@@ -73,9 +73,8 @@ class ProfileController extends Controller {
   }
 
   public function timeline() {
-    $timeline = Timeline::where('id_user', Auth::User()->id)->get();
     $data = User::where('username', Auth::User()->username)->first();
-    return view('pages.backend.system.profile.timeline', compact('data', 'timeline'));
+    return view('pages.backend.system.profile.timeline', compact('data'));
   }
 
   public function personal_information() {
