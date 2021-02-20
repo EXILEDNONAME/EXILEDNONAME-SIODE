@@ -9,19 +9,19 @@
     <i class="menu-arrow"></i>
     <ul class="menu-subnav">
       <li class="menu-item {{ (request()->is('dashboard/broadcast/contents*')) ? 'menu-item-active' : '' }}">
-        <a href="/dashboard/broadcast/contents" class="menu-link">
+        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
           <i class="menu-bullet menu-bullet-dot"><span></span></i>
           <span class="menu-text"> Contents </span>
         </a>
       </li>
       <li class="menu-item {{ (request()->is('dashboard/broadcast/images*')) ? 'menu-item-active' : '' }}">
-        <a href="/dashboard/broadcast/images" class="menu-link">
+        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
           <i class="menu-bullet menu-bullet-dot"><span></span></i>
           <span class="menu-text"> Images </span>
         </a>
       </li>
       <li class="menu-item {{ (request()->is('dashboard/broadcast/videos*')) ? 'menu-item-active' : '' }}">
-        <a href="/dashboard/broadcast/videos" class="menu-link">
+        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
           <i class="menu-bullet menu-bullet-dot"><span></span></i>
           <span class="menu-text"> Videos </span>
         </a>

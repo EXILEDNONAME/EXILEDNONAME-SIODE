@@ -46,7 +46,7 @@
       </li>
 
       <li class="menu-item {{ (request()->is('dashboard/dummies*')) ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-        <a href="/dashboard/dummies" class="menu-link">
+        <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
           <span class="menu-icon"><i class="menu-icon fa fa-file"></i></span>
           <span class="menu-text"> Dummies </span>
         </a>
