@@ -1,4 +1,4 @@
-@if (access('Administrator-Full') || access('Administrator-Broadcast'))
+@if (access('Administrator') || access('Administrator-Broadcast'))
 <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/broadcast*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
   <a href="javascript:;" class="menu-link menu-toggle">
     <span class="menu-icon"><i class="menu-icon fas fa-bookmark"></i></span>
@@ -31,7 +31,7 @@
 </li>
 @endif
 
-@if (access('Administrator-Full') || access('Administrator-Dishub'))
+@if (access('Administrator') || access('Administrator-Dishub'))
 <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/dishub*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
   <a href="javascript:;" class="menu-link menu-toggle">
     <span class="menu-icon"><i class="menu-icon fas fa-bookmark"></i></span>
@@ -70,7 +70,7 @@
 </li>
 @endif
 
-@if (access('Administrator-Full'))
+@if (access('Administrator'))
 <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/jasamarga*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
   <a href="javascript:;" class="menu-link menu-toggle">
     <span class="menu-icon"><i class="menu-icon fas fa-bookmark"></i></span>
@@ -121,7 +121,7 @@
 </li>
 @endif
 
-@if (access('Administrator-Full'))
+@if (access('Administrator'))
 <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/jmtm*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
   <a href="javascript:;" class="menu-link menu-toggle">
     <span class="menu-icon"><i class="menu-icon fas fa-bookmark"></i></span>
@@ -154,7 +154,7 @@
 </li>
 @endif
 
-@if (access('Administrator-Full'))
+@if (access('Administrator'))
 <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/sesko*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
   <a href="javascript:;" class="menu-link menu-toggle">
     <span class="menu-icon"><i class="menu-icon fas fa-bookmark"></i></span>
@@ -193,7 +193,7 @@
 </li>
 @endif
 
-@if (access('Administrator-Full'))
+@if (access('Administrator'))
 <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/vms*')) ? 'menu-item-active menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
   <a href="javascript:;" class="menu-link menu-toggle">
     <span class="menu-icon"><i class="menu-icon fas fa-bookmark"></i></span>

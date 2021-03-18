@@ -12,7 +12,7 @@
         </a>
       </li>
 
-      @if (access('Administrator-Full'))
+      @if (access('Administrator'))
       <!-- MESSAGES -->
       <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
@@ -41,7 +41,7 @@
 
       @include('includes.sidebar-item')
 
-      @if (access('Administrator-Full'))
+      @if (access('Administrator'))
       <li class="menu-section">
         <h4 class="menu-text"> Extensions </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
