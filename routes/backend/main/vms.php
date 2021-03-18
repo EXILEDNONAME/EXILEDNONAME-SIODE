@@ -1,12 +1,11 @@
 <?php
 
-
-
 // VMS - Areas
 Route::group([
   'as' => 'vms.area.',
   'prefix' => 'dashboard/vms/areas',
   'namespace' => 'Backend\Main\VMS',
+  'middleware' => 'Administrator'
 ], function(){
   Route::get('status-done/{id}', 'AreaController@status_done')->name('status-done');
   Route::get('status-pending/{id}', 'AreaController@status_pending')->name('status-pending');
@@ -56,6 +55,7 @@ Route::group([
   'as' => 'vms.type.',
   'prefix' => 'dashboard/vms/types',
   'namespace' => 'Backend\Main\VMS',
+  'middleware' => 'Administrator',
 ], function(){
   Route::get('status-done/{id}', 'TypeController@status_done')->name('status-done');
   Route::get('status-pending/{id}', 'TypeController@status_pending')->name('status-pending');

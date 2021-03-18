@@ -12,10 +12,6 @@
         </div>
 
         <div class="card-toolbar">
-          @if (access('Administrator'))
-          <a href="{{ URL::current() }}/create" class="btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip" title="" data-original-title="Create"><i class="fas fa-plus"></i></a>
-          @endif
-
           <a id="file-refresh" class="btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="kt-tooltip" title="" data-original-title="Refresh"><i class="la la-refresh"></i></a>
           <div class="dropdown dropdown-inline">
             <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,20 +66,19 @@
         </div>
         @endif
 
+        @if ($message = Session::get('error'))
+        <div id="toast-container" class="toast-bottom-right">
+          <div class="toast toast-error" aria-live="polite" style="">
+            <button type="button" class="toast-close-button" role="button">×</button>
+            <div class="toast-message">{{ $message }}</div>
+          </div>
+        </div>
+        @endif
+
         <div class="table-responsive">
           <div class="align-items-center">
             <div class="col-lg-9 col-xl-8">
               <div class="row align-items-center">
-
-                <div class="col-md-2 my-2 my-md-0">
-                  <div class="d-flex align-items-center">
-                    <select data-column="-2" class="form-control filter-active">
-                      <option value=""> - Select Active - </option>
-                      <option value="1"> Yes </option>
-                      <option value="2"> No </option>
-                    </select>
-                  </div>
-                </div>
 
                 @stack('filter-header')
 
@@ -91,7 +86,7 @@
                 <div class="col-md-2 my-2 my-md-0">
                   <div class="d-flex align-items-center">
                     <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
-                    <select data-column="2" class="form-control filter-status">
+                    <select data-column="1" class="form-control filter-status">
                       <option value=""> - Filter Status - </option>
                       <option value="1"> Done </option>
                       <option value="2"> Pending </option>
@@ -115,14 +110,11 @@
           <table width="100%" class="table table-striped-table-bordered table-hover table-checkable" id="exilednoname">
             <thead>
               <tr>
-                <th class="no-export"> </th>
                 <th> No. </th>
                 @if ( !empty($content) && $content == 'withStatus')
                 <th class="no-export"> Status </th>
                 @endif
                 @stack('content-head')
-                <th class="no-export"> Active </th>
-                <th class="no-export"> </th>
               </tr>
             </thead>
           </table>
@@ -165,8 +157,6 @@
     </div>
   </div>
 </div>
-
-@include('includes.activities')
 @endpush
 
 @push('js')
@@ -176,7 +166,6 @@
 <script>
 $("#toast-container").toast({ delay: 5000 });
 $("#toast-container").toast('show');
-
 "use strict";
 var KTDatatablesExtensionsKeytable = function() {
 
@@ -186,10 +175,6 @@ var KTDatatablesExtensionsKeytable = function() {
       serverSide: true,
       searching: true,
       rowId: 'id',
-      select: {
-        style: 'multi',
-        selector: 'td:first-child .checkable',
-      },
       ajax: {
         url: "{{ URL::current() }}",
         "data" : function (d) {
@@ -200,14 +185,6 @@ var KTDatatablesExtensionsKeytable = function() {
           @endif
         }
       },
-      headerCallback: function(thead, data, start, end, display) {
-        thead.getElementsByTagName('th')[0].innerHTML = `
-        <label class="checkbox checkbox-single checkbox-solid checkbox-primary mb-0">
-        <input type="checkbox" value="" class="group-checkable"/>
-        <span></span>
-        </label>`;
-      },
-
       "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
       buttons: [
         {
@@ -274,10 +251,6 @@ var KTDatatablesExtensionsKeytable = function() {
       @stack('column-defs')
       columns: [
         {
-          data: 'checkbox', orderable: false, orderable: false, searchable: false, 'width': '1',
-          render : function ( data, type, row, meta) { return '<label class="checkbox checkbox-single checkbox-primary mb-0"><input type="checkbox" data-id="' + row.id + '" class="checkable"><span></span></label>'; },
-        },
-        {
           data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
           render: function (data, type, row, meta) {
             return meta.row + meta.settings._iDisplayStart + 1;
@@ -288,34 +261,14 @@ var KTDatatablesExtensionsKeytable = function() {
           data: 'status', orderable: true, 'className': 'align-middle', 'width': '1',
           render: function ( data, type, row ) {
             if ( data == 0) { return ''; }
-            if ( data == 2 ) { return '<a href="javascript:void(0);" id="status_done" data-toggle="tooltip" data-original-title="Done" data-id="' + row.id + '"><span class="label label-outline-warning label-pill label-inline"> {{ trans("default.label.pending") }} </span></a>'; }
-            if ( data == 1 ) { return '<a href="javascript:void(0);" id="status_pending" data-toggle="tooltip" data-original-title="Pending" data-id="' + row.id + '"><span class="label label-outline-success label-pill label-inline"> {{ trans("default.label.done") }} </span></a>'; }
+            if ( data == 2 ) { return '<a href="javascript:void(0);" id="status_done" data-toggle="tooltip" data-original-title="Done" data-id="' + row.id + '"><span class="label label-outline-warning label-pill label-inline"> Pending </span></a>'; }
+            if ( data == 1 ) { return '<a href="javascript:void(0);" id="status_pending" data-toggle="tooltip" data-original-title="Pending" data-id="' + row.id + '"><span class="label label-outline-success label-pill label-inline"> Selesai </span></a>'; }
           }
         },
         @endif
         @stack('content-body')
-        {
-          data: 'active', orderable: true, 'className': 'align-middle text-center', 'width': '1',
-          render: function ( data, type, row ) {
-            if ( data == 0) { return ''; }
-            if ( data == 1 ) { return '<a href="javascript:void(0);" id="disable" data-toggle="tooltip" data-original-title="Disable" data-id="' + row.id + '"><span class="label label-info label-inline"> {{ trans("default.label.yes") }} </span></a>'; }
-            if ( data == 2 ) { return '<a href="javascript:void(0);" id="enable" data-toggle="tooltip" data-original-title="Enable" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ trans("default.label.no") }} </span></a>'; }
-          }
-        },
-        {
-          data: 'action', orderable: false, orderable: false, searchable: false, 'width': '1',
-          render : function ( data, type, row) {
-            return ''+
-            '<div class="dropdown dropdown-inline">'+
-            '<button type="button" class="btn btn-hover-light-info btn-icon btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-ver"></i></button>'+
-            '<div class="dropdown-menu dropdown-menu-xs" style=""><ul class="navi navi-hover py-5">'+
-            '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '" class="navi-link"><span class="navi-icon"><i class="flaticon2-expand"></i></span><span class="navi-text">{{ trans("default.label.view") }}</span></a></li>'+
-            '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '/edit" class="navi-link"><span class="navi-icon"><i class="flaticon2-contract"></i></span><span class="navi-text">{{ trans("default.label.edit") }}</span></a></li>'+
-            '<li class="navi-item"><a href="javascript:void(0);" class="navi-link" id="delete" data-id="' + row.id + '"><span class="navi-icon"><i class="flaticon2-trash"></i></span><span class="navi-text delete"> {{ trans("default.label.delete") }} </span></a></li>';
-          },
-        },
       ],
-      order: [[1, 'asc']]
+      order: [[0, 'asc']]
     });
 
     $('.filter-active').change(function () {
@@ -326,7 +279,7 @@ var KTDatatablesExtensionsKeytable = function() {
 
     @if ( !empty($content) && $content == 'withStatus')
     $('.filter-status').change(function () {
-      table.column(2)
+      table.column(1)
       .search( $(this).val() )
       .draw();
     });
@@ -402,131 +355,6 @@ var KTDatatablesExtensionsKeytable = function() {
       });
       var strEXILEDNONAME = exilednonameArr.join(",");
       console.log(strEXILEDNONAME);
-    });
-
-    $('body').on('click', '#status_done', function () {
-      var id = $(this).data("id");
-      if(confirm("Item will be set to Done")){
-        $.ajax({
-          type: "get",
-          url: "{{ URL::current() }}/status-done/"+id,
-          processing: true,
-          serverSide: true,
-          success: function (data) {
-            var oTable = $('#exilednoname').dataTable();
-            oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.success("{{ trans('default.notification.success.status-done') }}");
-          },
-          error: function (data) {
-            //
-          }
-        });
-      }
-    });
-
-    $('body').on('click', '#status_pending', function () {
-      var id = $(this).data("id");
-      if(confirm("Item will be set to Pending!")){
-        $.ajax({
-          type: "get",
-          url: "{{ URL::current() }}/status-pending/"+id,
-          processing: true,
-          serverSide: true,
-          success: function (data) {
-            var oTable = $('#exilednoname').dataTable();
-            oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.success("{{ trans('default.notification.success.status-pending') }}");
-          },
-          error: function (data) {
-            //
-          }
-        });
-      }
-    });
-
-    $('body').on('click', '#enable', function () {
-      var id = $(this).data("id");
-      $.ajax({
-        type: "get",
-        url: "{{ URL::current() }}/enable/"+id,
-        processing: true,
-        serverSide: true,
-        success: function (data) {
-          var oTable = $('#exilednoname').dataTable();
-          oTable.fnDraw(false);
-          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-          toastr.success("{{ trans('default.notification.success.active-enable') }}");
-        },
-        error: function (data) {
-          //
-        }
-      });
-    });
-
-    $('body').on('click', '#disable', function () {
-      var id = $(this).data("id");
-      $.ajax({
-        type: "get",
-        url: "{{ URL::current() }}/disable/"+id,
-        processing: true,
-        serverSide: true,
-        success: function (data) {
-          var oTable = $('#exilednoname').dataTable();
-          oTable.fnDraw(false);
-          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-          toastr.success("{{ trans('default.notification.success.active-disable') }}");
-        },
-        error: function (data) {
-          //
-        }
-      });
-    });
-
-    $('.delete-all').on('click', function(e) {
-      var exilednonameArr = [];
-      $(".selected").each(function() {
-        exilednonameArr.push($(this).attr('id'));
-      });
-      var strEXILEDNONAME = exilednonameArr.join(",");
-
-      if (confirm('Are you sure you want to permanently delete this comment?')){
-        $.ajax({
-          url: "{{ URL::current() }}/deleteall",
-          type: 'get',
-          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-          data: 'EXILEDNONAME='+strEXILEDNONAME,
-          success: function (data) {
-            var oTable = $('#exilednoname').dataTable();
-            oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.success("{{ trans('default.notification.success.delete-all') }}");
-          },
-          error: function (data) {
-            //
-          }
-        });
-      }
-    });
-
-    $('body').on('click', '#delete', function () {
-      var id = $(this).data("id");
-      if(confirm("Are You sure want to delete !")){
-        $.ajax({
-          type: "get",
-          url: "{{ URL::current() }}/delete/"+id,
-          success: function (data) {
-            var oTable = $('#exilednoname').dataTable();
-            oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.success("{{ trans('default.notification.success.delete') }}");
-          },
-          error: function (data) {
-            //
-          }
-        });
-      }
     });
 
   };

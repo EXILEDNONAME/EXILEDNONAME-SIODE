@@ -12,6 +12,7 @@
         </a>
       </li>
 
+      @if (access('Administrator-Full'))
       <!-- MESSAGES -->
       <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="javascript:;" onclick="return alert('Maintenance!')" class="menu-link">
@@ -31,6 +32,7 @@
           <span class="menu-text"> Notifications </span>
         </a>
       </li>
+      @endif
 
       <li class="menu-section">
         <h4 class="menu-text"> Main </h4>
@@ -39,7 +41,7 @@
 
       @include('includes.sidebar-item')
 
-      @if (access('Administrator'))
+      @if (access('Administrator-Full'))
       <li class="menu-section">
         <h4 class="menu-text"> Extensions </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>

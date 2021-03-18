@@ -47,6 +47,7 @@
 
   <br>
 
+  @if (access('Administrator'))
   <div class="row">
     <div class="col-lg-12">
       <div class="accordion accordion-solid accordion-panel accordion-svg-toggle" id="accordionExample8">
@@ -88,6 +89,7 @@
   </div>
 
   <br>
+  @endif
 
   <div class="row">
     <div class="col-xl-12">
@@ -130,8 +132,8 @@
     </div>
   </div>
 
+  @if (access('User-VMS'))
   <br>
-
   <div class="row">
     <div class="col-lg-12">
       <div class="card card-custom bgi-no-repeat bgi-size-cover gutter-b">
@@ -153,6 +155,7 @@
       </div>
     </div>
   </div>
+  @endif
   @endpush
 
   @push('js')

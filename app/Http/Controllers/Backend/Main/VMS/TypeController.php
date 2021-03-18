@@ -23,7 +23,7 @@ class TypeController extends Controller {
   public function __construct() {
     $this->middleware('auth');
     $this->url = '/dashboard/vms/types';
-    $this->path = 'pages.backend.main.vms.type';
+    $this->path = 'pages.backend.main.vms-admin.type';
     $this->model = 'App\Models\Backend\Main\VMS\Type';
   }
 

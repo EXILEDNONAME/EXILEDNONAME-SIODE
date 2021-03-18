@@ -1,4 +1,4 @@
-@extends('layouts.pages.index', ['page' => 'index', 'content' => 'withStatus', 'chart' => 'true'])
+@extends('layouts.custom.vms.index', ['page' => 'index', 'content' => 'withStatus', 'chart' => 'true'])
 @push('title', 'VMS Maintenances')
 
 @push('filter-header')
@@ -29,13 +29,14 @@ $('#date_end').change(function () { table.draw(); });
 @endpush
 
 @push('content-head')
+<th> Area </th>
 <th> Type </th>
-<th> Date Start </th>
-<th> Date End </th>
-<th> Name </th>
-<th> Title </th>
-<th> Troubleshoot </th>
-<th> Description </th>
+<th> Waktu Kerusakan </th>
+<th> Waktu Perbaikan </th>
+<th> Selisih Waktu </th>
+<th> Lokasi </th>
+<th> Permasalahan </th>
+<th> Tindakan </th>
 @endpush
 
 @push('content-body')
@@ -47,10 +48,11 @@ $('#date_end').change(function () { table.draw(); });
     if ( data == 'Jalur' ) { return '<span class="label label-info label-pill label-inline"> Jalur </span>'; }
   }
 },
+{ data: 'vms_area', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'date_start', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'date_end', searchable: false, width: 1, className: 'text-nowrap' },
+{ data: 'selisih_waktu', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'vms_directories.name', width: 1, className: 'text-nowrap'  },
 { data: 'title' },
 { data: 'troubleshoot' },
-{ data: 'description' },
 @endpush

@@ -23,7 +23,8 @@ class DirectoryController extends Controller {
   public function __construct() {
     $this->middleware('auth');
     $this->url = '/dashboard/vms/directories';
-    $this->path = 'pages.backend.main.vms.directory';
+    $this->path_admin = 'pages.backend.main.vms-admin.directory';
+    $this->path_user = 'pages.backend.main.vms-user.directory';
     $this->model = 'App\Models\Backend\Main\VMS\Directory';
   }
 
@@ -46,7 +47,7 @@ class DirectoryController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('model'));
+    return view($this->path_admin . '.index', compact('model'));
   }
 
   public function index(Request $request) {
@@ -62,7 +63,13 @@ class DirectoryController extends Controller {
       ->make(true);
     }
 
-    return view($this->path . '.index', compact('model'));
+    if (access('Administrator')) {
+      return view($this->path_admin . '.index', compact('model'));
+    }
+    else {
+      return view($this->path_user . '.index', compact('model'));
+    }
+
   }
 
   /**
@@ -73,7 +80,12 @@ class DirectoryController extends Controller {
 
   public function show($id) {
     $data = $this->model::findOrFail($id);
-    return view($this->path . '.show', compact('data'));
+    if (access('Administrator')) {
+      return view($this->path_admin . '.show', compact('data'));
+    }
+    else {
+      return view($this->path_user . '.show', compact('data'));
+    }
   }
 
   /**
@@ -83,8 +95,13 @@ class DirectoryController extends Controller {
   **/
 
   public function create() {
-    $path = $this->path;
-    return view($this->path . '.create', compact('path'));
+    $path = $this->path_admin;
+    if (access('Administrator')) {
+      return view($this->path_admin . '.create', compact('path'));
+    }
+    else {
+      return redirect($this->url)->with('error', trans('notification.restrict'));
+    }
   }
 
   /**
@@ -106,9 +123,14 @@ class DirectoryController extends Controller {
   **/
 
   public function edit($id) {
-    $path = $this->path;
+    $path = $this->path_admin;
     $data = $this->model::findOrFail($id);
-    return view($this->path . '.edit', compact('path', 'data'));
+    if (access('Administrator')) {
+      return view($this->path_admin . '.edit', compact('path'));
+    }
+    else {
+      return redirect($this->url)->with('error', trans('notification.restrict'));
+    }
   }
 
   /**
@@ -131,8 +153,13 @@ class DirectoryController extends Controller {
   **/
 
   public function destroy($id) {
-    $this->model::destroy($id);
-    return redirect($this->url)->with('success', trans('notification.success.delete'));
+    if (access('Administrator')) {
+      $this->model::destroy($id);
+      return redirect($this->url)->with('success', trans('notification.success.delete'));
+    }
+    else {
+      return redirect($this->url)->with('error', trans('notification.restrict'));
+    }
   }
 
   /**
@@ -143,13 +170,23 @@ class DirectoryController extends Controller {
   **/
 
   public function enable($id) {
-    $data = $this->model::where('id', $id)->update([ 'active' => 1 ]);
-    return Response::json($data);
+    if (access('Administrator')) {
+      $data = $this->model::where('id', $id)->update([ 'active' => 1 ]);
+      return Response::json($data);
+    }
+    else {
+      return redirect($this->url)->with('error', trans('notification.restrict'));
+    }
   }
 
   public function disable($id) {
-    $data = $this->model::where('id', $id)->update([ 'active' => 2 ]);
-    return Response::json($data);
+    if (access('Administrator')) {
+      $data = $this->model::where('id', $id)->update([ 'active' => 2 ]);
+      return Response::json($data);
+    }
+    else {
+      return redirect($this->url)->with('error', trans('notification.restrict'));
+    }
   }
 
   /**
@@ -159,9 +196,14 @@ class DirectoryController extends Controller {
   **/
 
   public function delete($id) {
-    $this->model::destroy($id);
-    $data = $this->model::where('id',$id)->delete();
-    return Response::json($data);
+    if (access('Administrator')) {
+      $this->model::destroy($id);
+      $data = $this->model::where('id',$id)->delete();
+      return Response::json($data);
+    }
+    else {
+      return redirect($this->url)->with('error', trans('notification.restrict'));
+    }
   }
 
   /**
@@ -170,11 +212,15 @@ class DirectoryController extends Controller {
   **************************************************
   **/
 
-  public function deleteall(Request $request)
-  {
-    $exilednoname = $request->EXILEDNONAME;
-    $this->model::whereIn('id',explode(",",$exilednoname))->delete();
-    return Response::json($exilednoname);
+  public function deleteall(Request $request) {
+    if (access('Administrator')) {
+      $exilednoname = $request->EXILEDNONAME;
+      $this->model::whereIn('id',explode(",",$exilednoname))->delete();
+      return Response::json($exilednoname);
+    }
+    else {
+      return redirect($this->url)->with('error', trans('notification.restrict'));
+    }
   }
 
 }

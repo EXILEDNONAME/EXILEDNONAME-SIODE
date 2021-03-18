@@ -23,7 +23,7 @@ class AreaController extends Controller {
   public function __construct() {
     $this->middleware('auth');
     $this->url = '/dashboard/vms/areas';
-    $this->path = 'pages.backend.main.vms.area';
+    $this->path = 'pages.backend.main.vms-admin.area';
     $this->model = 'App\Models\Backend\Main\VMS\Area';
   }
 

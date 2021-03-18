@@ -52,6 +52,8 @@ class Kernel extends HttpKernel {
     'AdministratorJmtm'       => \App\Http\Middleware\Access\AdministratorJmtm::class,
     'AdministratorSesko'      => \App\Http\Middleware\Access\AdministratorSesko::class,
     'AdministratorVms'        => \App\Http\Middleware\Access\AdministratorVms::class,
+
+    'UserVms'                 => \App\Http\Middleware\Access\UserVms::class,
   ];
 
   protected $middlewarePriority = [

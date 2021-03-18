@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
 use Auth;
 use Closure;
 
-class AdministratorDishub {
+class UserVms {
   public function handle(Request $request, Closure $next) {
-    if( Auth::user()->accesses->description  == 'Administrator-Dishub') {
+    if( Auth::user()->accesses->description  == 'User-VMS') {
       return $next($request);
     }
     else {
