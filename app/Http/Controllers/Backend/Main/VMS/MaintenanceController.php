@@ -95,7 +95,6 @@ class MaintenanceController extends Controller {
   **/
 
   public function create() {
-    $path = $this->path;
     if (access('Administrator')) {
       return view($this->path_admin . '.create', compact('data'));
     }
