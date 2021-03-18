@@ -7,7 +7,7 @@ use Closure;
 
 class Administrator {
   public function handle(Request $request, Closure $next) {
-    if( Auth::user()->accesses->description  == 'Administrator-Full') {
+    if( Auth::user()->accesses->description  == 'Administrator') {
       return $next($request);
     }
     else {
