@@ -95,8 +95,9 @@ class MaintenanceController extends Controller {
   **/
 
   public function create() {
+    $path = $this->path_admin;
     if (access('Administrator')) {
-      return view($this->path_admin . '.create', compact('data'));
+      return view($this->path_admin . '.create', compact('path'));
     }
     else {
       return redirect($this->url)->with('error', trans('notification.restrict'));
@@ -122,7 +123,7 @@ class MaintenanceController extends Controller {
   **/
 
   public function edit($id) {
-    $path = $this->path;
+    $path = $this->path_admin;
     $data = $this->model::findOrFail($id);
 
     if (access('Administrator')) {
