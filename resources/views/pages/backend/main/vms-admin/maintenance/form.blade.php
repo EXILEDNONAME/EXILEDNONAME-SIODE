@@ -1,23 +1,23 @@
 <div class="kt-section__body">
 
   <div class="form-group row">
-    <label class="col-lg-3 col-form-label"> Date Start </label>
+    <label class="col-lg-3 col-form-label"> Waktu Kerusakan </label>
     <div class="col-lg-9">
-      {!! Form::text('date_start', (isset($data->date_start) ? $data->date_start : \Carbon\Carbon::now()->add(-30,'minute')->format('Y-m-d H:i')), ['id' => 'ex_datetimepicker_start','class' => $errors->has('date_start') ? 'form-control is-invalid' : 'form-control', 'readonly' => '', 'required' => 'required']) !!}
+      {!! Form::text('date_start', (isset($data->date_start) ? $data->date_start : \Carbon\Carbon::now()->add(-30,'minute')->format('Y-m-d H:i')), ['id' => 'ex_datetimepicker_start','class' => $errors->has('date_start') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) !!}
       @error('date_start') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
     </div>
   </div>
 
   <div class="form-group row">
-    <label class="col-lg-3 col-form-label"> Date Finish </label>
+    <label class="col-lg-3 col-form-label"> Waktu Perbaikan </label>
     <div class="col-lg-9">
-      {!! Form::text('date_end', (isset($data->date_end) ? $data->date_end : \Carbon\Carbon::now()->format('Y-m-d H:i')), ['id' => 'ex_datetimepicker_finish','class' => $errors->has('date_end') ? 'form-control is-invalid' : 'form-control', 'readonly' => '', 'required' => 'required']) !!}
+      {!! Form::text('date_end', (isset($data->date_end) ? $data->date_end : \Carbon\Carbon::now()->format('Y-m-d H:i')), ['id' => 'ex_datetimepicker_finish','class' => $errors->has('date_end') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) !!}
       @error('date_end') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
     </div>
   </div>
 
   <div class="form-group row">
-    <label class="col-lg-3 col-form-label"> VMS </label>
+    <label class="col-lg-3 col-form-label"> Lokasi </label>
     <div class="col-lg-9">
       {!! Form::select('id_directory', vms_directories_active(), (isset($data->id_directory) ? $data->id_directory : NULL), ['placeholder' => '- Select VMS -', 'class' => 'form-control', 'required' => 'required']) !!}
       @error('id_directory') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
@@ -25,7 +25,7 @@
   </div>
 
   <div class="form-group row">
-    <label class="col-lg-3 col-form-label"> Title </label>
+    <label class="col-lg-3 col-form-label"> Permasalahan </label>
     <div class="col-lg-9">
       {!! Form::text('title', (isset($data->title) ? $data->title : ''), ['class' => $errors->has('title') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) !!}
       @error('title') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
@@ -33,7 +33,7 @@
   </div>
 
   <div class="form-group row">
-    <label class="col-lg-3 col-form-label"> Troubleshoot </label>
+    <label class="col-lg-3 col-form-label"> Tindakan </label>
     <div class="col-lg-9">
       {!! Form::textarea('troubleshoot', (isset($data->troubleshoot) ? $data->troubleshoot : ''), ['class' => $errors->has('troubleshoot') ? 'form-control is-invalid' : 'form-control', 'required' => 'required', 'rows'=>'3']) !!}
       @error('troubleshoot') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror

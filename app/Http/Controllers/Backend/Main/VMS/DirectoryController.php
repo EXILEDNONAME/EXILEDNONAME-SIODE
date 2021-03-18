@@ -52,7 +52,13 @@ class DirectoryController extends Controller {
 
   public function index(Request $request) {
     $model = $this->model;
-    $data = $this->model::with(['vms_areas', 'vms_types'])->select('vms_directories.*');
+    if (access('Administrator')) {
+      $data = $this->model::with(['vms_areas', 'vms_types'])->select('vms_directories.*');
+    }
+    else {
+      $data = $this->model::with(['vms_areas', 'vms_types'])->where('active', '1')->select('vms_directories.*');
+    }
+    
     if(request()->ajax()) {
       return DataTables::eloquent($data)
       ->addColumn('action', 'includes.datatable.action')
