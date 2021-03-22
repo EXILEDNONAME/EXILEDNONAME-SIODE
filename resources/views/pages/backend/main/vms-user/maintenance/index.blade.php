@@ -29,14 +29,15 @@ $('#date_end').change(function () { table.draw(); });
 @endpush
 
 @push('content-head')
-<th> Area </th>
 <th> Type </th>
+<th> Area </th>
 <th> Waktu Kerusakan </th>
 <th> Waktu Perbaikan </th>
 <th> Selisih Waktu </th>
 <th> Lokasi </th>
 <th> Permasalahan </th>
 <th> Tindakan </th>
+<th> Keterangan </th>
 @endpush
 
 @push('content-body')
@@ -44,15 +45,17 @@ $('#date_end').change(function () { table.draw(); });
   data: 'vms_type', orderable: true, 'className': 'align-middle', 'width': '1',
   render: function ( data, type, row ) {
     if ( data == 'Akses') { return '<span class="label label-info label-pill label-inline"> Akses </span>'; }
-    if ( data == 'Gardu' ) { return '<span class="label label-info label-pill label-inline"> Gardu </span>'; }
-    if ( data == 'Jalur' ) { return '<span class="label label-info label-pill label-inline"> Jalur </span>'; }
-  }
+    else if ( data == 'Gardu' ) { return '<span class="label label-info label-pill label-inline"> Gardu </span>'; }
+    else if ( data == 'Jalur' ) { return '<span class="label label-info label-pill label-inline"> Jalur </span>'; }
+    else return '';
+  },
 },
-{ data: 'vms_area', searchable: false, width: 1, className: 'text-nowrap' },
+{ data: 'vms_area', orderable: true, 'className': 'align-middle', 'width': '1' },
 { data: 'date_start', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'date_end', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'selisih_waktu', searchable: false, width: 1, className: 'text-nowrap' },
 { data: 'vms_directories.name', width: 1, className: 'text-nowrap'  },
 { data: 'title' },
 { data: 'troubleshoot' },
+{ data: 'description' },
 @endpush
