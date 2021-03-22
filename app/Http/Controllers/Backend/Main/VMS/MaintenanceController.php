@@ -127,7 +127,7 @@ class MaintenanceController extends Controller {
     $data = $this->model::findOrFail($id);
 
     if (access('Administrator')) {
-      return view($this->path . '.edit', compact('path', 'data'));
+      return view($this->path_admin . '.edit', compact('path', 'data'));
     }
     else {
       return redirect($this->url)->with('error', trans('notification.restrict'));
